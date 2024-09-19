@@ -14,28 +14,33 @@ function findFirstTutorial(tutorials: Tutorial[]): Tutorial | null {
 }
 
 export default async function Home(): Promise<JSX.Element> {
-  const languages = await getAvailableLanguages()
+  try {
+    const languages = await getAvailableLanguages()
   
-  if (languages.length === 0) {
-    return <div>No tutorial content available. Please add some tutorials.</div>
-  }
+    if (languages.length === 0) {
+      return <div>No tutorial content available. Please add some tutorials.</div>
+    }
 
-  const initialLanguage = languages[0]
-  const initialTutorials = await getTutorialStructure(initialLanguage)
+    const initialLanguage = languages[0]
+    const initialTutorials = await getTutorialStructure(initialLanguage)
   
-  let initialContent = 'No tutorial content available.'
-  const firstTutorial = findFirstTutorial(initialTutorials)
-  if (firstTutorial) {
-    initialContent = await getTutorialContent(initialLanguage, firstTutorial.path)
-  }
+    let initialContent = 'No tutorial content available.'
+    const firstTutorial = findFirstTutorial(initialTutorials)
+    if (firstTutorial) {
+      initialContent = await getTutorialContent(initialLanguage, firstTutorial.path)
+    }
 
-  return (
-    <main>
-      <TutorialLayout
-        initialLanguages={languages}
-        initialTutorials={initialTutorials}
-        initialContent={initialContent}
-      />
-    </main>
-  )
+    return (
+      <main>
+        <TutorialLayout
+          initialLanguages={languages}
+          initialTutorials={initialTutorials}
+          initialContent={initialContent}
+        />
+      </main>
+    )
+  } catch (error) {
+    console.error('Error in Home component:', error)
+    return <div>An error occurred while loading the content. Please try again later.</div>
+  }
 }

@@ -15,12 +15,16 @@ export function getTutorialContent(language: string, tutorialPath: string) {
   try {
     const decodedLanguage = decodeURIComponent(language)
     const fullPath = path.join(tutorialsDirectory, decodedLanguage, `${tutorialPath}.md`)
+    if (!fs.existsSync(fullPath)) {
+      console.error(`File not found: ${fullPath}`)
+      return 'Tutorial content not found.'
+    }
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { content } = matter(fileContents)
     return content
   } catch (error) {
     console.error(`Error reading tutorial content: ${error}`)
-    return 'Tutorial content not found.'
+    return 'Error loading tutorial content.'
   }
 }
 
@@ -52,8 +56,10 @@ function getDirectoryStructure(dirPath: string): TutorialItem[] {
         items: getDirectoryStructure(itemPath)
       }
     } else if (item.isFile() && item.name.endsWith('.md')) {
+      const fileContents = fs.readFileSync(itemPath, 'utf8')
+      const { data } = matter(fileContents)
       return {
-        title: item.name.replace('.md', ''),
+        title: data.title || item.name.replace('.md', ''),
         path: path.relative(tutorialsDirectory, itemPath).replace('.md', '')
       }
     }
