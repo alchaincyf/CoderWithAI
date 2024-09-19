@@ -44,7 +44,7 @@ function TutorialItem({ item, language, depth = 0 }: { item: Tutorial, language:
           </button>
         )}
       </div>
-      {hasItems && isOpen && (
+      {hasItems && isOpen && item.items && (
         <ul>
           {item.items.map((subItem: Tutorial) => (
             <TutorialItem key={subItem.path} item={subItem} language={language} depth={depth + 1} />
