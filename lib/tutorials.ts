@@ -5,6 +5,12 @@ import { languageOrder } from '@/config/languageOrder'
 
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
+export interface Tutorial {
+  title: string;
+  path: string;
+  items?: Tutorial[];
+}
+
 export function getTutorialContent(language: string, tutorialPath: string) {
   try {
     const decodedLanguage = decodeURIComponent(language)
@@ -18,7 +24,7 @@ export function getTutorialContent(language: string, tutorialPath: string) {
   }
 }
 
-export function getTutorialStructure(language: string) {
+export function getTutorialStructure(language: string): Tutorial[] {
   try {
     const decodedLanguage = decodeURIComponent(language)
     const languagePath = path.join(tutorialsDirectory, decodedLanguage)
