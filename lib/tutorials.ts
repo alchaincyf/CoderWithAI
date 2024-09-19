@@ -14,13 +14,23 @@ export interface Tutorial {
 export function getTutorialContent(language: string, tutorialPath: string) {
   try {
     const decodedLanguage = decodeURIComponent(language)
-    const fullPath = path.join(tutorialsDirectory, decodedLanguage, `${tutorialPath}.md`)
+    const languageDir = path.join(tutorialsDirectory, decodedLanguage)
+    
+    // 构建完整的文件路径
+    const fullPath = path.join(languageDir, `${tutorialPath}.md`)
+    console.log(`Attempting to read file: ${fullPath}`)
+    
     if (!fs.existsSync(fullPath)) {
       console.error(`File not found: ${fullPath}`)
       return 'Tutorial content not found.'
     }
+
     const fileContents = fs.readFileSync(fullPath, 'utf8')
+    console.log(`File contents read successfully. Length: ${fileContents.length}`)
+    
     const { content } = matter(fileContents)
+    console.log(`Parsed content length: ${content.length}`)
+    
     return content
   } catch (error) {
     console.error(`Error reading tutorial content: ${error}`)
@@ -32,7 +42,7 @@ export function getTutorialStructure(language: string): Tutorial[] {
   try {
     const decodedLanguage = decodeURIComponent(language)
     const languagePath = path.join(tutorialsDirectory, decodedLanguage)
-    return getDirectoryStructure(languagePath)
+    return getDirectoryStructure(languagePath, decodedLanguage)
   } catch (error) {
     console.error(`Error getting tutorial structure: ${error}`)
     return []
@@ -45,7 +55,7 @@ interface TutorialItem {
   items?: TutorialItem[];
 }
 
-function getDirectoryStructure(dirPath: string): TutorialItem[] {
+function getDirectoryStructure(dirPath: string, basePath: string): TutorialItem[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
   const structure = items.map(item => {
     const itemPath = path.join(dirPath, item.name)
@@ -53,14 +63,23 @@ function getDirectoryStructure(dirPath: string): TutorialItem[] {
       return {
         title: item.name,
         path: path.relative(tutorialsDirectory, itemPath),
-        items: getDirectoryStructure(itemPath)
+        items: getDirectoryStructure(itemPath, basePath)
       }
     } else if (item.isFile() && item.name.endsWith('.md')) {
-      const fileContents = fs.readFileSync(itemPath, 'utf8')
-      const { data } = matter(fileContents)
-      return {
-        title: data.title || item.name.replace('.md', ''),
-        path: path.relative(tutorialsDirectory, itemPath).replace('.md', '')
+      try {
+        const fileContents = fs.readFileSync(itemPath, 'utf8')
+        const { data } = matter(fileContents)
+        return {
+          title: data.title || item.name.replace('.md', ''),
+          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+        }
+      } catch (error) {
+        console.error(`Error parsing file ${itemPath}:`, error)
+        // 如果解析失败，使用文件名作为标题
+        return {
+          title: item.name.replace('.md', ''),
+          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+        }
       }
     }
     return null
@@ -104,7 +123,7 @@ function getDirectoryStructure(dirPath: string): TutorialItem[] {
   return structure
 }
 
-export function getAvailableLanguages() {
+export async function getAvailableLanguages() {
   try {
     const languages = fs.readdirSync(tutorialsDirectory)
       .filter(item => {

@@ -1,46 +1,26 @@
-import { TutorialLayout } from "@/components/tutorial-layout"
-import { getAvailableLanguages, getTutorialStructure, getTutorialContent, Tutorial } from "@/lib/tutorials"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { getAvailableLanguages } from "@/lib/tutorials"
 
-function findFirstTutorial(tutorials: Tutorial[]): Tutorial | null {
-  for (const item of tutorials) {
-    if (item.items) {
-      const found = findFirstTutorial(item.items)
-      if (found) return found
-    } else {
-      return item
-    }
-  }
-  return null
-}
+export default async function Home() {
+  const languages = await getAvailableLanguages()
 
-export default async function Home(): Promise<JSX.Element> {
-  try {
-    const languages = await getAvailableLanguages()
-  
-    if (languages.length === 0) {
-      return <div>No tutorial content available. Please add some tutorials.</div>
-    }
-
-    const initialLanguage = languages[0]
-    const initialTutorials = await getTutorialStructure(initialLanguage)
-  
-    let initialContent = 'No tutorial content available.'
-    const firstTutorial = findFirstTutorial(initialTutorials)
-    if (firstTutorial) {
-      initialContent = await getTutorialContent(initialLanguage, firstTutorial.path)
-    }
-
-    return (
-      <main>
-        <TutorialLayout
-          initialLanguages={languages}
-          initialTutorials={initialTutorials}
-          initialContent={initialContent}
-        />
-      </main>
-    )
-  } catch (error) {
-    console.error('Error in Home component:', error)
-    return <div>An error occurred while loading the content. Please try again later.</div>
-  }
+  return (
+    <main className="flex-1 overflow-auto p-4 md:p-6">
+      <h1 className="text-3xl font-bold mb-4">Welcome to Programming Tutorials</h1>
+      <p className="mb-4">Select a programming language to get started with your learning journey.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {languages.map(lang => (
+          <Link key={lang} href={`/${lang}`}>
+            <Button
+              variant="outline"
+              className="h-auto py-4 justify-start w-full"
+            >
+              <span className="text-lg">{decodeURIComponent(lang)}</span>
+            </Button>
+          </Link>
+        ))}
+      </div>
+    </main>
+  )
 }
