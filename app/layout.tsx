@@ -30,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
+      <body suppressHydrationWarning={true}>
         <TutorialLayout languages={languages}>
           {children}
         </TutorialLayout>

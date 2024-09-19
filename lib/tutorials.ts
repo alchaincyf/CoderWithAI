@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { languageOrder } from '@/config/languageOrder'
 
+// 定义教程目录的根路径
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
 export interface Tutorial {
@@ -13,21 +14,37 @@ export interface Tutorial {
 
 export function getTutorialContent(language: string, tutorialPath: string) {
   try {
+    // 解码语言和教程路径
     const decodedLanguage = decodeURIComponent(language)
+    const decodedTutorialPath = decodeURIComponent(tutorialPath)
+    
+    // 构建语言目录的完整路径
     const languageDir = path.join(tutorialsDirectory, decodedLanguage)
     
-    // 构建完整的文件路径
-    const fullPath = path.join(languageDir, `${tutorialPath}.md`)
+    console.log('getTutorialContent called with:')
+    console.log('language:', language)
+    console.log('tutorialPath:', tutorialPath)
+    console.log('decodedLanguage:', decodedLanguage)
+    console.log('decodedTutorialPath:', decodedTutorialPath)
+    console.log('languageDir:', languageDir)
+    
+    // 构建完整的文件路径，处理多层路径
+    const fullPath = path.join(languageDir, `${decodedTutorialPath}.md`)
     console.log(`Attempting to read file: ${fullPath}`)
     
+    // 检查文件是否存在
     if (!fs.existsSync(fullPath)) {
       console.error(`File not found: ${fullPath}`)
+      // 如果文件不存在，输出目录内容以帮助调试
+      console.log('Directory contents:', fs.readdirSync(path.dirname(fullPath)))
       return 'Tutorial content not found.'
     }
 
+    // 读取文件内容
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     console.log(`File contents read successfully. Length: ${fileContents.length}`)
     
+    // 解析 markdown 内容
     const { content } = matter(fileContents)
     console.log(`Parsed content length: ${content.length}`)
     
@@ -62,7 +79,7 @@ function getDirectoryStructure(dirPath: string, basePath: string): TutorialItem[
     if (item.isDirectory()) {
       return {
         title: item.name,
-        path: path.relative(tutorialsDirectory, itemPath),
+        path: path.relative(path.join(tutorialsDirectory, basePath), itemPath),
         items: getDirectoryStructure(itemPath, basePath)
       }
     } else if (item.isFile() && item.name.endsWith('.md')) {
@@ -75,7 +92,6 @@ function getDirectoryStructure(dirPath: string, basePath: string): TutorialItem[
         }
       } catch (error) {
         console.error(`Error parsing file ${itemPath}:`, error)
-        // 如果解析失败，使用文件名作为标题
         return {
           title: item.name.replace('.md', ''),
           path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
