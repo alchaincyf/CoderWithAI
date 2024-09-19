@@ -1,7 +1,8 @@
 import { TutorialLayout } from "@/components/tutorial-layout"
 import { getAvailableLanguages, getTutorialStructure, getTutorialContent } from "@/lib/tutorials"
+import { Tutorial } from "@/types/tutorial"
 
-function findFirstTutorial(tutorials: any[]): any {
+function findFirstTutorial(tutorials: Tutorial[]): Tutorial | null {
   for (const item of tutorials) {
     if (item.items) {
       const found = findFirstTutorial(item.items)

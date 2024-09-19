@@ -21,7 +21,7 @@ export default function About() {
         We believe in the power of education and the importance of making programming knowledge accessible to everyone. Our team of experienced developers and educators work tirelessly to create content that is both informative and engaging.
       </p>
       <p className="mb-4">
-        Whether you're looking to start a career in software development, enhance your current skills, or simply explore the world of programming, we're here to support your learning journey.
+        Whether you&apos;re looking to start a career in software development, enhance your current skills, or simply explore the world of programming, we&apos;re here to support your learning journey.
       </p>
       <Link href="/" className="text-blue-500 hover:underline">
         Return to Home

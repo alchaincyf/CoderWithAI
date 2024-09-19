@@ -35,11 +35,24 @@ interface TutorialItem {
   items?: TutorialItem[];
 }
 
-function getDirectoryStructure(dirPath: string, basePath: string = ''): TutorialItem[] {
+function getDirectoryStructure(dirPath: string): TutorialItem[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
-  const structure = tutorials.reduce((acc, tutorial) => {
-    // ... 其他代码 ...
-  }, {} as Record<string, Tutorial[]>);
+  const structure = items.map(item => {
+    const itemPath = path.join(dirPath, item.name)
+    if (item.isDirectory()) {
+      return {
+        title: item.name,
+        path: path.relative(tutorialsDirectory, itemPath),
+        items: getDirectoryStructure(itemPath)
+      }
+    } else if (item.isFile() && item.name.endsWith('.md')) {
+      return {
+        title: item.name.replace('.md', ''),
+        path: path.relative(tutorialsDirectory, itemPath).replace('.md', '')
+      }
+    }
+    return null
+  }).filter((item): item is TutorialItem => item !== null)
 
   // Then, sort the items
   structure.sort((a, b) => {
