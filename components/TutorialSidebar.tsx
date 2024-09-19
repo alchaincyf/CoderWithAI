@@ -11,7 +11,7 @@ interface TutorialSidebarProps {
   language: string;
 }
 
-function TutorialItem({ item, language, depth = 0 }: { item: any, language: string, depth?: number }) {
+function TutorialItem({ item, language, depth = 0 }: { item: Tutorial, language: string, depth?: number }) {
   const [isOpen, setIsOpen] = useState(false)
   const hasItems = item.items && item.items.length > 0
   const pathname = usePathname()
@@ -34,7 +34,7 @@ function TutorialItem({ item, language, depth = 0 }: { item: any, language: stri
           </button>
         )}
         <Link 
-          href={`/${language}/${item.path}`}
+          href={`/${encodeURIComponent(language)}/${encodeURIComponent(item.path)}`}
           onClick={toggleOpen}
           className={`hover:text-blue-600 transition-colors duration-200 ${depth === 0 ? 'font-semibold' : ''} ${isActive ? 'text-blue-600' : ''}`}
         >

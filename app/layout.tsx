@@ -26,12 +26,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const languages = await getAvailableLanguages();
+  const sortedLanguages = await getAvailableLanguages()
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body suppressHydrationWarning={true}>
-        <TutorialLayout languages={languages}>
+        <TutorialLayout languages={sortedLanguages}>
           {children}
         </TutorialLayout>
       </body>

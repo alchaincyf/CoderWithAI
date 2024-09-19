@@ -1,4 +1,4 @@
-import { getTutorialStructure, getTutorialContent } from "@/lib/tutorials"
+import { LanguageProvider } from './LanguageProvider'
 import ReactMarkdown from 'react-markdown'
 
 function findFirstTutorial(tutorials: any[]): any {
@@ -14,12 +14,29 @@ function findFirstTutorial(tutorials: any[]): any {
 }
 
 export default async function Page({ params }: { params: { language: string } }) {
-  const tutorials = await getTutorialStructure(params.language)
+  const { tutorials } = await LanguageProvider({ language: params.language })
   const firstTutorial = findFirstTutorial(tutorials)
   
   let content = 'No tutorial content available.'
   if (firstTutorial) {
-    content = await getTutorialContent(params.language, firstTutorial.path)
+    const encodedLanguage = encodeURIComponent(params.language)
+    const encodedPath = encodeURIComponent(firstTutorial.path)
+    const url = new URL('/api/tutorial-content', 'http://localhost:3000')
+    url.searchParams.set('language', encodedLanguage)
+    url.searchParams.set('path', encodedPath)
+    
+    try {
+      const res = await fetch(url.toString(), { cache: 'no-store' })
+      if (res.ok) {
+        content = await res.text()
+      } else {
+        console.error('Failed to fetch tutorial content:', await res.text())
+        content = 'Failed to load tutorial content.'
+      }
+    } catch (error) {
+      console.error('Error fetching tutorial content:', error)
+      content = 'Error loading tutorial content.'
+    }
   }
 
   return (

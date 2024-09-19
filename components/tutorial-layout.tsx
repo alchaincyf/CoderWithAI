@@ -2,17 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Book, ChevronDown } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { getAvailableLanguages } from '@/lib/tutorials'
 
-export default function TutorialLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  // 如果 language 变量未被使用，可以移除它
-  // const [, language] = pathname ? pathname.split('/') : []
+// 移除 getAvailableLanguages 导入
+
+export default function TutorialLayout({ children, languages }: { children: React.ReactNode, languages: string[] }) {
   const [mounted, setMounted] = useState(false)
   const [visibleLanguages, setVisibleLanguages] = useState<string[]>([])
   const [moreLanguages, setMoreLanguages] = useState<string[]>([])
@@ -23,17 +20,14 @@ export default function TutorialLayout({ children }: { children: React.ReactNode
       const containerWidth = window.innerWidth - 300 // Approximate space for logo and padding
       const buttonWidth = 100 // Approximate width of each language button
       const visibleCount = Math.floor(containerWidth / buttonWidth)
-      // 使用 getAvailableLanguages 函数获取语言列表
-      getAvailableLanguages().then(languages => {
-        setVisibleLanguages(languages.slice(0, visibleCount - 1)) // -1 to account for "More" button
-        setMoreLanguages(languages.slice(visibleCount - 1))
-      })
+      setVisibleLanguages(languages.slice(0, visibleCount - 1)) // -1 to account for "More" button
+      setMoreLanguages(languages.slice(visibleCount - 1))
     }
 
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, []) // 移除 languages 依赖
+  }, [languages])
 
   if (!mounted) {
     return null
