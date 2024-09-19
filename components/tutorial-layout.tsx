@@ -39,7 +39,7 @@ export default function TutorialLayout({ children, languages }: { children: Reac
         <div className="flex h-14 items-center px-4 lg:px-6">
           <Link className="flex items-center gap-2 font-semibold" href="/">
             <Book className="h-6 w-6" />
-            <span>Programming Tutorials</span>
+            <span>CodeWithAI</span>
           </Link>
         </div>
         <ScrollArea className="w-full">

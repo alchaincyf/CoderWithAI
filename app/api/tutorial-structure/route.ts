@@ -6,15 +6,26 @@ import { Tutorial } from '@/lib/tutorials'
 
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
+function extractSortOrder(name: string): number {
+  const match = name.match(/^(\d+)/)
+  return match ? parseInt(match[1], 10) : Infinity
+}
+
 function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
   const structure = items.map(item => {
     const itemPath = path.join(dirPath, item.name)
+    const relativePath = path.relative(path.join(tutorialsDirectory, basePath), itemPath)
+    const sortOrder = extractSortOrder(item.name)
+    const isOutline = !relativePath.includes(path.sep) || item.name.toLowerCase().includes('大纲')
+
     if (item.isDirectory()) {
       return {
         title: item.name,
-        path: path.relative(path.join(tutorialsDirectory, basePath), itemPath),
-        items: getDirectoryStructure(itemPath, basePath)
+        path: relativePath,
+        items: getDirectoryStructure(itemPath, basePath),
+        sortOrder,
+        isOutline: false
       }
     } else if (item.isFile() && item.name.endsWith('.md')) {
       try {
@@ -22,18 +33,28 @@ function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
         const { data } = matter(fileContents)
         return {
           title: data.title || item.name.replace('.md', ''),
-          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+          path: relativePath.replace('.md', ''),
+          sortOrder: isOutline ? -1 : sortOrder,
+          isOutline
         }
       } catch (error) {
         console.error(`Error parsing file ${itemPath}:`, error)
         return {
           title: item.name.replace('.md', ''),
-          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+          path: relativePath.replace('.md', ''),
+          sortOrder,
+          isOutline: false
         }
       }
     }
     return null
-  }).filter(item => item !== null)
+  }).filter((item): item is Tutorial => item !== null)
+
+  structure.sort((a, b) => {
+    if (a.isOutline && !b.isOutline) return -1
+    if (!a.isOutline && b.isOutline) return 1
+    return a.sortOrder - b.sortOrder
+  })
 
   return structure
 }
