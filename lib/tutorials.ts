@@ -7,7 +7,7 @@ export interface Tutorial {
   title: string;
   path: string;
   items?: Tutorial[];
-  isOutline?: boolean;
+  isOutline: boolean;  // 将 isOutline 改为必需属性
   sortOrder: number;
 }
 
