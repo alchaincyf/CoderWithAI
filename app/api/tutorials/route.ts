@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getTutorialStructure, getTutorialContent } from '@/lib/tutorials'
 
-export async function GET(request: Request) {
+export async function GET(request: Request): Promise<Response> {
   const { searchParams } = new URL(request.url)
   const language = searchParams.get('language')
 
@@ -20,7 +20,9 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.json({ tutorials, initialContent })
+  return new Response(JSON.stringify({ tutorials, initialContent }), {
+    headers: { 'Content-Type': 'application/json' },
+  })
 }
 
 function findFirstTutorial(tutorials: any[]): any {

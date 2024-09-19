@@ -37,29 +37,9 @@ interface TutorialItem {
 
 function getDirectoryStructure(dirPath: string, basePath: string = ''): TutorialItem[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
-  let structure: TutorialItem[] = []
-
-  // First, process all items
-  for (const item of items) {
-    if (item.name.startsWith('.')) continue // Skip hidden files/folders
-
-    const relativePath = path.join(basePath, item.name)
-
-    if (item.isDirectory()) {
-      const subItems = getDirectoryStructure(path.join(dirPath, item.name), relativePath)
-      if (subItems.length > 0) {
-        structure.push({ title: item.name, path: relativePath, items: subItems })
-      }
-    } else if (item.name.endsWith('.md')) {
-      const fullPath = path.join(dirPath, item.name)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data } = matter(fileContents)
-      structure.push({ 
-        title: data.title || item.name.replace(/\.md$/, ''),
-        path: relativePath.replace(/\.md$/, '')
-      })
-    }
-  }
+  const structure = tutorials.reduce((acc, tutorial) => {
+    // ... 其他代码 ...
+  }, {} as Record<string, Tutorial[]>);
 
   // Then, sort the items
   structure.sort((a, b) => {

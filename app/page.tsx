@@ -13,7 +13,7 @@ function findFirstTutorial(tutorials: any[]): any {
   return null
 }
 
-export default async function Home() {
+export default async function Home(): Promise<JSX.Element> {
   const languages = await getAvailableLanguages()
   
   if (languages.length === 0) {
