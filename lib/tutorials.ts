@@ -7,6 +7,8 @@ export interface Tutorial {
   title: string;
   path: string;
   items?: Tutorial[];
+  isOutline?: boolean;
+  sortOrder: number;
 }
 
 export function sortLanguages(languages: string[]): string[] {
@@ -56,30 +58,49 @@ function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
   const structure = items.map(item => {
     const itemPath = path.join(dirPath, item.name)
+    const relativePath = path.relative(path.join(tutorialsDirectory, basePath), itemPath)
+    const sortOrderMatch = item.name.match(/^(\d+)/)
+    const sortOrder = sortOrderMatch ? parseInt(sortOrderMatch[1], 10) : Infinity
+
     if (item.isDirectory()) {
+      const children = getDirectoryStructure(itemPath, basePath)
       return {
         title: item.name,
-        path: path.relative(path.join(tutorialsDirectory, basePath), itemPath),
-        items: getDirectoryStructure(itemPath, basePath)
+        path: relativePath,
+        items: children,
+        sortOrder: sortOrder,
+        isOutline: false
       }
     } else if (item.isFile() && item.name.endsWith('.md')) {
       try {
         const fileContents = fs.readFileSync(itemPath, 'utf8')
         const { data } = matter(fileContents)
+        const isOutline = !relativePath.includes(path.sep) || item.name.toLowerCase().includes('大纲')
         return {
           title: data.title || item.name.replace('.md', ''),
-          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+          path: relativePath.replace('.md', ''),
+          isOutline: isOutline,
+          sortOrder: isOutline ? -1 : sortOrder
         }
       } catch (error) {
         console.error(`Error parsing file ${itemPath}:`, error)
         return {
           title: item.name.replace('.md', ''),
-          path: path.relative(path.join(tutorialsDirectory, basePath), itemPath).replace('.md', '')
+          path: relativePath.replace('.md', ''),
+          isOutline: false,
+          sortOrder: sortOrder
         }
       }
     }
     return null
   }).filter((item): item is Tutorial => item !== null)
+
+  // 修改排序逻辑
+  structure.sort((a, b) => {
+    if (a.isOutline && !b.isOutline) return -1
+    if (!a.isOutline && b.isOutline) return 1
+    return a.sortOrder - b.sortOrder
+  })
 
   return structure
 }

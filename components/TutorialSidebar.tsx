@@ -36,14 +36,14 @@ function TutorialItem({ item, language, depth = 0 }: { item: Tutorial, language:
         <Link 
           href={`/${encodeURIComponent(language)}/${encodeURIComponent(item.path)}`}
           onClick={toggleOpen}
-          className={`hover:text-blue-600 transition-colors duration-200 ${depth === 0 ? 'font-semibold' : ''} ${isActive ? 'text-blue-600' : ''}`}
+          className={`hover:text-blue-600 transition-colors duration-200 ${depth === 0 ? 'font-semibold' : ''} ${isActive ? 'text-blue-600' : ''} ${item.isOutline ? 'font-bold' : ''}`}
         >
           {item.title}
         </Link>
       </div>
       {hasItems && isOpen && (
         <ul>
-          {item.items.map((subItem: any) => (
+          {item.items.map((subItem: Tutorial) => (
             <TutorialItem key={subItem.path} item={subItem} language={language} depth={depth + 1} />
           ))}
         </ul>
