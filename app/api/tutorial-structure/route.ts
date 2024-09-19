@@ -2,10 +2,11 @@ import { NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { Tutorial } from '@/lib/tutorials'
 
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
-function getDirectoryStructure(dirPath: string, basePath: string) {
+function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
   const structure = items.map(item => {
     const itemPath = path.join(dirPath, item.name)
