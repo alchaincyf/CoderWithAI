@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { TutorialSidebar } from '@/components/TutorialSidebar'
+import TutorialSidebar from '@/components/TutorialSidebar'
 
 async function fetchLanguageData(language: string) {
   const res = await fetch(`/api/language-layout?language=${encodeURIComponent(language)}`)

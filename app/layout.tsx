@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import 'highlight.js/styles/github-dark.css';
-import { TutorialLayout } from "@/components/tutorial-layout";
+import TutorialLayout from '@/components/tutorial-layout';
 import { getAvailableLanguages } from "@/lib/tutorials";
 
 const geistSans = localFont({

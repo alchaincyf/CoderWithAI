@@ -7,12 +7,14 @@ import { Book, ChevronDown } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { getAvailableLanguages } from '@/lib/tutorials'
 
-export default function TutorialLayout({ children, _language }: { children: React.ReactNode, _language: string }) {
+export default function TutorialLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const [, language] = pathname ? pathname.split('/') : []
+  // 如果 language 变量未被使用，可以移除它
+  // const [, language] = pathname ? pathname.split('/') : []
   const [mounted, setMounted] = useState(false)
-  const [visibleLanguages, setVisibleLanguages] = useState(languages)
+  const [visibleLanguages, setVisibleLanguages] = useState<string[]>([])
   const [moreLanguages, setMoreLanguages] = useState<string[]>([])
 
   useEffect(() => {
@@ -21,14 +23,17 @@ export default function TutorialLayout({ children, _language }: { children: Reac
       const containerWidth = window.innerWidth - 300 // Approximate space for logo and padding
       const buttonWidth = 100 // Approximate width of each language button
       const visibleCount = Math.floor(containerWidth / buttonWidth)
-      setVisibleLanguages(languages.slice(0, visibleCount - 1)) // -1 to account for "More" button
-      setMoreLanguages(languages.slice(visibleCount - 1))
+      // 使用 getAvailableLanguages 函数获取语言列表
+      getAvailableLanguages().then(languages => {
+        setVisibleLanguages(languages.slice(0, visibleCount - 1)) // -1 to account for "More" button
+        setMoreLanguages(languages.slice(visibleCount - 1))
+      })
     }
 
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [languages])
+  }, []) // 移除 languages 依赖
 
   if (!mounted) {
     return null
