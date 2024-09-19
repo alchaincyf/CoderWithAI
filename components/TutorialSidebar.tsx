@@ -28,18 +28,21 @@ function TutorialItem({ item, language, depth = 0 }: { item: Tutorial, language:
     <li>
       <div className={`flex items-center py-2 ${isActive ? 'bg-blue-100' : ''}`}>
         <div style={{ width: `${depth * 16}px` }} />
-        {hasItems && (
-          <button onClick={toggleOpen} className="mr-2 focus:outline-none">
-            {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          </button>
-        )}
         <Link 
           href={`/${encodeURIComponent(language)}/${encodeURIComponent(item.path)}`}
           onClick={toggleOpen}
-          className={`hover:text-blue-600 transition-colors duration-200 ${depth === 0 ? 'font-semibold' : ''} ${isActive ? 'text-blue-600' : ''} ${item.isOutline ? 'font-bold' : ''}`}
+          className={`flex-grow hover:text-blue-600 transition-colors duration-200 
+            ${depth === 0 ? 'font-semibold' : 'text-sm text-gray-600 ml-2'} 
+            ${isActive ? 'text-blue-600' : ''} 
+            ${item.isOutline ? 'font-bold' : ''}`}
         >
           {item.title}
         </Link>
+        {hasItems && (
+          <button onClick={toggleOpen} className="focus:outline-none ml-2">
+            {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          </button>
+        )}
       </div>
       {hasItems && isOpen && (
         <ul>
