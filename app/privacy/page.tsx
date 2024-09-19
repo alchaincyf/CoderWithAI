@@ -6,7 +6,7 @@ export default function Privacy() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
       <p className="mb-4">
-        At CodeWithAI, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website.
+        At CoderWithAI, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website.
       </p>
       <h2 className="text-2xl font-semibold mb-2">Information We Collect</h2>
       <p className="mb-4">

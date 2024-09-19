@@ -4,9 +4,9 @@ import Link from 'next/link'
 export default function About() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">About CodewithAI</h1>
+      <h1 className="text-3xl font-bold mb-4">About CoderWithAI</h1>
       <p className="mb-4">
-        CodewithAI is a comprehensive online learning platform designed to help individuals master various programming languages. Our goal is to provide high-quality, accessible tutorials for learners of all levels, from beginners to advanced programmers.
+        CoderWithAI is a comprehensive online learning platform designed to help individuals master various programming languages. Our goal is to provide high-quality, accessible tutorials for learners of all levels, from beginners to advanced programmers.
       </p>
       <p className="mb-4">
         Our platform features:

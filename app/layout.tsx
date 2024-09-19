@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CodeWithAI",
+  title: "CoderWithAI",
   description: "Learn programming with our comprehensive tutorials",
 };
 
