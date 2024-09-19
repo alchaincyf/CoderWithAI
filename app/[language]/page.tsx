@@ -13,7 +13,7 @@ function findFirstTutorial(tutorials: any[]): any {
   return null
 }
 
-export default async function LanguagePage({ params }: { params: { language: string } }) {
+export default async function Page({ params }: { params: { language: string } }) {
   const tutorials = await getTutorialStructure(params.language)
   const firstTutorial = findFirstTutorial(tutorials)
   

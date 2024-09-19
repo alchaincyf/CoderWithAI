@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-export function TutorialLayout({ children, languages }: { children: React.ReactNode, languages: string[] }) {
+export default function TutorialLayout({ children, _language }: { children: React.ReactNode, _language: string }) {
   const pathname = usePathname()
   const [, language] = pathname ? pathname.split('/') : []
   const [mounted, setMounted] = useState(false)

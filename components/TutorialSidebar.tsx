@@ -4,6 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ChevronRight, ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { Tutorial } from '@/lib/tutorials';
+
+interface TutorialSidebarProps {
+  tutorials: Tutorial[];
+  language: string;
+}
 
 function TutorialItem({ item, language, depth = 0 }: { item: any, language: string, depth?: number }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -46,7 +52,7 @@ function TutorialItem({ item, language, depth = 0 }: { item: any, language: stri
   )
 }
 
-export function TutorialSidebar({ tutorials, language }: { tutorials: any[], language: string }) {
+export default function TutorialSidebar({ tutorials, language }: TutorialSidebarProps) {
   return (
     <nav className="w-64 bg-gray-50 p-4 overflow-auto h-[calc(100vh-8rem)] border-r border-gray-200">
       <h2 className="text-xl font-bold mb-4 text-gray-800">{language} Tutorials</h2>
