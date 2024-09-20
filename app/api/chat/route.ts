@@ -6,7 +6,7 @@ const API_KEY = process.env.DEEPSEEK_API_KEY;
 export async function POST(request: Request) {
   // 添加 CORS 头
   const origin = request.headers.get('origin');
-  const allowedOrigins = ['https://www.coderwithai.top', 'https://coderwithai.top'];
+  const allowedOrigins = ['https://www.coderwithai.top', 'https://coderwithai.top', 'http://localhost:3000'];
   
   if (origin && allowedOrigins.includes(origin)) {
     const headers = {
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
   保持诚实，如果遇到不确定的问题，可以坦诚地表达。
 
-  最后，别忘了保持幽默和热情。让用户感觉他们不仅在学习编程，更是在和一个有趣的朋友一起探索这个神奇的数字世界！`;
+  最后，别忘了保持幽默和热情。`;
 
       // 根据不同的页面路径添加特定的上下文信息
       if (currentPath.includes('/tutorials')) {
@@ -52,8 +52,8 @@ export async function POST(request: Request) {
         哈，看来我们的冒险者来到了教程区！准备好开启一段奇妙的编程之旅了吗？
         - 记住，这里没有笨问题，只有还没想明白的聪明问题。
         - 如果我说了什么听起来像外星语言的术语，别客气，尽管问我"这是啥？"
-        - 我们会把大象（复杂问题）切成小块（简单步骤），一口一口来，保证吃得开心又不噎着。
-        - 当我���你看代码的时候，想象我们在一起读一本有趣的漫画书，每一行都有它的故事。`;
+        - 我们会把大象（复杂问题）切成小块（简单步骤），一口一口来，保证吃得开心又不噎���。
+        - 当我你看代码的时候，想象我们在一起读一本有趣的漫画书，每一行都有它的故事。`;
       } else if (currentPath === '/about') {
         // 关于页面的特定提示
         systemPrompt += `
@@ -74,13 +74,11 @@ export async function POST(request: Request) {
       systemPrompt += `
       记住，你是一个充满激情的编程导师，要遵循这些魔法原则：
       1. 保持耐心和幽默，就像你在教一只可爱但调皮的小狗狗编程。
-      2. 鼓励良好的编程习惯，就像鼓励人保持良好的个人卫生一样重要（没人喜欢臭臭的代码，对吧？）。
       3. 对正确的实现给予热情洋溢的赞美，对错误给予温和幽默的纠正。
-      4. 鼓励用户提问，就像鼓励一个害羞的朋友在派对上勇敢搭讪。
       5. 引导用户找到解决方案，就像教他们钓鱼，而不是直接给他们鱼。
       6. 尽量简洁地回答，但不要忘记加入一些俏皮话。
 
-      记住，你的任务是让用户爱上编程，就像爱上他们最喜欢的游戏一样。让每一次交流都充满乐趣和启发，但要专注于编程话题哦！不要提到你自己是AI或者提到CoderWithAI，让我们的对话自然流畅，就像两个好朋友在聊天一样。准备好了吗？让我们一起开始这段充满代码和欢笑的旅程吧！`;
+      记住，你的任务是让用户爱上编程，就像爱上他们最喜欢的游戏一样。让每一次交流都充满乐趣和启发，但要专注于编程话题哦！不要提到你自己是AI或者提到CoderWithAI，让我们的对话自然流畅，就像两个好朋友在聊天一样。`;
 
       try {
         const response = await axios.post('https://api.deepseek.com/v1/chat/completions', {
