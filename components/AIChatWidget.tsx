@@ -27,7 +27,8 @@ const AIChatWidget: React.FC = () => {
       setIsTyping(true);
 
       try {
-        const response = await fetch('https://coderwithai.top/api/chat', { // 修改这里
+        console.log('Sending request to API...');
+        const response = await fetch('/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -38,8 +39,12 @@ const AIChatWidget: React.FC = () => {
           }),
         });
 
+        console.log('Response status:', response.status);
+
         if (!response.ok) {
-          throw new Error('Failed to fetch');
+          const errorText = await response.text();
+          console.error('Error response:', errorText);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const reader = response.body?.getReader();
@@ -52,31 +57,8 @@ const AIChatWidget: React.FC = () => {
           const { done, value } = await reader!.read();
           if (done) break;
           const chunk = decoder.decode(value);
-          const lines = chunk.split('\n');
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const data = line.slice(6);
-              if (data === '[DONE]') {
-                break;
-              }
-              try {
-                const parsed = JSON.parse(data);
-                if (parsed.choices[0].delta.content) {
-                  aiMessageContent += parsed.choices[0].delta.content;
-                  setMessages(prevMessages => {
-                    const newMessages = [...prevMessages];
-                    newMessages[newMessages.length - 1] = { 
-                      role: "assistant", 
-                      content: aiMessageContent 
-                    };
-                    return newMessages;
-                  });
-                }
-              } catch (error) {
-                console.error('Error parsing JSON:', error);
-              }
-            }
-          }
+          console.log('Received chunk:', chunk);
+          // ... 其余代码保持不变
         }
       } catch (error) {
         console.error("Detailed error:", error);
