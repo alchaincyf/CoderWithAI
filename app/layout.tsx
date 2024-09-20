@@ -4,6 +4,7 @@ import "./globals.css";
 import 'highlight.js/styles/github-dark.css';
 import TutorialLayout from '@/components/tutorial-layout';
 import { getAvailableLanguages } from "@/lib/tutorials";
+import AIChatWidget from '@/components/AIChatWidget';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,7 @@ export default async function RootLayout({
         <TutorialLayout languages={sortedLanguages}>
           {children}
         </TutorialLayout>
+        <AIChatWidget />
       </body>
     </html>
   );
