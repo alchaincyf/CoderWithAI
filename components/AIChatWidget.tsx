@@ -49,7 +49,6 @@ const AIChatWidget: React.FC = () => {
 
         const reader = response.body?.getReader();
         const decoder = new TextDecoder();
-        let aiMessageContent = "";
 
         setMessages(prevMessages => [...prevMessages, { role: "assistant", content: "" }]);
 
@@ -58,7 +57,30 @@ const AIChatWidget: React.FC = () => {
           if (done) break;
           const chunk = decoder.decode(value);
           console.log('Received chunk:', chunk);
-          // ... 其余代码保持不变
+          const lines = chunk.split('\n');
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data === '[DONE]') {
+                break;
+              }
+              try {
+                const parsed = JSON.parse(data);
+                if (parsed.choices[0].delta.content) {
+                  setMessages(prevMessages => {
+                    const newMessages = [...prevMessages];
+                    const lastMessage = newMessages[newMessages.length - 1];
+                    if (lastMessage.role === "assistant") {
+                      lastMessage.content += parsed.choices[0].delta.content;
+                    }
+                    return newMessages;
+                  });
+                }
+              } catch (error) {
+                console.error('Error parsing JSON:', error);
+              }
+            }
+          }
         }
       } catch (error) {
         console.error("Detailed error:", error);
