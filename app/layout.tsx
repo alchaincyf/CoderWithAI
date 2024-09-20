@@ -7,7 +7,7 @@ import { getAvailableLanguages } from "@/lib/tutorials";
 import AIChatWidget from '@/components/AIChatWidget';
 import Image from 'next/image';
 import Link from 'next/link';
-import LanguageSelector from '@/components/LanguageSelector';
+// 删除未使用的 LanguageSelector 导入
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
