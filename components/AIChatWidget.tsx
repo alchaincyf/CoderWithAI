@@ -28,7 +28,7 @@ const AIChatWidget: React.FC = () => {
 
       try {
         console.log('Sending request to API...');
-        const response = await fetch('/api/chat', {
+        const response = await fetch('https://www.coderwithai.top/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
