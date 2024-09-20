@@ -27,7 +27,7 @@ const AIChatWidget: React.FC = () => {
       setIsTyping(true);
 
       try {
-        const response = await fetch('/api/chat', {
+        const response = await fetch('https://coderwithai.top/api/chat', { // 修改这里
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
