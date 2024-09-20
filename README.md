@@ -19,7 +19,7 @@
 - `/public`: 静态资源文件。
 - `/tutorials`: 按编程语言分类的教程Markdown文件。
 
-## 使用指南
+## 使南
 
 1. 访问网站首页，选择你想学习的编程语言。
 2. 浏览该语言的教程列表，点击感兴趣的主题开始学习。
@@ -44,6 +44,8 @@
 - 可展开的聊天窗口（600px x 400px）
 - 实时对话功能
 - 上下文感知，能根据用户当前浏览的页面提供相关帮助
+- 全屏模式：用户可以通过点击聊天窗口右上角的全屏图标，将聊天窗口切换到全屏模式，以获得更好的阅读体验，特别适合长篇回复
+- 简洁的界面控制：全屏切换和关闭按钮位于聊天窗口的右上角，便于操作
 
 ## 未来计划
 
@@ -59,7 +61,7 @@
 
 1. Fork 本仓库
 2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+3. 提交你的改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 开启一个 Pull Request
 
@@ -74,3 +76,74 @@
 - 电子邮件: alchaincyf@gmail.com
 
 感谢你选择CoderWithAI，让我们一起开启智能编程学习之旅！
+
+## AI回复显示
+
+为了提供最佳的用户体验，我们的AI助手回复现在具有以下特性：
+
+- 所有AI回复都会全文显示，无论长度如何。
+- 用户可以通过点击全屏按钮切换到全屏模式，以获得更舒适的阅读体验。
+- 这确保用户可以立即看到完整的回答，并且可以根据需要调整显示方式。
+
+这些更新旨在提供更直接、更流畅的对话体验，让用户能够以最舒适的方式获取所有必要的信息。
+
+## DeepSeek AI 集成
+
+本项目使用DeepSeek AI来提供智能对话功能。以下是集成的关键点：
+
+### API 调用
+
+1. **环境变量**：
+   - 使用`DEEPSEEK_API_KEY`环境变量存储API密钥。
+
+2. **API 端点**：
+   - 使用`https://api.deepseek.com/v1/chat/completions`作为API端点。
+
+3. **请求方法**：
+   - 使用POST方法发送请求。
+
+4. **请求头**：
+   - `Authorization`: `Bearer ${API_KEY}`
+   - `Content-Type`: `application/json`
+
+5. **请求体**：
+   ```javascript
+   {
+     model: "deepseek-chat",
+     messages: [
+       {"role": "system", "content": systemPrompt},
+       ...userMessages
+     ],
+     stream: true
+   }
+   ```
+
+6. **响应处理**：
+   - 使用流式响应（`stream: true`）来实现实时对话。
+   - 响应类型设置为`'stream'`。
+
+### 实现细节
+
+1. **CORS 处理**：
+   - 实现了CORS头部处理，允许特定域名访问API。
+
+2. **错误处理**：
+   - 实现了详细的错误日志记录和错误响应。
+
+3. **上下文感知**：
+   - 根据用户当前浏览的页面路径调整系统提示。
+
+4. **消息格式化**：
+   - 用户消息内容被额外用引号包裹，以区分系统消息和用户输入。
+
+5. **流式响应**：
+   - 使用`text/event-stream`内容类型来支持流式传输。
+
+6. **HTTP 客户端**：
+   - 使用 `axios` 库发送 HTTP 请求到 DeepSeek API。
+
+### 使用方法
+
+在前端组件中，通过发送POST请求到`/api/chat`端点来与AI进行交互。请确保包含当前页面路径和对话历史。
+
+注意：确保在服务器端代码中安装并导入 `axios`：
