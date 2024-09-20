@@ -7,7 +7,8 @@ import { getAvailableLanguages } from "@/lib/tutorials";
 import AIChatWidget from '@/components/AIChatWidget';
 import Image from 'next/image';
 import Link from 'next/link';
-// 删除未使用的 LanguageSelector 导入
+import GoogleAnalytics from './GoogleAnalytics';
+import Script from 'next/script';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <GoogleAnalytics />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522094408813551"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body suppressHydrationWarning={true} className="flex flex-col min-h-screen">
         <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
           <div className="container mx-auto px-4">
