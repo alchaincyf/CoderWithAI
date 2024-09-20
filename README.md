@@ -1,61 +1,63 @@
-# 编程教程网站
+# CoderWithAI - 智能编程学习平台
 
-这是一个提供多种编程语言教程的网络应用项目。
+欢迎来到CoderWithAI，这是一个革命性的编程学习平台，结合了丰富的编程教程和智能AI助手，为学习者提供个性化的学习体验。
 
-## 功能特点
+## 主要特性
 
-1. **动态教程内容**: 应用从项目中存储的Markdown文件中加载真实的教程内容。
-2. **多语言支持**: 支持多种编程语言,教程按语言分类组织。
-3. **响应式设计**: 布局能够适应不同的屏幕尺寸。
-4. **动态语言选择**: 语言选择栏会根据可用的屏幕宽度进行调整。
-5. **带外部链接的页脚**: 包含指向BookAI.TOP的链接和其他导航链接的页脚。
+1. **多语言编程教程**: 提供多种主流编程语言的教程，包括但不限于JavaScript、Python、Java、C++等。
+2. **智能AI助手**: 集成了基于DeepSeek API的AI聊天功能，为学习者提供实时帮助和指导。
+3. **动态内容加载**: 教程内容从Markdown文件动态加载，便于更新和维护。
+4. **响应式设计**: 完美适配各种设备，从手机到桌面电脑。
+5. **交互式学习体验**: 通过AI助手，学习者可以获得即时反馈和个性化指导。
+6. **用户友好界面**: 直观的导航和布局，让学习过程更加流畅。
 
 ## 项目结构
 
-- `/tutorials`: 包含每种编程语言的子目录,每个子目录中包含该语言的教程Markdown文件。
-- `/components`: 应用中使用的React组件。
-- `/lib`: 用于获取和处理教程数据的实用函数。
+- `/app`: Next.js应用的主要结构，包含页面路由和布局组件。
+- `/components`: 可复用的React组件，如AI聊天窗口。
+- `/lib`: 工具函数和数据处理逻辑。
+- `/public`: 静态资源文件。
+- `/tutorials`: 按编程语言分类的教程Markdown文件。
 
-## 使用方法
+## 使用指南
 
-查看教程的步骤:
-1. 导航到首页。
-2. 从顶部栏选择一种编程语言。
-3. 从侧边栏选择一个教程。
-4. 在主要区域阅读教程内容。
+1. 访问网站首页，选择你想学习的编程语言。
+2. 浏览该语言的教程列表，点击感兴趣的主题开始学习。
+3. 在学习过程中，如有疑问，可以随时打开右下角的AI助手进行提问。
+4. AI助手会根据你的问题和当前学习内容提供个性化的解答和指导。
 
-## 开发
+## 开发设置
 
-本项目使用Next.js和React开发。本地运行步骤:
+本项目基于Next.js框架开发。要在本地运行项目：
 
 1. 克隆仓库
-2. 使用 `npm install` 安装依赖
-3. 使用 `npm run dev` 运行开发服务器
-4. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
+2. 安装依赖：`npm install`
+3. 创建`.env.local`文件，添加必要的环境变量（如DEEPSEEK_API_KEY）
+4. 运行开发服务器：`npm run dev`
+5. 在浏览器中访问 `http://localhost:3000`
 
-## 添加新教程
+## AI聊天组件
 
-添加新教程的步骤:
-1. 在 `/tutorials` 下适当的语言目录中创建新的Markdown文件。
-2. 在Markdown文件的前置元数据中添加 `title` 和 `category` 字段。
-3. 使用Markdown格式编写教程内容。
+项目集成了一个基于DeepSeek API的AI聊天组件（AIChatWidget）：
 
-## 未来改进计划
+- 位于右下角的浮动聊天按钮
+- 可展开的聊天窗口（600px x 400px）
+- 实时对话功能
+- 上下文感知，能根据用户当前浏览的页面提供相关帮助
 
-- 实现教程搜索功能
-- 添加用户认证以跟踪学习进度
-- 为代码块增加语法高亮,增强Markdown渲染效果
-- 添加交互式代码编辑器,让用户能够直接在浏览器中运行代码
-- 实现教程评分和评论系统
-- 添加多语言支持,使教程内容可以翻译成不同语言
-- 集成视频教程和交��式练习
-- 实现个性化学习路径推荐
+## 未来计划
 
-## 贡献
+- 实现用户账户系统，支持学习进度追踪
+- 添加交互式代码编辑器
+- 集成更多AI功能，如代码审查和自动补全
+- 扩展支持的编程语言和框架
+- 开发移动应用版本
 
-我们欢迎社区贡献!如果你想为项目做出贡献,请遵循以下步骤:
+## 贡献指南
 
-1. Fork 这个仓库
+我们欢迎社区贡献！如果你想为项目做出贡献：
+
+1. Fork 本仓库
 2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
 3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
@@ -63,65 +65,12 @@
 
 ## 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE.md](LICENSE.md) 文件了解详情
+本项目采用 MIT 许可证 - 详情请见 [LICENSE.md](LICENSE.md) 文件
 
 ## 联系我们
 
-如果你有任何问题或建议,请通过以下方式联系我们:
+如有任何问题或建议，请通过以下方式联系我们：
 
-- 电子邮件: support@example.com
-- Twitter: [@ExampleProject](https://twitter.com/ExampleProject)
-- 项目 Issues: [https://github.com/yourusername/project/issues](https://github.com/yourusername/project/issues)
+- 电子邮件: alchaincyf@gmail.com
 
-# AI Chat Widget
-
-This project includes an AI Chat Widget component that can be easily integrated into your Next.js application. The widget features a Google-inspired design with a floating chat button and expandable chat window, and uses the DeepSeek API for intelligent responses.
-
-## Features
-
-- Floating chat button (128px x 128px) in the bottom-right corner
-- Expandable chat window (600px x 400px)
-- Real-time chat interface with DeepSeek AI integration
-- Multi-turn conversation support
-- Message input and display
-- Responsive and modern design
-
-## Setup
-
-1. Create a `.env.local` file in the root of your project and add your DeepSeek API key:
-   ```
-   DEEPSEEK_API_KEY=your_deepseek_api_key_here
-   ```
-
-2. Install the required dependencies:
-   ```
-   npm install axios
-   ```
-
-## Usage
-
-To use the AIChatWidget in your Next.js application:
-
-1. Import the component:
-   ```javascript
-   import AIChatWidget from '../components/AIChatWidget';
-   ```
-
-2. Use it in your JSX:
-   ```jsx
-   <AIChatWidget />
-   ```
-
-## Customization
-
-You can customize the appearance of the chat widget by modifying the CSS classes in the `AIChatWidget.module.css` file.
-
-## Future Improvements
-
-- Add user authentication
-- Implement message persistence
-- Add animations for smooth transitions
-- Implement responsive design for mobile devices
-- Enhance error handling and user feedback
-
-For more information on how to develop and extend this component, please refer to the component file at `components/AIChatWidget.tsx` and its corresponding CSS module file.
+感谢你选择CoderWithAI，让我们一起开启智能编程学习之旅！
