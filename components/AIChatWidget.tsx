@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './AIChatWidget.module.css';
 import { usePathname } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
+import Image from 'next/image';
 
 const AIChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +97,7 @@ const AIChatWidget: React.FC = () => {
       {isOpen ? (
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
-            <h3>AI Chat</h3>
+            <h3>AI Assistant</h3>
             <button onClick={toggleChat} className={styles.closeButton}>×</button>
           </div>
           <div className={styles.chatMessages}>
@@ -109,7 +110,7 @@ const AIChatWidget: React.FC = () => {
                 )}
               </div>
             ))}
-            {isTyping && <div className={styles.typingIndicator}>AI is typing...</div>}
+            {isTyping && <div className={styles.typingIndicator}>AI is thinking...</div>}
             <div ref={messagesEndRef} />
           </div>
           <form onSubmit={handleSubmit} className={styles.inputForm}>
@@ -117,7 +118,7 @@ const AIChatWidget: React.FC = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
+              placeholder="Ask me anything..."
               className={styles.inputField}
             />
             <button type="submit" className={styles.sendButton}>Send</button>
@@ -125,7 +126,7 @@ const AIChatWidget: React.FC = () => {
         </div>
       ) : (
         <button onClick={toggleChat} className={styles.chatButton}>
-          Chat
+          <Image src="/chat.png" alt="AI Chat" width={64} height={64} />
         </button>
       )}
     </div>
