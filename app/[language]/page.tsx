@@ -1,10 +1,7 @@
 import { getTutorialStructure } from '@/lib/tutorials'
-// 删除未使用的 Link 导入
 import { Suspense } from 'react'
 import ClientSideTutorialTree from './ClientSideTutorialTree'
 import GoogleAds from '@/components/GoogleAds';
-
-// 删除未使用的 TutorialItem 接口
 
 export default async function Page({ params }: { params: { language: string } }) {
   const tutorials = await getTutorialStructure(params.language);

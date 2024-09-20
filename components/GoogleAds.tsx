@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Script from 'next/script';
 
 // 添加这个类型声明
 declare global {
@@ -19,13 +20,19 @@ export default function GoogleAds() {
   }, []);
 
   return (
-    <ins
-      className="adsbygoogle"
-      style={{ display: 'block' }}
-      data-ad-client="ca-pub-7522094408813551"
-      data-ad-slot="YOUR_AD_SLOT"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-    />
+    <>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522094408813551"
+        crossOrigin="anonymous"
+      />
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-format="autorelaxed"
+        data-ad-client="ca-pub-7522094408813551"
+        data-ad-slot="4428404678"
+      />
+    </>
   );
 }
