@@ -2,6 +2,13 @@
 
 import { useEffect } from 'react';
 
+// 添加这个类型声明
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
 export default function GoogleAds() {
   useEffect(() => {
     try {
