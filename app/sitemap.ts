@@ -10,7 +10,7 @@ export default async function sitemap() {
     const tutorials = await getTutorials(lang);
     urls.push(`${baseUrl}/${lang}`);
     tutorials.forEach((tutorial) => {
-      urls.push(`${baseUrl}/${lang}/${tutorial.slug}`);
+      urls.push(`${baseUrl}/${lang}/${tutorial.path}`);
     });
   }
 

@@ -7,7 +7,8 @@ export interface Tutorial {
   title: string;
   path: string;
   items?: Tutorial[];
-  // 其他必要的属性
+  sortOrder: number;
+  isOutline: boolean;
 }
 
 export function sortLanguages(languages: string[]): string[] {
@@ -136,4 +137,9 @@ export async function getTutorialMetadata(language: string, tutorialPath: string
     category: category,
     // 添加其他你想要的元数据字段
   }
+}
+
+// 添加这个函数的导出
+export async function getTutorials(language: string): Promise<Tutorial[]> {
+  return getTutorialStructure(language);
 }

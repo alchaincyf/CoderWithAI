@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { Tutorial } from '@/lib/tutorials'
+import { Tutorial, getTutorialStructure } from '@/lib/tutorials'
 
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
@@ -34,9 +34,10 @@ function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
         return {
           title: data.title || item.name.replace('.md', ''),
           path: relativePath.replace('.md', ''),
+          isOutline: isOutline,
           sortOrder: isOutline ? -1 : sortOrder,
-          isOutline
-        }
+          items: item.isDirectory() ? getDirectoryStructure(itemPath, basePath) : undefined
+        } as Tutorial;
       } catch (error) {
         console.error(`Error parsing file ${itemPath}:`, error)
         return {
