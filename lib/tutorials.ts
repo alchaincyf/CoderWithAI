@@ -119,3 +119,22 @@ export async function getAvailableLanguages(): Promise<string[]> {
     return []
   }
 }
+
+export async function getTutorialMetadata(language: string, tutorialPath: string) {
+  const fullPath = path.join(process.cwd(), 'tutorials', language, `${tutorialPath}.md`)
+  const fileContents = await fs.promises.readFile(fullPath, 'utf8')
+  const { data } = matter(fileContents)
+
+  // 从路径中提取类别（如果存在）
+  const pathParts = tutorialPath.split('/')
+  const category = pathParts.length > 1 ? pathParts[pathParts.length - 2] : ''
+
+  return {
+    title: data.title || 'CoderWithAI Tutorial',
+    description: data.description || `Learn ${language} programming with CoderWithAI`,
+    keywords: data.keywords || ['programming', 'tutorial', 'coding', language],
+    image: data.image || null,
+    category: category,
+    // 添加其他你想要的元数据字段
+  }
+}

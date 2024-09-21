@@ -22,8 +22,30 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CoderWithAI",
-  description: "Learn programming with our comprehensive tutorials",
+  title: "CoderWithAI - 学习编程的最佳资源",
+  description: "CoderWithAI 提供全面的编程教程，涵盖多种编程语言和框架。通过我们的交互式学习平台，提升您的编程技能。",
+  keywords: "编程教程, 学习编码, 软件开发, Web开发, AI编程",
+  openGraph: {
+    title: "CoderWithAI - 学习编程的最佳资源",
+    description: "全面的编程教程和交互式学习平台",
+    url: "https://www.codewithai.com",
+    siteName: "CoderWithAI",
+    images: [
+      {
+        url: "https://www.codewithai.com/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "zh_CN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CoderWithAI - 学习编程的最佳资源",
+    description: "全面的编程教程和交互式学习平台",
+    images: ["https://www.codewithai.com/images/twitter-image.jpg"],
+  },
 };
 
 export default async function RootLayout({
@@ -34,7 +56,7 @@ export default async function RootLayout({
   const sortedLanguages = await getAvailableLanguages()
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <GoogleAnalytics />
         <Script
@@ -55,6 +77,22 @@ export default async function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522094408813551"
           crossOrigin="anonymous"
         />
+        <Script id="schema-org" type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "CoderWithAI",
+              "url": "https://www.codewithai.com",
+              "description": "CoderWithAI 提供全面的编程教程，涵盖多种编程语言和框架。通过我们的交互式学习平台，提升您的编程技能。",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.codewithai.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          `}
+        </Script>
       </head>
       <body suppressHydrationWarning={true} className="flex flex-col min-h-screen">
         <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
@@ -66,6 +104,7 @@ export default async function RootLayout({
                   alt="CoderWithAI Logo"
                   width={40}
                   height={40}
+                  priority
                 />
                 <span className="ml-2 text-xl font-bold">CoderWithAI</span>
               </Link>
