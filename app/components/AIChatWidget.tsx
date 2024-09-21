@@ -7,7 +7,7 @@ function AIChatWidget() {
   // 状态管理
   const [isOpen, setIsOpen] = useState(false);  // 控制聊天窗口是否打开
   const [isFullScreen, setIsFullScreen] = useState(false);  // 控制聊天窗口是否全屏
-  const [messages, setMessages] = useState([]);  // 存储聊天消息，初始为空数组
+  const [messages] = useState<Message[]>([]);  // 存储聊天消息，初始为空数组
 
   // 切换聊天窗口的开关状态
   const toggleChat = () => {

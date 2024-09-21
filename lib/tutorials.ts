@@ -7,8 +7,7 @@ export interface Tutorial {
   title: string;
   path: string;
   items?: Tutorial[];
-  isOutline: boolean;  // 将 isOutline 改为必需属性
-  sortOrder: number;
+  // 其他必要的属性
 }
 
 export function sortLanguages(languages: string[]): string[] {
@@ -24,7 +23,7 @@ export function sortLanguages(languages: string[]): string[] {
 
 const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
-export function getTutorialContent(language: string, tutorialPath: string): string {
+export async function getTutorialContent(language: string, tutorialPath: string): Promise<string> {
   try {
     const basePath = path.join(tutorialsDirectory, language, decodeURIComponent(tutorialPath))
     let fullPath = `${basePath}.md`
@@ -49,7 +48,7 @@ export function getTutorialContent(language: string, tutorialPath: string): stri
   }
 }
 
-export function getTutorialStructure(language: string): Tutorial[] {
+export async function getTutorialStructure(language: string): Promise<Tutorial[]> {
   const languagePath = path.join(tutorialsDirectory, language)
   return getDirectoryStructure(languagePath, language)
 }
