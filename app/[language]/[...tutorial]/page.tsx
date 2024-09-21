@@ -2,6 +2,7 @@ import { getTutorialContent, getTutorialStructure, Tutorial } from "@/lib/tutori
 import ReactMarkdown from 'react-markdown'
 import { ErrorBoundary } from 'react-error-boundary'
 import Link from 'next/link'
+import GoogleAds from '@/components/GoogleAds'
 
 function ErrorFallback({error}: {error: Error}) {
   return (
@@ -48,6 +49,18 @@ function findNavigationLinks(tutorials: Tutorial[], currentPath: string): { prev
   return { prev, next };
 }
 
+function AdInserter({ content, adComponent }: { content: string, adComponent: React.ReactNode }) {
+  const contentParts = content.split('\n\n');
+  const result = [];
+  for (let i = 0; i < contentParts.length; i++) {
+    result.push(<ReactMarkdown key={`content-${i}`}>{contentParts[i]}</ReactMarkdown>);
+    if (i % 5 === 4 && i !== contentParts.length - 1) {  // 每5段插入一个广告
+      result.push(<div key={`ad-${i}`}>{adComponent}</div>);
+    }
+  }
+  return <>{result}</>;
+}
+
 async function TutorialContent({ language, tutorialPath }: { language: string, tutorialPath: string }) {
   console.log(`Fetching content for language: ${language}, tutorial: ${tutorialPath}`)
   
@@ -61,7 +74,7 @@ async function TutorialContent({ language, tutorialPath }: { language: string, t
 
   return (
     <div className="prose max-w-none">
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <AdInserter content={content} adComponent={<GoogleAds />} />
       <div className="mt-8 flex justify-between">
         {prev && (
           <Link href={`/${language}/${prev.path}`} className="text-blue-500 hover:underline">
