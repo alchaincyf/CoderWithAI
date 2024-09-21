@@ -9,10 +9,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GoogleAnalytics from './GoogleAnalytics';
 import Script from 'next/script';
-<<<<<<< HEAD
-// 删除未使用的 LanguageSelector 导入
-=======
->>>>>>> 810985e83d2338326054cbab57f2ff1ee0a62c06
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,7 +38,6 @@ export default async function RootLayout({
       <head>
         <GoogleAnalytics />
         <Script
-<<<<<<< HEAD
           src={`https://www.googletagmanager.com/gtag/js?id=GT-KDD8ZDP3`}
           strategy="afterInteractive"
         />
@@ -55,12 +50,11 @@ export default async function RootLayout({
             })(window,document,'script','dataLayer','GT-KDD8ZDP3');
           `}
         </Script>
-=======
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522094408813551"
           crossOrigin="anonymous"
         />
->>>>>>> 810985e83d2338326054cbab57f2ff1ee0a62c06
       </head>
       <body suppressHydrationWarning={true} className="flex flex-col min-h-screen">
         <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
