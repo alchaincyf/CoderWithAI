@@ -2,6 +2,7 @@
 const nextConfig = {
   env: {
     DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY,
+    NEXT_PUBLIC_GA_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   },
   async headers() {
     return [

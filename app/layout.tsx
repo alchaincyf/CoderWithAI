@@ -7,6 +7,8 @@ import { getAvailableLanguages } from "@/lib/tutorials";
 import AIChatWidget from '@/components/AIChatWidget';
 import Image from 'next/image';
 import Link from 'next/link';
+import GoogleAnalytics from './GoogleAnalytics';
+import Script from 'next/script';
 // 删除未使用的 LanguageSelector 导入
 
 const geistSans = localFont({
@@ -34,6 +36,22 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <GoogleAnalytics />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=GT-KDD8ZDP3`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GT-KDD8ZDP3');
+          `}
+        </Script>
+      </head>
       <body suppressHydrationWarning={true} className="flex flex-col min-h-screen">
         <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
           <div className="container mx-auto px-4">
