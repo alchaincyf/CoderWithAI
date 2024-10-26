@@ -6,9 +6,11 @@ import path from 'path'  // 导入用于处理文件路径的模块
 // 定义TutorialPage组件，这是一个异步函数组件
 export default async function TutorialPage({ params }: { params: { language: string, tutorial: string[] } }) {
   // 从params中提取language和tutorial参数
-  const language = params.language
+  const language = decodeURIComponent(params.language)
   // 如果tutorial是数组，则将其join成字符串；否则直接使用
-  const tutorialPath = Array.isArray(params.tutorial) ? params.tutorial.join('/') : params.tutorial
+  const tutorialPath = Array.isArray(params.tutorial) 
+    ? params.tutorial.map(decodeURIComponent).join('/')
+    : decodeURIComponent(params.tutorial)
 
   // 打印日志，显示正在获取的内容信息
   console.log(`Fetching content for language: ${language}, tutorial: ${tutorialPath}`)

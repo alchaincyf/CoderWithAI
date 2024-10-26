@@ -26,26 +26,22 @@ const tutorialsDirectory = path.join(process.cwd(), 'tutorials')
 
 export async function getTutorialContent(language: string, tutorialPath: string): Promise<string> {
   try {
-    const basePath = path.join(tutorialsDirectory, language, decodeURIComponent(tutorialPath))
-    let fullPath = `${basePath}.md`
+    const decodedPath = decodeURIComponent(tutorialPath);
+    const fullPath = path.join(tutorialsDirectory, language, `${decodedPath}.md`);
     
-    console.log('Trying path with .md:', fullPath)
+    console.log('Attempting to read file:', fullPath);
+    
     if (!fs.existsSync(fullPath)) {
-      console.log('File not found with .md, trying without extension')
-      fullPath = basePath
+      console.error('File not found:', fullPath);
+      return 'Tutorial content not found.';
     }
-
-    console.log('Final path being attempted:', fullPath)
-    if (!fs.existsSync(fullPath)) {
-      console.error('File not found:', fullPath)
-      return 'Tutorial content not found.'
-    }
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { content } = matter(fileContents)
-    return content
+    
+    const fileContents = await fs.promises.readFile(fullPath, 'utf8');
+    const { content } = matter(fileContents);
+    return content;
   } catch (error) {
-    console.error(`Error reading tutorial content: ${error}`)
-    return 'Error loading tutorial content.'
+    console.error(`Error reading tutorial content: ${error}`);
+    return 'Error loading tutorial content.';
   }
 }
 
@@ -121,21 +117,33 @@ export async function getAvailableLanguages(): Promise<string[]> {
 }
 
 export async function getTutorialMetadata(language: string, tutorialPath: string) {
-  const fullPath = path.join(process.cwd(), 'tutorials', language, `${tutorialPath}.md`)
-  const fileContents = await fs.promises.readFile(fullPath, 'utf8')
-  const { data } = matter(fileContents)
+  const decodedPath = decodeURIComponent(tutorialPath);
+  const fullPath = path.join(process.cwd(), 'tutorials', language, `${decodedPath}.md`);
+  
+  try {
+    const fileContents = await fs.promises.readFile(fullPath, 'utf8');
+    const { data } = matter(fileContents);
 
-  // 从路径中提取类别（如果存在）
-  const pathParts = tutorialPath.split('/')
-  const category = pathParts.length > 1 ? pathParts[pathParts.length - 2] : ''
+    // 从路径中提取类别（如果存在）
+    const pathParts = decodedPath.split('/');
+    const category = pathParts.length > 1 ? pathParts[pathParts.length - 2] : '';
 
-  return {
-    title: data.title || 'CoderWithAI Tutorial',
-    description: data.description || `Learn ${language} programming with CoderWithAI`,
-    keywords: data.keywords || ['programming', 'tutorial', 'coding', language],
-    image: data.image || null,
-    category: category,
-    // 添加其他你想要的元数据字段
+    return {
+      title: data.title || 'CoderWithAI Tutorial',
+      description: data.description || `Learn ${language} programming with CoderWithAI`,
+      keywords: data.keywords || ['programming', 'tutorial', 'coding', language],
+      image: data.image || null,
+      category: category,
+    };
+  } catch (error) {
+    console.error(`Error reading tutorial metadata: ${error}`);
+    return {
+      title: 'Tutorial Not Found',
+      description: 'The requested tutorial could not be found.',
+      keywords: ['error', 'not found'],
+      image: null,
+      category: '',
+    };
   }
 }
 

@@ -26,7 +26,8 @@ function RenderTutorialTree({ items, language, currentPath }: { items: TutorialI
 
 function TutorialTreeItem({ item, language, currentPath }: { item: TutorialItem, language: string, currentPath: string }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isActive = currentPath === `/${language}/${item.path}`;
+  const encodedPath = encodeURIComponent(item.path).replace(/%2F/g, '%2F');
+  const isActive = currentPath === `/${language}/${encodedPath}`;
 
   return (
     <div>
@@ -36,7 +37,7 @@ function TutorialTreeItem({ item, language, currentPath }: { item: TutorialItem,
             {isOpen ? '▼' : '▶'}
           </button>
         )}
-        <Link href={`/${language}/${item.path}`} className={`hover:text-blue-600 ${isActive ? 'text-blue-600 font-bold' : ''}`}>
+        <Link href={`/${encodeURIComponent(language)}/${encodedPath}`} className={`hover:text-blue-600 ${isActive ? 'text-blue-600 font-bold' : ''}`}>
           {item.title}
         </Link>
       </div>
