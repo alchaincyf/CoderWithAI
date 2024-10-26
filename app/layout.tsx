@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GoogleAnalytics from './GoogleAnalytics';
 import Script from 'next/script';
+import { FaGithub } from 'react-icons/fa'; // 导入 GitHub 图标
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -98,16 +99,26 @@ export default async function RootLayout({
         <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/logo.png"
-                  alt="CoderWithAI Logo"
-                  width={40}
-                  height={40}
-                  priority
-                />
-                <span className="ml-2 text-xl font-bold">CoderWithAI</span>
-              </Link>
+              <div className="flex items-center">
+                <Link href="/" className="flex items-center">
+                  <Image
+                    src="/images/logo.png"
+                    alt="CoderWithAI Logo"
+                    width={40}
+                    height={40}
+                    priority
+                  />
+                  <span className="ml-2 text-xl font-bold">CoderWithAI</span>
+                </Link>
+                <a
+                  href="https://github.com/alchaincyf/CoderWithAI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-4 text-gray-600 hover:text-gray-900"
+                >
+                  <FaGithub size={24} />
+                </a>
+              </div>
             </div>
             <nav className="py-2 border-t overflow-x-auto">
               <div className="flex space-x-4 md:justify-center">
