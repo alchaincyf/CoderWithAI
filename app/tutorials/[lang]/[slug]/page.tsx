@@ -1,32 +1,24 @@
-import SEO from '../../../components/SEO';
-import { getTutorialContent } from '@/lib/tutorials';
+import { getTutorialContent } from "@/lib/tutorials"
+import ReactMarkdown from 'react-markdown'
 
 interface PageParams {
   lang: string;
   slug: string;
 }
 
-interface Tutorial {
-  title: string;
-  summary: string;
-  tags: string[];
-}
-
-export default function TutorialPage({ params }: { params: PageParams }) {
+export default async function TutorialPage({ params }: { params: PageParams }) {
   const { lang, slug } = params;
-  const tutorial = getTutorialContent(lang, slug) as Tutorial;
+  const content = await getTutorialContent(lang, slug);
+
+  if (typeof content !== 'string') {
+    return <div>Error: Unable to load tutorial content</div>;
+  }
 
   return (
     <>
-      <SEO 
-        title={`${tutorial.title} - CoderWithAI`}
-        description={tutorial.description}
-        keywords={`${lang},编程教程,${tutorial.tags.join(',')},${tutorial.keywords.join(',')}`}
-        canonicalUrl={`https://www.coderwith.ai/tutorials/${lang}/${slug}`}
-        datePublished={tutorial.date}
-        category={tutorial.category}
-      />
-      {/* 教程内容 */}
+      <article className="prose lg:prose-xl">
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </article>
     </>
   );
 }

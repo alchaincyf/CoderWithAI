@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import ChatWindow from './ChatWindow';
 import { FaExpand, FaCompress } from 'react-icons/fa';
+import { Message } from '../types';
 
 // AIChatWidget 组件：用于渲染 AI 聊天小部件
 function AIChatWidget() {
   // 状态管理
   const [isOpen, setIsOpen] = useState(false);  // 控制聊天窗口是否打开
   const [isFullScreen, setIsFullScreen] = useState(false);  // 控制聊天窗口是否全屏
-  const [messages] = useState<Message[]>([]);  // 存储聊天消息，初始为空数组
+  const [messages, setMessages] = useState<Message[]>([]);  // 存储聊天消息，初始为空数组
 
   // 切换聊天窗口的开关状态
   const toggleChat = () => {
