@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+//ts-nocheck
 
 import { NextResponse } from 'next/server'
 import fs from 'fs'
