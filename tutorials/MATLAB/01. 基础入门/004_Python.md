@@ -1,16 +1,16 @@
 ---
-title: 掌握Python基本语法和数据类型
+title: 掌握MATLAB基本语法和数据类型
 date: 2023-10-05
 description: 本课程将带你深入了解Python编程语言的基本语法和数据类型，包括变量、字符串、列表、字典等，为你的编程之旅打下坚实的基础。
 slug: python-basic-syntax-and-data-types
 tags:
-  - Python
+  - MATLAB
   - 编程基础
   - 数据类型
 category: 编程基础
 keywords:
-  - Python语法
-  - Python数据类型
+  - MATLAB语法
+  - MATLAB数据类型
   - 编程入门
 ---
 
