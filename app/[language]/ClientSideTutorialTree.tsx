@@ -29,21 +29,39 @@ function TutorialTreeItem({ item, language, currentPath }: { item: TutorialItem,
   const encodedPath = encodeURIComponent(item.path).replace(/%2F/g, '%2F');
   const isActive = currentPath === `/${language}/${encodedPath}`;
 
+  // 如果是目录（有子项目）
+  if (item.items && item.items.length > 0) {
+    return (
+      <div>
+        <div 
+          className="flex items-center cursor-pointer hover:bg-gray-100 p-2 rounded"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="mr-2 text-gray-500">
+            {isOpen ? '▼' : '▶'}
+          </span>
+          <span className="text-gray-700 hover:text-blue-600">
+            {item.title}
+          </span>
+        </div>
+        {isOpen && (
+          <RenderTutorialTree items={item.items} language={language} currentPath={currentPath} />
+        )}
+      </div>
+    );
+  }
+
+  // 如果是具体文章（没有子项目）
   return (
     <div>
       <div className="flex items-center">
-        {item.items && (
-          <button onClick={() => setIsOpen(!isOpen)} className="mr-2 text-gray-500">
-            {isOpen ? '▼' : '▶'}
-          </button>
-        )}
-        <Link href={`/${encodeURIComponent(language)}/${encodedPath}`} className={`hover:text-blue-600 ${isActive ? 'text-blue-600 font-bold' : ''}`}>
+        <Link 
+          href={`/${encodeURIComponent(language)}/${encodedPath}`} 
+          className={`p-2 hover:text-blue-600 ${isActive ? 'text-blue-600 font-bold' : ''}`}
+        >
           {item.title}
         </Link>
       </div>
-      {isOpen && item.items && (
-        <RenderTutorialTree items={item.items} language={language} currentPath={currentPath} />
-      )}
     </div>
   );
 }
