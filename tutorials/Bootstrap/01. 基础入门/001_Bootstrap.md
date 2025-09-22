@@ -18,7 +18,7 @@ keywords:
 
 ## 概述
 
-Bootstrap 是一个流行的前端框架，由 Twitter 的两位工程师 Mark Otto 和 Jacob Thornton 在 2011 年创建。它旨在简化响应式网页设计和开发过程，使开发者能够快速构建美观且功能丰富的网站。Bootstrap 提供了丰富的 CSS 和 JavaScript 组件，以及一套强大的网格系统，帮助开发者轻松实现跨设备的响应式设计。
+Bootstrap 是一个流行的前端框架，由 Twitter 的两位工程师 Mark Otto 和 Jacob Thornton 在 2011 年创建。它旨在简化响应式网页设计和开发过程，使开发者能够快速构建美观且功能丰富的网站。Bootstrap 提供了丰富的 CSS 和 JavaScript 组件，以及一套强大的网格系统，帮助开发者轻松实现跨设备的响应式设计.
 
 ## 历史背景
 
@@ -43,7 +43,7 @@ Bootstrap 提供了大量的预构建组件，如导航栏、按钮、表单、�
 Bootstrap 确保了跨浏览器和设备的一致性，减少了兼容性问题。
 
 ### 4. 社区支持
-Bootstrap 拥有庞大的开发者社区，提供了丰富的文档、教程和插件。
+Bootstrap拥有庞大的开发者社区，提供了丰富的文档、教程和插件。
 
 ## 安装和引入 Bootstrap
 
