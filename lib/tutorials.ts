@@ -46,7 +46,14 @@ export async function getTutorialContent(language: string, tutorialPath: string)
 }
 
 export async function getTutorialStructure(language: string): Promise<Tutorial[]> {
+  // 校验 language 参数：路径穿越或对应目录不存在时返回空数组，由调用方决定 404
+  if (language.includes('..') || language.includes('/') || language.includes('\\')) {
+    return []
+  }
   const languagePath = path.join(tutorialsDirectory, language)
+  if (!fs.existsSync(languagePath) || !fs.statSync(languagePath).isDirectory()) {
+    return []
+  }
   return getDirectoryStructure(languagePath, language)
 }
 

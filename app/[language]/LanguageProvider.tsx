@@ -38,7 +38,14 @@ function getDirectoryStructure(dirPath: string, basePath: string): Tutorial[] {
 }
 
 export async function LanguageProvider({ language }: { language: string }) {
+  // 校验 language 参数：路径穿越或对应目录不存在时返回空列表，避免 readdirSync 抛 ENOENT 导致 500
+  if (language.includes('..') || language.includes('/') || language.includes('\\')) {
+    return { tutorials: [], language }
+  }
   const languagePath = path.join(tutorialsDirectory, language)
+  if (!fs.existsSync(languagePath) || !fs.statSync(languagePath).isDirectory()) {
+    return { tutorials: [], language }
+  }
   const tutorials = getDirectoryStructure(languagePath, language)
   return { tutorials, language }
 }

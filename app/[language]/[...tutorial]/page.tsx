@@ -1,7 +1,7 @@
 import { getTutorialContent, getTutorialMetadata, getTutorialStructure, Tutorial } from "@/lib/tutorials"
 import ReactMarkdown from 'react-markdown'
 import { Metadata, ResolvingMetadata } from 'next'
-import { ErrorBoundary } from 'react-error-boundary'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 type Props = {
@@ -53,15 +53,6 @@ export async function generateMetadata(
   }
 }
 
-function ErrorFallback({error}: {error: Error}) {
-  return (
-    <div role="alert" className="text-red-500">
-      <p>Error loading tutorial content:</p>
-      <pre>{error.message}</pre>
-    </div>
-  )
-}
-
 interface NavigationLink {
   title: string;
   path: string;
@@ -106,7 +97,9 @@ async function TutorialContent({ language, tutorialPath }: { language: string, t
   const { prev, next } = findNavigationLinks(tutorials, tutorialPath)
 
   if (content === 'Tutorial content not found.' || content === 'Error loading tutorial content.') {
-    throw new Error(content)
+    // 内容不存在返回 404，不再 throw——之前 throw 后由 react-error-boundary 兜底，
+    // 但函数型 FallbackComponent 无法从 server 组件传给 client 组件，反而必定 500
+    notFound()
   }
 
   return (
@@ -132,9 +125,5 @@ export default async function TutorialPage({ params }: Props) {
   const language = decodeURIComponent(params.language)
   const tutorialPath = params.tutorial.map(decodeURIComponent).join('/')
   
-  return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <TutorialContent language={language} tutorialPath={tutorialPath} />
-    </ErrorBoundary>
-  )
+  return <TutorialContent language={language} tutorialPath={tutorialPath} />
 }
