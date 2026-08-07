@@ -139,5 +139,6 @@ if match:
 - [Python 官方文档 - re 模块](https://docs.python.org/3/library/re.html)
 - [正则表达式教程 - 菜鸟教程](https://www.runoob.com/regexp/regexp-tutorial.html)
 - [正则表达式测试工具](https://regex101.com/)
+- [可视化正则表达式测试器](https://pythonium.net/regex)
 
 通过这些资源，你可以进一步巩固和扩展你的正则表达式知识。
