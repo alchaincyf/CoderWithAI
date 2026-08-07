@@ -1,16 +1,16 @@
 ---
-title: 掌握Python基本语法和数据类型
+title: 掌握Java基本语法和数据类型
 date: 2023-10-05
-description: 本课程将带你深入了解Python编程语言的基本语法和数据类型，包括变量、字符串、列表、字典等，适合初学者快速入门。
+description: 本课程将带你深入了解Java编程语言的基本语法和数据类型，包括变量、字符串、列表、字典等，适合初学者快速入门。
 slug: python-basic-syntax-data-types
 tags:
-  - Python
+  - Java
   - 编程基础
   - 数据类型
 category: 编程入门
 keywords:
-  - Python语法
-  - Python数据类型
+  - Java语法
+  - Java数据类型
   - 编程入门
 ---
 
