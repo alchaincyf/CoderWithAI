@@ -46,7 +46,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['www.codewithai.com'], // 添加你的图片域名
+    domains: ['www.coderwithai.top'], // 添加你的图片域名
     unoptimized: true,
   },
 };

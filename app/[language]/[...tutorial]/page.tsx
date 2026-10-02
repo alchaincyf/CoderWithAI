@@ -28,14 +28,18 @@ export async function generateMetadata(
     title,
     description: metadata.description,
     keywords: metadata.keywords,
+    alternates: {
+      // www 和裸域都能打开，用 canonical 收口到 www
+      canonical: `https://www.coderwithai.top/${language}/${tutorialPath}`,
+    },
     openGraph: {
       title,
       description: metadata.description,
-      url: `https://www.codewithai.com/${language}/${tutorialPath}`,
+      url: `https://www.coderwithai.top/${language}/${tutorialPath}`,
       siteName: 'CoderWithAI',
       images: [
         {
-          url: metadata.image || 'https://www.codewithai.com/images/default-og-image.jpg',
+          url: metadata.image || 'https://www.coderwithai.top/images/default-og-image.jpg',
           width: 1200,
           height: 630,
         },
@@ -48,7 +52,7 @@ export async function generateMetadata(
       card: 'summary_large_image',
       title,
       description: metadata.description,
-      images: [metadata.image || 'https://www.codewithai.com/images/default-twitter-image.jpg'],
+      images: [metadata.image || 'https://www.coderwithai.top/images/default-twitter-image.jpg'],
     },
   }
 }

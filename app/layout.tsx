@@ -29,11 +29,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CoderWithAI - 学习编程的最佳资源",
     description: "全面的编程教程和交互式学习平台",
-    url: "https://www.codewithai.com",
+    url: "https://www.coderwithai.top",
     siteName: "CoderWithAI",
     images: [
       {
-        url: "https://www.codewithai.com/images/og-image.jpg",
+        url: "https://www.coderwithai.top/images/og-image.jpg",
         width: 1200,
         height: 630,
       },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CoderWithAI - 学习编程的最佳资源",
     description: "全面的编程教程和交互式学习平台",
-    images: ["https://www.codewithai.com/images/twitter-image.jpg"],
+    images: ["https://www.coderwithai.top/images/twitter-image.jpg"],
   },
 };
 
@@ -84,11 +84,11 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "CoderWithAI",
-              "url": "https://www.codewithai.com",
+              "url": "https://www.coderwithai.top",
               "description": "CoderWithAI 提供全面的编程教程，涵盖多种编程语言和框架。通过我们的交互式学习平台，提升您的编程技能。",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://www.codewithai.com/search?q={search_term_string}",
+                "target": "https://www.coderwithai.top/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             }
