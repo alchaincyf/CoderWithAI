@@ -8,6 +8,8 @@ import SideRescue from "@/components/SideRescue";
 import { getDoc, getDocs } from "@/lib/content";
 import { docMeta } from "@/lib/meta";
 import { LEVELS } from "@/lib/levels";
+import { storiesFor } from "@/lib/stories";
+import StoryQuote from "@/components/StoryQuote";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getDocs("path").map((d) => ({ slug: d.slug })); }
@@ -21,6 +23,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!doc) notFound();
   const i = LEVELS.findIndex((l) => l.slug === slug);
   const prev = LEVELS[i - 1], next = LEVELS[i + 1];
+  const stories = storiesFor(`level-${i}`);
   return (
     <DocPage
       doc={doc} color="blue"
@@ -30,6 +33,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         { k: "花费", v: String(doc.data.cost ?? "") },
       ]}
       before={<ProgressStrip here={slug} />}
+      lead={stories[0] ? <StoryQuote story={stories[0]} /> : null}
       after={<>
         {doc.data.goal && <div className="callout callout-why" style={{ marginTop: 40 }}><b>过关标准</b><p>{doc.data.goal}</p></div>}
         <DoneBar slug={slug} />
@@ -42,6 +46,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       </>}
       side={<>
         {doc.data.goal && <div className="side-card"><h3>过关标准</h3><p>{doc.data.goal}</p></div>}
+        {stories[1] && <StoryQuote story={stories[1]} compact />}
         <SideRescue />
       </>}
     />

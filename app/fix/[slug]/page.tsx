@@ -5,6 +5,8 @@ import SideRescue from "@/components/SideRescue";
 import { getDoc, getDocs, hrefOf } from "@/lib/content";
 import { docMeta } from "@/lib/meta";
 import { AUTHOR_LD } from "@/lib/author";
+import { storiesFor } from "@/lib/stories";
+import StoryQuote from "@/components/StoryQuote";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getDocs("fix").map((d) => ({ slug: d.slug })); }
@@ -34,6 +36,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <ul>{same.map((d) => <li key={d.slug}><Link href={hrefOf(d)}>{d.title}</Link></li>)}</ul>
           </div>
         )}
+        {storiesFor(`fix-${doc.slug}`).slice(0, 1).map((st) => <StoryQuote key={st.quote} story={st} compact />)}
         <SideRescue />
       </>}
     />

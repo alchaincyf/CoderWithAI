@@ -3,12 +3,11 @@ import type { Doc } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { AUTHOR_LD, bookFor } from "@/lib/author";
 import { Byline, BookCard, AuthorBox } from "./AuthorCard";
-import AdSlot from "./AdSlot";
 
 export interface Crumb { href: string; label: string }
 
 export default function DocPage({
-  doc, color, crumbs, facts, aka, side, after, before, jsonLd,
+  doc, color, crumbs, facts, aka, side, after, before, lead, jsonLd,
 }: {
   doc: Doc;
   color: "blue" | "lemon" | "orange" | "ink" | "white";
@@ -18,6 +17,7 @@ export default function DocPage({
   side?: React.ReactNode;
   after?: React.ReactNode;
   before?: React.ReactNode;
+  lead?: React.ReactNode;
   jsonLd?: Record<string, unknown>;
 }) {
   const ld = jsonLd ?? {
@@ -52,10 +52,10 @@ export default function DocPage({
             </nav>
           ) : <div className="toc" />}
           <div>
+            {lead}
             <div className="prose" dangerouslySetInnerHTML={{ __html: doc.body }} />
             {after}
             <AuthorBox />
-            <AdSlot />
             <p className="updated">发现过时或写错的地方，欢迎在 <a href="https://github.com/alchaincyf/CoderWithAI/issues" target="_blank" rel="noopener">GitHub</a> 告诉我们。</p>
           </div>
           <aside className="side">{side}<BookCard id={bookFor(doc.section, doc.slug)} /></aside>
