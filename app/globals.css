@@ -628,3 +628,29 @@ html { overflow-x: clip; }
 .coach-build .brief-out { margin-top: 0; }
 .coach-pit li { padding-left: 0; }
 .coach-pit li::before { content: none; }
+
+/* Skills专题 */
+.skills-page { padding: 40px 0 88px; }
+.skills-page > .prose { max-width: 760px; }
+.skills-rec { margin: 48px 0; }
+.skills-rec > h2 { font-family: var(--serif); font-size: 34px; }
+.skill-cats { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+.skill-cats a { border: 2px solid var(--ink); padding: 6px 12px; font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); background: var(--white); }
+.skill-cat { margin-top: 40px; scroll-margin-top: 20px; }
+.skill-cat h3 { font-size: 22px; font-weight: 800; }
+.skill-cat h3 small { display: block; font-size: 15px; font-weight: 500; color: var(--grey); margin-top: 4px; }
+.skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
+@media (max-width: 1100px) { .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .skill-grid { grid-template-columns: 1fr; } }
+.skill-card { background: var(--white); border: 2px solid var(--ink); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+.skill-card.by-huashu { border-color: var(--blue); box-shadow: 4px 4px 0 var(--blue); }
+.skill-card .who { align-self: flex-start; font-size: 12px; font-weight: 800; padding: 1px 8px; background: var(--ink); color: var(--white); }
+.skill-card.by-huashu .who { background: var(--blue); }
+.skill-card h4 { font-size: 18px; line-height: 1.4; }
+.skill-card h4 a { color: inherit; }
+.skill-card p { font-size: 15px; line-height: 1.7; }
+.skill-card .when { color: #444; font-size: 14px; }
+.skill-card .inst { display: block; font-family: var(--mono, ui-monospace, Menlo, monospace); font-size: 13px; background: #16161a; color: #e9e7df; padding: 8px 10px; overflow-wrap: anywhere; }
+.skill-card .risk { font-size: 13.5px; color: #8a3a2a; }
+.skill-card .meta { font-size: 12.5px; color: var(--grey); margin-top: auto; }
+.skill-card .inst-note { font-size: 13.5px; color: #444; }

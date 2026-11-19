@@ -126,3 +126,14 @@ export const SECTION_META: Record<Section, { name: string; href: string }> = {
 export function hrefOf(d: Pick<Doc, "section" | "slug">) {
   return `${SECTION_META[d.section].href}/${d.slug}`;
 }
+
+// 单页 markdown（如 skills-guide.md），用同一套渲染规则
+export function renderMd(md: string) {
+  const headings: { id: string; text: string }[] = [];
+  const body = makeMarked(headings).parse(cjkBold(md)) as string;
+  return { body, headings };
+}
+export function readPage(file: string) {
+  const { data, content } = matter(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  return { data, content };
+}
