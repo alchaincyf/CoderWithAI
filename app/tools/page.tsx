@@ -12,7 +12,7 @@ const CN = { yes: ["ok", "国内能用"], no: ["no", "大陆不支持"], unknown
 
 export default function Page() {
   const cats: Cat[] = ["cli", "switch", "ide", "office", "web"];
-  const ranks: Rank[] = ["top", "cn-top", "cn", "partial"];
+  const ranks: Rank[] = ["top", "cn-top", "cn", "intl", "partial", "careful"];
   return (<>
     <header className="sec-head white">
       <div className="wrap">

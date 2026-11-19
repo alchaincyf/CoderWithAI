@@ -2,7 +2,7 @@
 // 价格只写官方页上的标价；medium/low 置信度的在页面上提示「以官网为准」。
 export type Cat = "cli" | "switch" | "ide" | "office" | "web";
 // 推荐层级：top=本站最推荐；cn-top=国内最推荐；cn=国内补充；partial=部分推荐
-export type Rank = "top" | "cn-top" | "cn" | "partial";
+export type Rank = "top" | "cn-top" | "cn" | "intl" | "partial" | "careful";
 export interface Tool {
   id: string;
   name: string;
@@ -32,7 +32,7 @@ export const CAT_LABEL: Record<Cat, string> = {
   web: "网页一句话生成",
 };
 
-export const RANK_LABEL: Record<Rank, string> = { top: "最推荐", "cn-top": "国内最推荐", cn: "国内可选", partial: "部分推荐" };
+export const RANK_LABEL: Record<Rank, string> = { top: "最推荐", "cn-top": "国内最推荐", cn: "国内可选（字节、腾讯、阿里官方）", intl: "国外可选", partial: "部分推荐", careful: "谨慎选用" };
 
 export const TOOLS: Tool[] = [
   {
@@ -77,7 +77,7 @@ export const TOOLS: Tool[] = [
     bestFor: "想在国内用上Claude Code、Codex的人，第一步就装它",
     weak: "要自己去模型官网申请API Key；它的GitHub页面挂着第三方中转站的赞助广告，本站不推荐任何中转站，请只接各模型的官方API",
     site: "https://github.com/farion1231/cc-switch", pricing: "https://github.com/farion1231/cc-switch", confidence: "high",
-    rank: "top", pick: "国内用Claude Code、Codex的关键一步：用它把模型切到DeepSeek、Kimi、GLM等官方API",
+    rank: "cn-top", pick: "国内用Claude Code、Codex的关键一步：用它把模型切到DeepSeek、Kimi、GLM等官方API",
   },
   {
     id: "magpie", name: "Magpie", maker: "yetone（开源）", cat: "switch",
@@ -88,7 +88,7 @@ export const TOOLS: Tool[] = [
     bestFor: "同时用好几个AI编程工具、想分别配模型的进阶用户",
     weak: "功能比CC Switch多也更复杂，新手先用CC Switch；有「读取本机订阅账号跨工具使用」的功能，可能违反厂商条款，建议关掉，只用官方API Key",
     site: "https://github.com/yetone/magpie", pricing: "https://github.com/yetone/magpie", confidence: "high",
-    rank: "top", pick: "多个工具、多个模型一起管，功能比CC Switch更全",
+    rank: "cn-top", pick: "多个工具、多个模型一起管，功能比CC Switch更全",
   },
   {
     id: "workbuddy", name: "WorkBuddy", maker: "腾讯", cat: "office",
@@ -132,6 +132,8 @@ export const TOOLS: Tool[] = [
     bestFor: "想在国内网络下用命令行Agent的人",
     weak: "会员档位和模型权限的对应关系写得不够清楚",
     site: "https://www.kimi.com/code", pricing: "https://www.kimi.com/membership/pricing", confidence: "medium",
+    rank: "careful",
+    pick: "国内网络能用，但会员档位和权限说明不够清楚",
   },
   {
     id: "qwen-code", name: "Qwen Code", maker: "阿里通义千问团队", cat: "cli",
@@ -142,6 +144,30 @@ export const TOOLS: Tool[] = [
     bestFor: "想用开源工具、不想绑死一家模型的人",
     weak: "没有开箱即用的免费额度，新手要先搞懂接哪个模型",
     site: "https://github.com/QwenLM/qwen-code", pricing: "https://qwenlm.github.io/qwen-code-docs/en/users/overview/", confidence: "medium",
+    rank: "cn",
+    pick: "阿里通义出品，开源，能接国内各家模型",
+  },
+  {
+    id: "grok-build", name: "Grok Build", maker: "xAI", cat: "cli",
+    what: "xAI出的命令行AI编程Agent，在终端里用大白话让它读写项目、跑命令。官方称仍是测试版。",
+    free: "官方文档提到有免费档，额度没写",
+    paid: "随X订阅（Plus 8美元/月起）；也可用xAI API按量付费",
+    cn: "unknown", cnNote: "xAI官方没有公布受支持地区名单，请自行确认；需要X或xAI账号",
+    bestFor: "已经订了X会员、想试试Grok写代码的人",
+    weak: "仍是测试版；哪一档订阅包含它、免费额度多少，官方页写得不清楚",
+    site: "https://x.ai/cli", pricing: "https://docs.x.ai/x-subscription/pricing", confidence: "medium",
+    rank: "intl", pick: "xAI官方出品，和Codex同属第二梯队，已经订了X会员可以试",
+  },
+  {
+    id: "muse-code", name: "Muse Code", maker: "Meta", cat: "cli",
+    what: "Meta出的命令行AI编程Agent，用Meta自己的Muse模型，订阅只能在它的命令行里用。",
+    free: "官方页没列免费档",
+    paid: "订阅5美元/月起，共四档到200美元/月；也可按量付费",
+    cn: "no", cnNote: "Meta官方地域政策把中国大陆（含港澳）列为限制地区",
+    bestFor: "在受支持地区、想要便宜入门档的人",
+    weak: "大陆不可用；订阅默认允许Meta用你的内容训练（可以关）",
+    site: "https://dev.meta.ai/products/muse-code", pricing: "https://dev.meta.ai/products/muse-code", confidence: "medium",
+    rank: "partial", pick: "Meta官方出品，入门档便宜，但大陆不可用，订阅默认允许拿你的内容训练模型，记得关掉",
   },
   {
     id: "antigravity", name: "Google Antigravity", maker: "Google", cat: "cli",
@@ -163,9 +189,11 @@ export const TOOLS: Tool[] = [
     bestFor: "国内零基础用户，先用免费额度上手",
     weak: "积分消耗规则不直观，难预估一个项目要多少积分",
     site: "https://www.trae.cn", pricing: "https://www.trae.cn/pricing", confidence: "high",
+    rank: "cn",
+    pick: "字节出品，免费版每月500积分，中文界面，在编辑器里看着AI改",
   },
   {
-    id: "qoder-cn", name: "Qoder 国内版", maker: "Qoder", cat: "ide",
+    id: "qoder-cn", name: "Qoder 国内版", maker: "阿里巴巴", cat: "ide",
     what: "「智能体编程平台」：桌面IDE、手机端、JetBrains插件、命令行和云端Agent一套。",
     free: "体验版有限额度，新用户含2周专业版试用",
     paid: "专业版59元/月（新客首月有优惠）",
@@ -173,6 +201,8 @@ export const TOOLS: Tool[] = [
     bestFor: "想要IDE、手机、命令行全家桶的国内用户",
     weak: "积分制，促销价多，下单前看清",
     site: "https://qoder.cn", pricing: "https://qoder.cn/pricing", confidence: "high",
+    rank: "cn",
+    pick: "阿里出品，编辑器、命令行、手机一套",
   },
   {
     id: "codebuddy", name: "CodeBuddy", maker: "腾讯", cat: "ide",
@@ -183,9 +213,11 @@ export const TOOLS: Tool[] = [
     bestFor: "国内用户想零成本上手",
     weak: "折扣、限免、积分叠加，价格不好比",
     site: "https://www.codebuddy.cn", pricing: "https://www.codebuddy.cn/pricing/", confidence: "medium",
+    rank: "cn",
+    pick: "腾讯出品，微信扫码登录，免费额度可以先上手",
   },
   {
-    id: "cursor", name: "Cursor", maker: "Cursor", cat: "ide",
+    id: "cursor", name: "Cursor", maker: "Anysphere", cat: "ide",
     what: "长得像VS Code的AI编辑器，右边对话框说需求它就改代码；也有命令行和云端Agent。",
     free: "免费档有有限的Agent和对话次数",
     paid: "付费档从每月数美元到200美元不等（档位近期改过，以官网为准）",
@@ -193,6 +225,8 @@ export const TOOLS: Tool[] = [
     bestFor: "想要VS Code手感加AI、愿意看代码改动的人",
     weak: "用量池计费，第三方模型另算，成本难预估",
     site: "https://cursor.com", pricing: "https://cursor.com/pricing", confidence: "low",
+    rank: "careful",
+    pick: "用的人多，但不是我们首推；成本按用量池算，不好预估",
   },
   {
     id: "lovable", name: "Lovable", maker: "Lovable", cat: "web",
@@ -203,6 +237,8 @@ export const TOOLS: Tool[] = [
     bestFor: "想最快看到成品的完全新手",
     weak: "额度用完就得升级；项目复杂后不好接手",
     site: "https://lovable.dev", pricing: "https://lovable.dev/pricing", confidence: "medium",
+    rank: "careful",
+    pick: "想最快看到成品可以试，项目复杂后不好接手",
   },
   {
     id: "bolt", name: "Bolt.new", maker: "StackBlitz", cat: "web",
@@ -213,6 +249,8 @@ export const TOOLS: Tool[] = [
     bestFor: "快速做原型、落地页",
     weak: "按token计量，复杂项目容易烧光",
     site: "https://bolt.new", pricing: "https://bolt.new/pricing", confidence: "medium",
+    rank: "careful",
+    pick: "适合快速做原型，复杂项目容易烧光额度",
   },
   {
     id: "v0", name: "v0", maker: "Vercel", cat: "web",
@@ -223,6 +261,8 @@ export const TOOLS: Tool[] = [
     bestFor: "要做好看前端界面的人",
     weak: "偏前端",
     site: "https://v0.app", pricing: "https://v0.app/pricing", confidence: "medium",
+    rank: "careful",
+    pick: "偏前端界面，适合做好看的页面原型",
   },
   {
     id: "replit", name: "Replit Agent", maker: "Replit", cat: "web",
@@ -233,8 +273,14 @@ export const TOOLS: Tool[] = [
     bestFor: "不想自己拼数据库、托管等服务的人",
     weak: "高档位说明不全",
     site: "https://replit.com", pricing: "https://replit.com/pricing", confidence: "medium",
+    rank: "careful",
+    pick: "一站式，但高档位说明不全",
   },
 ];
+
+// 本站推荐顺序：国外 Anthropic > OpenAI、xAI > Google、Meta；国内 DeepSeek > 字节 > 腾讯 > 阿里；其余第三方谨慎
+const ORDER = ["claude-code", "codex", "grok-build", "deepseek-harness", "cc-switch", "magpie", "trae-cn", "doubao-work", "codebuddy", "workbuddy", "qoder-cn", "qwen-code", "qwenwork", "antigravity", "muse-code", "cursor", "kimi-code", "lovable", "bolt", "v0", "replit"];
+TOOLS.sort((a, b) => (ORDER.indexOf(a.id) + 1 || 99) - (ORDER.indexOf(b.id) + 1 || 99));
 
 // 最近一年的变化：老教程里最容易过期的地方。每条都有官方出处。
 export const CHANGES = [

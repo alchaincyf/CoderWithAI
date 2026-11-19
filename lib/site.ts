@@ -13,4 +13,5 @@ export const NAV = [
   { href: "/words", label: "人话词典" },
   { href: "/tools", label: "工具怎么选" },
   { href: "/brief", label: "需求说明书" },
+  { href: "/prompts", label: "提示词技巧" },
 ];
