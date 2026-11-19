@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <SimplePage kicker="旧教程" title={<>你找的那篇教程，<br />已经下线了。</>} color="orange">
+    <SimplePage kicker="旧教程" title={<>你找的那篇教程，<br />已经下线了。</>}>
       <p>你点开的是CoderWithAI 2024年版的「编程语言教程」（Python、Java、C++等31门语言）。2026年11月，我们把整个站重做了，这批旧教程不再提供。</p>
       <p>原因很简单：今天想做出一个东西，已经不需要先学会一门编程语言的语法。AI会写代码，你需要会的是告诉它做什么、看懂它在说什么、卡住时知道怎么办。</p>
       <h2>你可能想找的</h2>

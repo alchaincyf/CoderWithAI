@@ -3,6 +3,7 @@ import Link from "next/link";
 import DocPage from "@/components/DocPage";
 import ChipLinks from "@/components/ChipLinks";
 import SideRescue from "@/components/SideRescue";
+import { PlainHead } from "@/components/Heads";
 import { getDoc, getDocs } from "@/lib/content";
 import { docMeta } from "@/lib/meta";
 import { LEVELS } from "@/lib/levels";
@@ -24,13 +25,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   };
   return (
     <DocPage
-      doc={doc} color="ink" jsonLd={ld}
-      crumbs={[{ href: "/", label: "首页" }, { href: "/words", label: "人话词典" }]}
-      aka={doc.data.aka}
-      facts={[{ k: "分类", v: String(doc.data.category ?? "") }, ...(lv ? [{ k: "第一次碰到", v: `第${lv.n}关` }] : [])]}
-      after={<ChipLinks title="相关的词" section="words" slugs={doc.data.related} />}
+      doc={doc} jsonLd={ld}
+      head={<PlainHead
+        crumbs={[{ href: "/", label: "首页" }, { href: "/words", label: "人话词典" }, { label: doc.title }]}
+        kicker={`人话词典${doc.data.category ? "：" + doc.data.category : ""}`} title={doc.title} summary={doc.summary} aka={doc.data.aka} updated={doc.updated}
+        meta={lv ? [{ k: "第一次碰到", v: `第${lv.n}关` }] : []} />}
+      cards={<ChipLinks title="相关的词" section="words" slugs={doc.data.related} />}
       side={<>
-        {lv && <div className="side-card"><h3>在路线里</h3><p>你会在<Link href={`/start/${lv.slug}`}>第{lv.n}关「{lv.title}」</Link>第一次碰到它。</p></div>}
+        {lv && <div className="card sc"><h4>在路线里</h4><p className="sub">你会在<Link href={`/start/${lv.slug}`}>第{lv.n}关「{lv.title}」</Link>第一次碰到它。</p></div>}
         <SideRescue />
       </>}
     />

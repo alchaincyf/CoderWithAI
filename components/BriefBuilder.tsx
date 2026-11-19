@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { copyText } from "./copy";
 import { track } from "./track";
+import TermView from "./TermView";
 
 const INIT = {
   name: "家庭菜谱本",
@@ -72,8 +73,8 @@ export default function BriefBuilder() {
     <label>{label}<small>{hint}</small><textarea rows={rows} value={f[k]} onChange={set(k)} /></label>
   );
   return (
-    <div className="brief">
-      <form className="brief-form" onSubmit={(e) => e.preventDefault()}>
+    <div className="brief-page">
+      <form className="card brief-form" onSubmit={(e) => e.preventDefault()}>
         <label>项目叫什么<small>随便起，以后能改</small><input value={f.name} onChange={set("name")} /></label>
         {T({ k: "what", label: "一句话说它是什么", hint: "别写「一个平台」，写它具体帮谁做成什么事" })}
         {T({ k: "who", label: "给谁用", hint: "越具体越好：「我和我妈」比「家庭用户」好十倍" })}
@@ -86,13 +87,10 @@ export default function BriefBuilder() {
         {T({ k: "done", label: "怎么算做完", hint: "写一个你能亲手检查的场景，这是最重要的一栏", rows: 3 })}
       </form>
       <div className="brief-out">
-        <span className="lab">生成的需求说明（直接发给AI）</span>
-        <pre>{out}</pre>
-        <div className="row">
-          <button className={`copy${copied ? " done" : ""}`} type="button" onClick={() => { track("copy_brief"); copyText(out).then(() => setCopied(true)); }}>{copied ? "已复制，去粘给AI" : "复制全部"}</button>
-          <button className="copy" style={{ background: "transparent", color: "#f4f3ee", borderColor: "#f4f3ee" }} type="button" onClick={() => setF(INIT)}>恢复示例</button>
-        </div>
-        <p className="note" style={{ color: "#bdbcb6", marginTop: 14 }}>你填的内容只存在这台设备的浏览器里，不会上传。</p>
+        <TermView text={out} title="生成的需求说明" tag="直接发给AI" copied={copied}
+          onCopy={() => { track("copy_brief"); copyText(out).then(() => setCopied(true)); }}
+          extra={<button type="button" className="tbtn" onClick={() => setF(INIT)}>恢复示例</button>} />
+        <p className="cap" style={{ marginTop: 14 }}>你填的内容只存在这台设备的浏览器里，不会上传。</p>
       </div>
     </div>
   );

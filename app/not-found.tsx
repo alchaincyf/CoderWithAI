@@ -3,7 +3,7 @@ import SimplePage from "@/components/SimplePage";
 
 export default function NotFound() {
   return (
-    <SimplePage kicker="404" title={<>这一页不存在。</>} color="orange">
+    <SimplePage kicker="404" title={<>这一页不存在。</>}>
       <p>可能是链接写错了，也可能是这页被移走了。试试右上角的搜索，或者：</p>
       <ul>
         <li><Link href="/">回首页</Link></li>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import DocPage from "@/components/DocPage";
 import SideRescue from "@/components/SideRescue";
+import { FixHead } from "@/components/Heads";
 import { getDoc, getDocs, hrefOf } from "@/lib/content";
 import { docMeta } from "@/lib/meta";
 import { AUTHOR_LD } from "@/lib/author";
@@ -25,15 +26,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     "@context": "https://schema.org", "@type": "TechArticle", headline: doc.title, description: doc.summary,
     inLanguage: "zh-CN", dateModified: doc.updated, proficiencyLevel: "Beginner", author: AUTHOR_LD,
   };
+  const kw = ((doc.data.match ?? []) as string[]).map(String);
   return (
     <DocPage
-      doc={doc} color="orange" jsonLd={ld}
-      crumbs={[{ href: "/", label: "首页" }, { href: "/fix", label: "报错急救" }]}
-      facts={[{ k: "分类", v: String(doc.data.category ?? "") }, ...(plats ? [{ k: "系统", v: plats }] : [])]}
+      doc={doc} jsonLd={ld}
+      head={<FixHead doc={doc} plats={plats ? plats.split("、") : []} />}
       side={<>
+        {kw.length > 0 && (
+          <div className="card sc"><h4>对照关键词</h4><p className="sub">你的红字里出现任何一个，就是这一条。</p>
+            <div className="kw">{kw.map((k) => <span key={k} className="chip mono">{k}</span>)}</div>
+          </div>
+        )}
         {same.length > 0 && (
-          <div className="side-card"><h3>同类报错</h3>
-            <ul>{same.map((d) => <li key={d.slug}><Link href={hrefOf(d)}>{d.title}</Link></li>)}</ul>
+          <div className="card sc"><h4>同类报错 <span>{String(doc.data.category ?? "")}</span></h4>
+            <ul className="rel-l">{same.map((d) => <li key={d.slug}><Link href={hrefOf(d)}>{d.title}</Link></li>)}</ul>
           </div>
         )}
         {storiesFor(`fix-${doc.slug}`).slice(0, 1).map((st) => <StoryQuote key={st.quote} story={st} compact />)}

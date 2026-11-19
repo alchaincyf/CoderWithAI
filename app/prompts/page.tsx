@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
+import PageHead from "@/components/PageHead";
+import Mk from "@/components/Mk";
 import PromptCoach, { type Scenario } from "@/components/PromptCoach";
 
 export const metadata: Metadata = {
@@ -12,12 +14,9 @@ export const metadata: Metadata = {
 export default function Page() {
   const data: Scenario[] = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content", "prompts.json"), "utf8"));
   return (<>
-    <header className="sec-head blue">
-      <div className="wrap">
-        <div><span className="lab">提示词技巧 · {data.length}个场景</span><h1>不会写代码，<br />要会跟AI说话。</h1></div>
-        <p>这些技巧来自花叔自己和AI的真实对话、知识星球和公众号，不是网上抄的通用模板。先挑你现在的场景，看几条技巧，再把右边的空填上，生成一段能直接发给AI的话。</p>
-      </div>
-    </header>
-    <div className="wrap"><PromptCoach data={data} /></div>
+    <PageHead kicker={`提示词技巧 · ${data.length}个场景`} title={<>不会写代码，<br />要会<Mk k="u">跟AI说话</Mk>。</>}>
+      这些技巧来自花叔自己和AI的真实对话、知识星球和公众号，不是网上抄的通用模板。先挑你现在的场景，看几条技巧，再把右边的空填上，生成一段能直接发给AI的话。
+    </PageHead>
+    <div className="wrap wide"><PromptCoach data={data} /></div>
   </>);
 }

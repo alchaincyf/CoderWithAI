@@ -1,6 +1,10 @@
-export default function SimplePage({ kicker, title, color = "white", children }: { kicker: string; title: React.ReactNode; color?: string; children: React.ReactNode }) {
+import PageHead from "./PageHead";
+
+export default function SimplePage({ kicker, title, children }: { kicker: string; title: React.ReactNode; color?: string; children: React.ReactNode }) {
   return (<>
-    <header className={`sec-head ${color}`}><div className="wrap"><div><span className="lab">{kicker}</span><h1>{title}</h1></div></div></header>
-    <div className="wrap"><div className="prose" style={{ maxWidth: 760, padding: "44px 0 88px" }}>{children}</div></div>
+    <PageHead kicker={kicker} title={title} />
+    <div className="wrap wide simple">
+      <div className="card sheet narrow"><div className="prose">{children}</div></div>
+    </div>
   </>);
 }

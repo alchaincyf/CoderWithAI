@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import CopyEnhancer from "@/components/CopyEnhancer";
+import MarkReveal from "@/components/MarkReveal";
 import { SITE } from "@/lib/site";
 import { AUTHOR_LD } from "@/lib/author";
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
 };
 
-export const viewport: Viewport = { themeColor: "#1d36c8", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#f3f3ef", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -27,11 +28,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head><link rel="preload" href="/fonts/cwa-title.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: SITE.name, url: SITE.url, logo: `${SITE.url}/og.png`, founder: AUTHOR_LD }) }} />
-        <a className="sr" href="#main">跳到正文</a>
+        <a className="skip" href="#main">跳到正文</a>
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
         <CopyEnhancer />
+        <MarkReveal />
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}

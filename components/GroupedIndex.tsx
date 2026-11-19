@@ -11,15 +11,15 @@ export default function GroupedIndex({ docs, order, tagOf }: { docs: Doc[]; orde
   const cats = [...order.filter((c) => groups.has(c)), ...[...groups.keys()].filter((c) => !order.includes(c))];
   return (<>
     <nav className="filters" aria-label="按分类跳转">
-      {cats.map((c) => <a key={c} href={`#cat-${c}`}>{c} <span className="note">{groups.get(c)!.length}</span></a>)}
+      {cats.map((c) => <a key={c} className="chip" href={`#cat-${c}`}>{c}<span className="chip-n">{groups.get(c)!.length}</span></a>)}
     </nav>
     {cats.map((c) => (
       <section key={c} className="cat-block" id={`cat-${c}`}>
         <h2>{c}<small>{groups.get(c)!.length}条</small></h2>
         <ul className="index-list">
           {groups.get(c)!.map((d) => (
-            <li key={d.slug}><Link href={hrefOf(d)}>
-              <span className="t">{d.title}</span>{tagOf?.(d) && <span className="k">{tagOf(d)}</span>}
+            <li key={d.slug}><Link className="card" href={hrefOf(d)}>
+              <span className="t">{d.title}{tagOf?.(d) && <span className="pill">{tagOf(d)}</span>}</span>
               <span className="s">{d.summary}</span>
             </Link></li>
           ))}

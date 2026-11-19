@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { Marked, type Tokens } from "marked";
+import { termHtml, esc as escapeHtml } from "./term";
 
 export type Section = "path" | "recipes" | "fix" | "words";
 
@@ -14,13 +15,10 @@ export interface Doc {
   body: string; // 渲染好的 HTML
   data: Record<string, any>;
   headings: { id: string; text: string }[];
+  errorText?: string; // 报错急救：开头的 ```error 原文，由页面头部的终端卡展示
 }
 
 const ROOT = path.join(process.cwd(), "content");
-
-function escapeHtml(s: string) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
 
 function slugifyHeading(text: string, used: Map<string, number>) {
   const base = text.replace(/<[^>]+>/g, "").trim().toLowerCase()
@@ -30,7 +28,7 @@ function slugifyHeading(text: string, used: Map<string, number>) {
   return n ? `${base}-${n}` : base;
 }
 
-function makeMarked(headings: { id: string; text: string }[]) {
+function makeMarked(headings: { id: string; text: string }[], ctx: { hoistError?: boolean; error?: string } = {}) {
   const used = new Map<string, number>();
   const m = new Marked({ gfm: true, breaks: false });
   m.use({
@@ -41,12 +39,16 @@ function makeMarked(headings: { id: string; text: string }[]) {
         const text = token.text;
         if (lang.startsWith("prompt")) {
           const label = lang.slice(6).trim() || "复制给AI";
-          return `<figure class="prompt" data-copy><figcaption><span class="prompt-label">${escapeHtml(label)}</span><button type="button" class="copy-btn" aria-label="复制提示词">复制</button></figcaption><pre>${escapeHtml(text)}</pre></figure>`;
+          const rest = label.replace(/^复制给\s*/, "");
+          const tag = label === "复制给AI" ? undefined : (rest && rest !== label ? rest : label);
+          return termHtml({ kind: "prompt", text, title: "复制给AI", tag, copy: "复制", analytics: "prompt" });
         }
         if (lang === "error") {
-          return `<figure class="errbox"><figcaption>你看到的报错</figcaption><pre>${escapeHtml(text)}</pre></figure>`;
+          if (ctx.hoistError && ctx.error === undefined) { ctx.error = text; return ""; }
+          return termHtml({ kind: "err", text, title: "你看到的报错", tag: "报错原文" });
         }
-        return `<figure class="code" data-copy><figcaption><span>${escapeHtml(lang || "text")}</span><button type="button" class="copy-btn" aria-label="复制代码">复制</button></figcaption><pre><code>${escapeHtml(text)}</code></pre></figure>`;
+        const shell = /^(bash|sh|zsh|shell|console)$/.test(lang);
+        return termHtml({ kind: "sh", text, title: shell ? "终端" : (lang || "文本"), shell, analytics: "code" });
       },
       heading(token: Tokens.Heading) {
         const inner = this.parser.parseInline(token.tokens);
@@ -54,6 +56,10 @@ function makeMarked(headings: { id: string; text: string }[]) {
           const id = slugifyHeading(token.text, used);
           headings.push({ id, text: token.text.replace(/[*_`]/g, "") });
           return `<h2 id="${id}">${inner}</h2>`;
+        }
+        if (token.depth === 3) {
+          const step = token.text.match(/^(第\s*\d+\s*步)\s*[：:·]?\s*(.*)$/);
+          if (step) return `<h3><small>${escapeHtml(step[1].replace(/\s+/g, ""))}</small><span>${new Marked().parseInline(step[2]) as string}</span></h3>`;
         }
         return `<h${token.depth}>${inner}</h${token.depth}>`;
       },
@@ -63,8 +69,9 @@ function makeMarked(headings: { id: string; text: string }[]) {
         const mm = raw.match(/^\[!(tip|warn|why|note)\]\s*/i);
         const kind = mm ? mm[1].toLowerCase() : "note";
         const label = { tip: "小窍门", warn: "注意", why: "为什么", note: "说明" }[kind];
+        const cls = { tip: "", warn: " warn", why: " why", note: " why" }[kind];
         const body = mm ? raw.slice(mm[0].length) : raw;
-        return `<aside class="callout callout-${kind}"><b>${label}</b>${this.parser.parse(new Marked().lexer(body))}</aside>`;
+        return `<aside class="box${cls}"><b>${label}</b><div>${this.parser.parse(new Marked().lexer(body))}</div></aside>`;
       },
       link(token: Tokens.Link) {
         const text = this.parser.parseInline(token.tokens);
@@ -97,14 +104,15 @@ export function getDocs(section: Section): Doc[] {
       const raw = fs.readFileSync(path.join(dir, f), "utf8");
       const { data, content } = matter(raw);
       const headings: { id: string; text: string }[] = [];
-      const body = makeMarked(headings).parse(cjkBold(content)) as string;
+      const ctx = { hoistError: section === "fix" && /^\s*```error/.test(content) } as { hoistError?: boolean; error?: string };
+      const body = makeMarked(headings, ctx).parse(cjkBold(content)) as string;
       const slug = (data.slug as string) || f.replace(/\.md$/, "").replace(/^\d+-/, "");
       return {
         section, slug,
         title: String(data.title ?? slug),
         summary: String(data.summary ?? ""),
         updated: data.updated instanceof Date ? data.updated.toISOString().slice(0, 10) : String(data.updated ?? "2026-11-18"),
-        body, data, headings,
+        body, data, headings, errorText: ctx.error,
       } satisfies Doc;
     })
     .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999) || a.title.localeCompare(b.title, "zh"));

@@ -22,30 +22,30 @@ function recommend(a: A) {
 }
 
 const Q = <T extends string>({ label, value, opts, onPick }: { label: string; value?: T; opts: [T, string][]; onPick: (v: T) => void }) => (
-  <div className="q"><b>{label}</b><div className="opts">{opts.map(([v, t]) => <button key={v} type="button" aria-pressed={value === v} onClick={() => onPick(v)}>{t}</button>)}</div></div>
+  <div className="qq"><b>{label}</b><div className="opts">{opts.map(([v, t]) => <button key={v} type="button" className="chip" aria-pressed={value === v} onClick={() => onPick(v)}>{t}</button>)}</div></div>
 );
 
 export default function ToolPicker() {
   const [a, setA] = useState<A>({ net: "no", how: "ide", budget: "free" });
   const picks = recommend(a);
   return (
-    <div className="picker">
+    <div className="picker card">
       <div className="picker-q">
         <h2>回答三个问题</h2>
         <Q label="1. 你能稳定使用海外网络，并且有外币卡付款吗？" value={a.net} onPick={(net) => setA({ ...a, net })} opts={[["no", "不能／不确定"], ["yes", "能"]]} />
         <Q label="2. 你更想怎么做？" value={a.how} onPick={(how) => setA({ ...a, how })} opts={[["web", "在网页里说话，直接出成品"], ["ide", "在编辑器里看着它改"], ["cli", "在终端里让AI全权干活"]]} />
         <Q label="3. 预算？" value={a.budget} onPick={(budget) => setA({ ...a, budget })} opts={[["free", "先免费"], ["mid", "每月一两百元内"], ["high", "能为效率多花"]]} />
-        <p className="note" style={{ marginTop: 22 }}>不知道选什么？第0关讲了三类工具的区别：<a href="/start/what-is-ai-coding">先搞懂AI编程是怎么回事</a>。</p>
+        <p className="cap" style={{ marginTop: 22 }}>不知道选什么？第0关讲了三类工具的区别：<a href="/start/what-is-ai-coding">先搞懂AI编程是怎么回事</a>。</p>
       </div>
       <div className="picker-a" aria-live="polite">
-        <span className="lab">建议你先试</span>
+        <span className="pill">建议你先试</span>
         {picks.map((p) => {
           const t = TOOLS.find((x) => x.id === p.id)!;
           return (
             <div className="pick" key={p.id}>
               <h3>{t.name}<small>{CAT_LABEL[t.cat]}</small></h3>
               <p>{p.why}。</p>
-              <p className="note">免费：{t.free}　付费：{t.paid}　<a href={t.pricing} target="_blank" rel="noopener">官方价格页</a></p>
+              <p className="cap">免费：{t.free}　付费：{t.paid}　<a href={t.pricing} target="_blank" rel="noopener">官方价格页</a></p>
             </div>
           );
         })}

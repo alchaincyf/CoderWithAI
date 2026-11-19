@@ -13,9 +13,9 @@ export function Byline({ updated }: { updated: string }) {
 export function BookCard({ id }: { id: BookId }) {
   const b = BOOKS[id];
   return (
-    <a className="side-card book" href={b.href} target="_blank" rel="noopener">
-      <span className="lab">想系统学？读花叔的橙皮书</span>
-      <h3>{b.title}</h3>
+    <a className="card sc book" href={b.href} target="_blank" rel="noopener">
+      <span className="cap">想系统学？读花叔的橙皮书</span>
+      <b>{b.title}</b>
       <p>{b.sub}。免费在线读。</p>
     </a>
   );
@@ -23,7 +23,7 @@ export function BookCard({ id }: { id: BookId }) {
 
 export function AuthorBox() {
   return (
-    <aside className="author-box">
+    <aside className="card author-box">
       <Link href={AUTHOR.url} className="by-av big" aria-hidden="true" tabIndex={-1}>花</Link>
       <div>
         <b>关于作者</b>

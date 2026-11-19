@@ -3,6 +3,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { readPage, renderMd } from "@/lib/content";
 import { AUTHOR_LD } from "@/lib/author";
+import PageHead from "@/components/PageHead";
+import Mk from "@/components/Mk";
 
 interface Skill { id: string; name: string; author: string; author_type: "huashu" | "official" | "community"; category: string; what: string; when: string; repo: string; install: string; install_note?: string; stars_note?: string; license?: string; risk_note?: string }
 interface Catalog { verified_on: string; categories: { id: string; name: string; desc: string }[]; skills: Skill[] }
@@ -28,18 +30,15 @@ export default function Page() {
     mentions: cat.skills.map((s) => ({ "@type": "SoftwareSourceCode", name: s.name, codeRepository: s.repo })) };
   return (<>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-    <header className="sec-head ink">
-      <div className="wrap">
-        <div><span className="lab">Skills专题 · {cat.skills.length}个推荐 · 核实于{cat.verified_on}</span><h1>给AI装上<br />技能包。</h1></div>
-        <p>{String(page.data.summary)}</p>
-      </div>
-    </header>
-    <div className="wrap skills-page">
-      <div className="prose" dangerouslySetInnerHTML={{ __html: intro.body }} />
+    <PageHead kicker={`Skills专题 · ${cat.skills.length}个推荐 · 核实于${cat.verified_on}`} title={<>给AI装上<br /><Mk k="u">技能包</Mk>。</>}>
+      {String(page.data.summary)}
+    </PageHead>
+    <div className="wrap wide skills-page">
+      <div className="card sheet"><div className="prose" dangerouslySetInnerHTML={{ __html: intro.body }} /></div>
       <section id="recommend" className="skills-rec">
-        <h2>推荐的Skills</h2>
-        <div className="prose" dangerouslySetInnerHTML={{ __html: recIntro.body }} />
-        <nav className="skill-cats" aria-label="分类">{cat.categories.map((c) => <a key={c.id} href={`#c-${c.id}`}>{c.name}</a>)}</nav>
+        <h2 className="h2s">推荐的Skills</h2>
+        <div className="prose rec-intro" dangerouslySetInnerHTML={{ __html: recIntro.body }} />
+        <nav className="filters" aria-label="分类">{cat.categories.map((c) => <a key={c.id} className="chip" href={`#c-${c.id}`}>{c.name}</a>)}</nav>
         {cat.categories.map((c) => {
           const list = cat.skills.filter((s) => s.category === c.id).sort((a, b) => rank[a.author_type] - rank[b.author_type]);
           if (!list.length) return null;
@@ -48,8 +47,8 @@ export default function Page() {
               <h3>{c.name}<small>{c.desc}</small></h3>
               <div className="skill-grid">
                 {list.map((s) => (
-                  <article key={s.id} className={`skill-card by-${s.author_type}`}>
-                    <span className="who">{WHO[s.author_type]}</span>
+                  <article key={s.id} className={`card skill-card by-${s.author_type}`}>
+                    <span className={`pill${s.author_type === "huashu" ? "" : " plain"}`}>{WHO[s.author_type]}</span>
                     <h4><a href={s.repo} target="_blank" rel="noopener">{s.name}</a></h4>
                     <p>{s.what}</p>
                     <p className="when">适合：{s.when}</p>
@@ -64,7 +63,7 @@ export default function Page() {
           );
         })}
       </section>
-      <div className="prose" dangerouslySetInnerHTML={{ __html: how.body }} />
+      <div className="card sheet"><div className="prose" dangerouslySetInnerHTML={{ __html: how.body }} /></div>
     </div>
   </>);
 }

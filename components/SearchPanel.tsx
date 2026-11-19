@@ -47,7 +47,7 @@ export default function SearchPanel({ onClose }: { onClose: () => void }) {
               if (e.key === "Enter" && !e.shiftKey && results[active]) { e.preventDefault(); go(results[active].h); }
             }}
           />
-          <button className="esc" type="button" onClick={onClose}>关闭</button>
+          <button className="btn ghost esc" type="button" onClick={onClose}>关闭</button>
         </div>
         <div className="search-results">
           {!items && <p className="search-hint">正在载入索引……</p>}
@@ -55,7 +55,7 @@ export default function SearchPanel({ onClose }: { onClose: () => void }) {
             <>
               <p className="search-group">大家常搜</p>
               <div className="search-hint chiplinks">
-                {HOT.map((h) => <button key={h} type="button" className="tag" style={{ fontSize: 14, padding: "3px 10px", background: "#fff" }} onClick={() => setQ(h)}>{h}</button>)}
+                {HOT.map((h) => <button key={h} type="button" className="chip" onClick={() => setQ(h)}>{h}</button>)}
               </div>
             </>
           )}
@@ -66,7 +66,7 @@ export default function SearchPanel({ onClose }: { onClose: () => void }) {
           )}
           {results.map((r, i) => (
             <Link key={r.h} href={r.h} className="search-item" data-active={i === active} onClick={onClose} onMouseEnter={() => setActive(i)}>
-              <span className="tag">{SECTION_LABEL[r.s]}</span>
+              <span className="pill plain">{SECTION_LABEL[r.s]}</span>
               <span><span className="t">{r.t}</span><span className="s">{r.d}</span></span>
             </Link>
           ))}

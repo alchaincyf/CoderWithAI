@@ -2,7 +2,7 @@ import { getDocs, hrefOf, type Section } from "./content";
 import type { IndexItem } from "./match";
 
 function firstPrompt(html: string) {
-  const m = html.match(/<figure class="prompt"[\s\S]*?<pre>([\s\S]*?)<\/pre>/);
+  const m = html.match(/<figure class="term prompt"[^>]*data-text="([^"]*)"/);
   if (!m) return undefined;
   return m[1].replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
 }

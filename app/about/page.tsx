@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <SimplePage kicker="关于本站" title={<>你负责想清楚，<br />AI负责写出来。</>} color="lemon">
+    <SimplePage kicker="关于本站" title={<>你负责想清楚，<br />AI负责写出来。</>}>
       <h2>这个站是做什么的</h2>
       <p>CoderWithAI教不会写代码的人，用Claude Code、Codex、TRAE、Cursor这类AI工具，把一个想法做成能上线、能分享、甚至能收钱的东西。</p>
       <p>我们不教编程语法。AI已经能把代码写得很好了，现在挡在普通人前面的不是代码，而是这些东西：听不懂AI在说什么、不知道下一步该让它做什么、终端里一串红字不知道怎么办、网站做好了不知道怎么让别人打开、不知道哪些钱该花哪些不该花。这个站就是为这些时刻写的。</p>

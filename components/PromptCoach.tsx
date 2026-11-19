@@ -2,6 +2,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { copyText } from "./copy";
 import { track } from "./track";
+import TermView from "./TermView";
+import Mk from "./Mk";
 
 interface Field { key: string; label: string; hint: string; example: string; required: boolean }
 export interface Scenario {
@@ -32,39 +34,36 @@ export default function PromptCoach({ data }: { data: Scenario[] }) {
   return (
     <div className="coach">
       <nav className="coach-tabs" aria-label="场景">
-        {data.map((d) => <button key={d.id} type="button" aria-pressed={d.id === id} onClick={() => pick(d.id)}>{d.name}</button>)}
+        {data.map((d) => <button key={d.id} type="button" className="chip" aria-pressed={d.id === id} onClick={() => pick(d.id)}>{d.name}</button>)}
       </nav>
-      <p className="coach-when">什么时候用：{sc.when}</p>
+      <p className="coach-when"><span className="pill">什么时候用</span> {sc.when}</p>
       <div className="coach-grid">
-        <section className="coach-tips">
+        <section className="card coach-tips">
           <h2>{sc.name}：{sc.techniques.length}条技巧</h2>
           <ol>
             {sc.techniques.map((t) => (
               <li key={t.rule}>
                 <b>{t.rule}</b>
                 <p>{t.why}</p>
-                {t.example && <blockquote>花叔是这么说的：「{t.example}」</blockquote>}
+                {t.example && <blockquote><span className="tag">花叔是这么说的</span>「{t.example}」</blockquote>}
               </li>
             ))}
           </ol>
           {sc.pitfalls.length > 0 && (<>
             <h3>常见说法，和更好的说法</h3>
             <ul className="coach-pit">
-              {sc.pitfalls.map((p) => <li key={p.bad}><s>{p.bad}</s><span>{p.fix}</span></li>)}
+              {sc.pitfalls.map((p) => <li key={p.bad}><Mk k="s" wrap>{p.bad}</Mk><span>{p.fix}</span></li>)}
             </ul>
           </>)}
         </section>
         <section className="coach-build">
           <div className="brief-out">
-            <span className="lab">生成的话（直接发给AI）</span>
-            <pre>{out}</pre>
-            <div className="row">
-              <button className={`copy${copied ? " done" : ""}`} type="button" onClick={() => { track("copy_prompt_coach", { scenario: id }); copyText(out).then(() => setCopied(true)); }}>{copied ? "已复制，去粘给AI" : "复制"}</button>
-              <button className="copy" style={{ background: "transparent", color: "#f4f3ee", borderColor: "#f4f3ee" }} type="button" onClick={() => setVals({ ...vals, [id]: {} })}>恢复示例</button>
-            </div>
-            <p className="note" style={{ color: "#bdbcb6", marginTop: 14 }}>你填的内容只存在这台设备的浏览器里，不会上传。</p>
+            <TermView text={out} title="生成的话" tag="直接发给AI" copied={copied}
+              onCopy={() => { track("copy_prompt_coach", { scenario: id }); copyText(out).then(() => setCopied(true)); }}
+              extra={<button type="button" className="tbtn" onClick={() => setVals({ ...vals, [id]: {} })}>恢复示例</button>} />
+            <p className="cap" style={{ marginTop: 14 }}>你填的内容只存在这台设备的浏览器里，不会上传。</p>
           </div>
-          <div className="brief-form">
+          <div className="card brief-form">
             {sc.template.fields.map((f) => (
               <label key={f.key}>{f.label}{f.required ? "" : "（可不填）"}<small>{f.hint}</small>
                 <textarea rows={2} value={val(f)} onChange={(e) => setVals({ ...vals, [id]: { ...v, [f.key]: e.target.value } })} />
