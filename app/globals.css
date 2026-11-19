@@ -594,3 +594,11 @@ html { overflow-x: clip; }
 .story.compact blockquote { font-size: 17px; }
 .story-wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 20px; }
 @media (max-width: 980px) { .story-wall { grid-template-columns: 1fr; } }
+
+/* 工具页：本站推荐 */
+.rank-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+@media (max-width: 980px) { .rank-grid { grid-template-columns: 1fr; } }
+.rank-col h3 { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.rank-item { display: block; padding: 12px 0; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
+.rank-item b { display: block; font-size: 17px; }
+.rank-item span { display: block; font-size: 14px; line-height: 1.6; color: var(--grey); margin-top: 3px; }

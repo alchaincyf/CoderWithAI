@@ -7,18 +7,17 @@ type A = { net?: "yes" | "no"; how?: "web" | "ide" | "cli"; budget?: "free" | "m
 function recommend(a: A) {
   const picks: { id: string; why: string }[] = [];
   const cn = a.net !== "yes";
-  if (a.how === "web") {
-    if (!cn) picks.push({ id: "lovable", why: "一句话做出能上线的网站，免费档够你做出第一个东西" }, { id: "bolt", why: "同类里额度给得比较大方，适合快速做原型" });
-    picks.push({ id: cn ? "trae-cn" : "claude-code", why: "网页工具做到一半不够用了，就该换到这个——项目能完全掌握在自己手里" });
-  } else if (a.how === "cli") {
-    if (cn) picks.push({ id: "kimi-code", why: "国内网络能用的命令行Agent，体验最接近Claude Code" }, { id: "qwen-code", why: "开源，可以接国内任意一家模型" });
-    else picks.push({ id: "claude-code", why: "命令行Agent的标杆，教程和插件生态最多，本站路线默认用它" }, { id: "codex", why: "已经订了ChatGPT就不用再花钱，手机上也能派活（同样要求账号所在地区受支持）" });
+  if (cn) {
+    if (a.how === "web") picks.push({ id: "qwenwork", why: "国内直接用，说话就能做出交互网页并发布，免费档就能试" }, { id: "deepseek-harness", why: "想更进一步、把项目握在自己手里，就换到它：在浏览器里操作，人民币按量付费" });
+    else if (a.how === "cli") picks.push({ id: "deepseek-harness", why: "国内最推荐：DeepSeek官方出品，不用海外网络，用法和Claude Code一个路子" }, { id: "cc-switch", why: "想用Claude Code或Codex本身？装上它，把模型切到DeepSeek、Kimi、GLM的官方API" });
+    else picks.push({ id: "trae-cn", why: "免费版每月500积分，中文界面，在编辑器里看着AI改" }, { id: "deepseek-harness", why: "想让AI全权干活时换到它，国内最推荐的AI编程Agent" });
   } else {
-    if (cn) picks.push({ id: "trae-cn", why: "免费版每月500积分、全功能可用，中文界面，国内新手首选" }, { id: "qoder-cn", why: "IDE加手机加命令行一套，想要全家桶可以试" }, { id: "codebuddy", why: "腾讯出品，微信扫码就能登录，免费额度可以先上手" });
-    else picks.push({ id: "cursor", why: "最多人用的AI编辑器，VS Code手感" });
+    if (a.how === "web") picks.push({ id: "lovable", why: "一句话做出能上线的网站，免费档够你做出第一个东西" }, { id: "claude-code", why: "网页工具做到一半不够用了，就该换到这个，项目能完全掌握在自己手里" });
+    else if (a.how === "cli") picks.push({ id: "claude-code", why: "AI编程Agent的标杆，教程和插件生态最多，本站路线默认用它" }, { id: "codex", why: "和Claude Code同一档，已经订了ChatGPT就不用再花钱，手机上也能派活" });
+    else picks.push({ id: "cursor", why: "最多人用的AI编辑器，VS Code手感" }, { id: "claude-code", why: "想让AI替你把整件事做完，就从编辑器升级到它" });
   }
-  if (a.budget === "free") return picks.map((p) => ({ ...p, why: p.why + "。先用免费档，确定离不开再付费。" }));
-  if (a.budget === "high" && !cn && a.how !== "cli") picks.push({ id: "claude-code", why: "预算够的话，命令行Agent能替你把整件事做完，长期看最省时间" });
+  if (a.budget === "free" && !cn && a.how === "cli") picks.push({ id: "antigravity", why: "部分推荐：有免费档，适合先试试Agent式编程，但额度和模型变动频繁" });
+  if (a.budget === "free") return picks.map((p) => ({ ...p, why: p.why + "。先用免费档或少量充值，确定离不开再加钱" }));
   return picks;
 }
 

@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
 import ToolPicker from "@/components/ToolPicker";
-import { TOOLS, CAT_LABEL, VERIFIED, CHANGES, type Cat } from "@/lib/tools";
+import { TOOLS, CAT_LABEL, RANK_LABEL, VERIFIED, CHANGES, type Cat, type Rank } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: "AI编程工具怎么选：Claude Code、Codex、Cursor、TRAE对比（2026年11月）",
-  description: "17款AI编程工具的免费额度、价格、能不能在国内用、适合谁，每条都附官方价格页和核实日期。回答三个问题，告诉你先试哪个。",
+  title: "AI编程工具怎么选：Claude Code、Codex、DeepSeek Harness对比，国内怎么用（2026年11月）",
+  description: `${TOOLS.length}款AI编程工具的免费额度、价格、能不能在国内用、适合谁，每条都附官方价格页和核实日期。最推荐Claude Code和Codex，国内最推荐DeepSeek Harness，国内用CC Switch接国产模型。`,
   alternates: { canonical: "/tools" },
 };
 
 const CN = { yes: ["ok", "国内能用"], no: ["no", "大陆不支持"], unknown: ["no", "请自行确认"] } as const;
 
 export default function Page() {
-  const cats: Cat[] = ["web", "ide", "cli"];
+  const cats: Cat[] = ["cli", "switch", "ide", "office", "web"];
+  const ranks: Rank[] = ["top", "cn-top", "cn", "partial"];
   return (<>
     <header className="sec-head white">
       <div className="wrap">
         <div><span className="lab">工具怎么选 · 核实于{VERIFIED}</span><h1>先选对工具，<br />再谈做东西。</h1></div>
-        <p>AI编程工具分三类：网页里一句话生成、AI编辑器、命令行Agent。它们的价格和额度每隔几周就变，下面每一条都写了核实日期，并链到官方价格页——下单前以官网为准。</p>
+        <p>我们最推荐Claude Code和Codex；在国内，最推荐DeepSeek Harness，也可以用CC Switch把Claude Code、Codex接到国产模型上。价格和额度每隔几周就变，每一条都写了核实日期并链到官方价格页，下单前以官网为准。</p>
       </div>
     </header>
     <div className="wrap">
+      <section className="cat-block" id="picks">
+        <h2>本站推荐<small>按推荐程度排，点名字看详细对比</small></h2>
+        <div className="rank-grid">
+          {ranks.map((r) => (
+            <div key={r} className={`rank-col rank-${r}`}>
+              <h3>{RANK_LABEL[r]}</h3>
+              {TOOLS.filter((t) => t.rank === r).map((t) => (
+                <a key={t.id} href={`#${t.id}`} className="rank-item"><b>{t.name}</b><span>{t.pick}</span></a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
       <ToolPicker />
       {cats.map((c) => (
         <section key={c} className="cat-block" id={c}>
@@ -53,7 +67,8 @@ export default function Page() {
       </section>
       <div className="callout callout-warn" style={{ margin: "40px 0 80px", maxWidth: 820 }}>
         <b>关于「国内能不能用」</b>
-        <p>Anthropic和OpenAI的官方受支持地区名单都不含中国大陆，所以Claude Code、Codex在大陆无法直接合规使用，名单外使用可能被封号。本站不教任何绕过地区限制的办法。没有海外网络和外币卡的话，走国内线一样能把八关走完：TRAE、Qoder、CodeBuddy、Kimi Code这些工具都能用人民币付费。</p>
+        <p>Anthropic和OpenAI的官方账号都不支持中国大陆，名单外使用可能被封号，本站不教任何绕过地区限制的办法。但Claude Code、Codex这两个软件本身可以接别家模型：DeepSeek等国内模型官方提供了接入说明，用CC Switch把模型切到它们的官方API，人民币按量付费，不需要海外账号。也可以直接用国内最推荐的DeepSeek Harness。</p>
+        <p>只推荐接各模型的<b>官方</b>API。网上卖「Claude/GPT额度」的中转站、拼车共享账号，来路不明、可能违反厂商条款、Key还可能泄露，本站一律不推荐。</p>
       </div>
     </div>
   </>);

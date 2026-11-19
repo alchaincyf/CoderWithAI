@@ -92,7 +92,7 @@ export default function Home() {
             <Link className="cell c2" href="/projects"><span className="no">{recipes.length}<small>个</small></span><h3>实战项目</h3><p>个人主页、记账工具、小游戏、小程序……每个项目都是一串能照着发给AI的提示词。</p><span className="go">进入</span></Link>
             <Link className="cell c3" href="/fix"><span className="no">{fixes.length}<small>条</small></span><h3>报错急救</h3><p>粘贴红字，看人话解释，拿到修复提示词。</p><span className="go">进入</span></Link>
             <Link className="cell c4" href="/words"><span className="no">{words.length}<small>个</small></span><h3>人话词典</h3><p>API、部署、环境变量……AI嘴里的行话，翻成人话。</p><span className="go">进入</span></Link>
-            <Link className="cell c5" href="/tools"><span className="no">{TOOLS.length}<small>款</small></span><h3>工具怎么选</h3><p>Claude Code、Codex、Cursor、Trae，回答三个问题告诉你用哪个。</p><span className="go">进入</span></Link>
+            <Link className="cell c5" href="/tools"><span className="no">{TOOLS.length}<small>款</small></span><h3>工具怎么选</h3><p>最推荐Claude Code和Codex，国内最推荐DeepSeek Harness。回答三个问题告诉你先试哪个。</p><span className="go">进入</span></Link>
             <Link className="cell c6" href="/brief"><span className="no">1<small>页</small></span><h3>需求说明书生成器</h3><p>把脑子里的想法填进几个空，生成一页AI一读就懂的需求说明。</p><span className="go">进入</span></Link>
           </div>
         </div>
