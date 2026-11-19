@@ -1,6 +1,6 @@
 /* CoderWithAI 2026 · 设计系统
    方向：杂志专题（Businessweek 思维）——群青、信号橙、柠檬黄、墨黑、纸白；宋体黑标题，系统黑体正文。
-   每个栏目一个颜色：路线=群青 配方=柠檬黄 急救=信号橙 词典=墨黑 工具=纸白 */
+   每个栏目一个颜色：路线=群青 项目=柠檬黄 急救=信号橙 词典=墨黑 工具=纸白 */
 
 :root {
   --blue: #1d36c8;
@@ -277,7 +277,7 @@ img, svg { display: block; max-width: 100%; }
 .cat-block > h2 { font-family: var(--serif); font-weight: 900; font-size: clamp(28px, 3vw, 40px); display: flex; align-items: baseline; gap: 12px; }
 .cat-block > h2 small { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--grey); }
 
-/* 配方卡（不同尺寸交错） */
+/* 项目卡（不同尺寸交错） */
 .recipe-grid { display: grid; grid-template-columns: repeat(12, 1fr); border: 3px solid var(--ink); margin: 32px 0 72px; }
 .recipe { grid-column: span 4; border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); padding: 22px 22px 24px; text-decoration: none; display: flex; flex-direction: column; min-height: 250px; background: var(--white); }
 .recipe:nth-child(3n) { border-right: 0; }

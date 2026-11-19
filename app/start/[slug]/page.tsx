@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <ChipLinks title="这一关最常见的报错" section="fix" slugs={doc.data.fixes} />
         <nav className="pager" aria-label="上一关与下一关">
           {prev ? <Link href={`/start/${prev.slug}`}><small>上一关</small><b>{prev.n} · {prev.title}</b></Link> : <Link href="/start"><small>返回</small><b>路线总览</b></Link>}
-          {next ? <Link href={`/start/${next.slug}`}><small>下一关</small><b>{next.n} · {next.title}</b></Link> : <Link href="/recipes"><small>毕业了</small><b>去挑一个配方做</b></Link>}
+          {next ? <Link href={`/start/${next.slug}`}><small>下一关</small><b>{next.n} · {next.title}</b></Link> : <Link href="/projects"><small>毕业了</small><b>去挑一个项目做</b></Link>}
         </nav>
       </>}
       side={<>

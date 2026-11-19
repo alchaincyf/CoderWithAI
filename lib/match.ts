@@ -10,7 +10,7 @@ export interface IndexItem {
 }
 
 export const SECTION_LABEL: Record<IndexItem["s"], string> = {
-  path: "路线", recipes: "配方", fix: "急救", words: "词典", page: "页面",
+  path: "路线", recipes: "项目", fix: "急救", words: "词典", page: "页面",
 };
 
 const norm = (s: string) => s.toLowerCase().replace(/[“”"'`]/g, "").replace(/\s+/g, " ").trim();

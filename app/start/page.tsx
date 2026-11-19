@@ -24,7 +24,7 @@ export default function Page() {
     </header>
     <div className="wrap">
       <RouteList times={times} />
-      <p className="note" style={{ margin: "-48px 0 80px" }}>想先看看能做出什么？去 <Link href="/recipes">项目配方</Link> 挑一个。</p>
+      <p className="note" style={{ margin: "-48px 0 80px" }}>想先看看能做出什么？去 <Link href="/projects">实战项目</Link> 挑一个。</p>
     </div>
   </>);
 }

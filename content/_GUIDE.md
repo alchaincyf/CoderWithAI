@@ -27,7 +27,7 @@ coderwithai.top：AI编程时代的菜鸟教程。教**不会写代码的人**�
   - 报错原文用 ```error 代码块。
   - 终端命令用 ```bash 代码块（mac）或 ```powershell（Windows）。
   - 提示框：`> [!tip] 内容`、`> [!warn] 内容`、`> [!why] 内容`。
-- 内链用站内绝对路径：`/words/<slug>`、`/fix/<slug>`、`/recipes/<slug>`、`/start/<slug>`。只链到清单里存在的 slug。
+- 内链用站内绝对路径：`/words/<slug>`、`/fix/<slug>`、`/projects/<slug>`（栏目名叫「实战项目」，全站不出现「配方」二字）、`/start/<slug>`。只链到清单里存在的 slug。
 
 ## 文件格式
 每篇一个 `.md`，文件名 = `<slug>.md`，slug 用英文小写短横线。frontmatter 字段见各栏目要求，`updated: 2026-11-18`。

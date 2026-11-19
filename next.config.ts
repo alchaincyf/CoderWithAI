@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
       "R","React","Ruby","Rust","Scala","SQL","Swift","TypeScript","Vue.js","C\\+\\+","C%23",
     ];
     return [
+      { source: "/recipes", destination: "/projects", permanent: true },
+      { source: "/recipes/:slug", destination: "/projects/:slug", permanent: true },
       // 主网址唯一：裸域一律 308 到 www
       { source: "/:path*", has: [{ type: "host", value: "coderwithai.top" }], destination: "https://www.coderwithai.top/:path*", permanent: true },
       ...oldLangs.flatMap((l) => [

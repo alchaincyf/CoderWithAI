@@ -85,11 +85,11 @@ export default function Home() {
         <div className="wrap">
           <div className="six-head">
             <h2 id="six-h">六个板块，<br />按你卡在哪选。</h2>
-            <p>第一次来，从闯关路线开始；想做某个具体东西，看项目配方；做到一半卡住，直接去报错急救。</p>
+            <p>第一次来，从闯关路线开始；想做某个具体东西，看实战项目；做到一半卡住，直接去报错急救。</p>
           </div>
           <div className="bento">
             <Link className="cell c1" href="/start"><span className="no">8<small>关</small></span><h3>闯关路线</h3><p>八关，从搞懂AI编程到有人付费，一步接一步。</p><span className="go">进入</span></Link>
-            <Link className="cell c2" href="/recipes"><span className="no">{recipes.length}<small>个</small></span><h3>项目配方</h3><p>个人主页、记账工具、小游戏、小程序……每个配方都是一串能照着发给AI的提示词。</p><span className="go">进入</span></Link>
+            <Link className="cell c2" href="/projects"><span className="no">{recipes.length}<small>个</small></span><h3>实战项目</h3><p>个人主页、记账工具、小游戏、小程序……每个项目都是一串能照着发给AI的提示词。</p><span className="go">进入</span></Link>
             <Link className="cell c3" href="/fix"><span className="no">{fixes.length}<small>条</small></span><h3>报错急救</h3><p>粘贴红字，看人话解释，拿到修复提示词。</p><span className="go">进入</span></Link>
             <Link className="cell c4" href="/words"><span className="no">{words.length}<small>个</small></span><h3>人话词典</h3><p>API、部署、环境变量……AI嘴里的行话，翻成人话。</p><span className="go">进入</span></Link>
             <Link className="cell c5" href="/tools"><span className="no">{TOOLS.length}<small>款</small></span><h3>工具怎么选</h3><p>Claude Code、Codex、Cursor、Trae，回答三个问题告诉你用哪个。</p><span className="go">进入</span></Link>
@@ -101,7 +101,7 @@ export default function Home() {
       <section className="fresh" aria-label="精选内容">
         <div className="wrap">
           <div className="fresh-col">
-            <h3>照着做 <Link href="/recipes">全部配方</Link></h3>
+            <h3>照着做 <Link href="/projects">全部项目</Link></h3>
             <ul>{pick(recipes, 5).map((r) => <li key={r.slug}><Link href={hrefOf(r)}>{r.title}<small>{r.summary}</small></Link></li>)}</ul>
           </div>
           <div className="fresh-col">

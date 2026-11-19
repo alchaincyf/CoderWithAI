@@ -118,7 +118,7 @@ export function getDoc(section: Section, slug: string) {
 
 export const SECTION_META: Record<Section, { name: string; href: string }> = {
   path: { name: "闯关路线", href: "/start" },
-  recipes: { name: "项目配方", href: "/recipes" },
+  recipes: { name: "实战项目", href: "/projects" },
   fix: { name: "报错急救", href: "/fix" },
   words: { name: "人话词典", href: "/words" },
 };

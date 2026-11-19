@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <DocPage
       doc={doc} color="lemon"
-      crumbs={[{ href: "/", label: "首页" }, { href: "/recipes", label: "项目配方" }]}
+      crumbs={[{ href: "/", label: "首页" }, { href: "/projects", label: "实战项目" }]}
       facts={[
         { k: "难度", v: DIFF[Number(doc.data.difficulty)] ?? "" },
         { k: "用时", v: String(doc.data.time ?? "") },
@@ -29,8 +29,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         ...(lv ? [{ k: "建议先过", v: `第${lv.n}关` }] : []),
       ]}
       side={<>
-        {lv && <div className="side-card"><h3>开始前</h3><p>这个配方默认你已经过了<Link href={`/start/${lv.slug}`}>第{lv.n}关「{lv.title}」</Link>。没过也能试，卡住了再回去补。</p></div>}
-        {others.length > 0 && <div className="side-card"><h3>同难度配方</h3><ul>{others.map((d) => <li key={d.slug}><Link href={hrefOf(d)}>{d.title}</Link></li>)}</ul></div>}
+        {lv && <div className="side-card"><h3>开始前</h3><p>这个项目默认你已经过了<Link href={`/start/${lv.slug}`}>第{lv.n}关「{lv.title}」</Link>。没过也能试，卡住了再回去补。</p></div>}
+        {others.length > 0 && <div className="side-card"><h3>同难度项目</h3><ul>{others.map((d) => <li key={d.slug}><Link href={hrefOf(d)}>{d.title}</Link></li>)}</ul></div>}
         <SideRescue />
       </>}
     />

@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = "2026-11-18";
-  const fixed = ["", "/start", "/recipes", "/fix", "/words", "/tools", "/brief", "/about"].map((p) => ({
+  const fixed = ["", "/start", "/projects", "/fix", "/words", "/tools", "/brief", "/about"].map((p) => ({
     url: SITE.url + p, lastModified: now, changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.8,
   }));
   const docs = (["path", "recipes", "fix", "words"] as Section[]).flatMap((s) =>

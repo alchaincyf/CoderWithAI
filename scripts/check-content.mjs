@@ -4,7 +4,7 @@ import path from "node:path";
 import matter from "gray-matter";
 
 const ROOT = path.resolve("content");
-const SECTIONS = { path: "/start", recipes: "/recipes", fix: "/fix", words: "/words" };
+const SECTIONS = { path: "/start", recipes: "/projects", fix: "/fix", words: "/words" };
 const FIX = process.argv.includes("--fix");
 const QUOTE_KEYS = ["title", "summary", "goal", "time", "cost"];
 const slugs = {}; const problems = []; const docs = [];
@@ -33,7 +33,7 @@ for (const [sec, base] of Object.entries(SECTIONS)) {
   }
 }
 for (const d of docs) {
-  for (const m of d.content.matchAll(/\]\((\/(start|recipes|fix|words)\/([a-z0-9-]+))[)#]/g)) {
+  for (const m of d.content.matchAll(/\]\((\/(start|projects|recipes|fix|words)\/([a-z0-9-]+))[)#]/g)) {
     if (!slugs["/" + m[2]]?.has(m[3])) problems.push(`${d.sec}/${d.f}: 死链 ${m[1]}`);
   }
   for (const [k, base] of [["related", "/words"], ["words", "/words"], ["fixes", "/fix"]]) {
