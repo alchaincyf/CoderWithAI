@@ -19,7 +19,7 @@ updated: 2026-11-18
 
 ## 你会在哪儿碰到它
 - 你用的ChatGPT、Claude、Gemini、DeepSeek、通义千问、豆包，背后各有自己的模型，同一家也分大小、新旧不同版本。
-- 在Claude Code里用 `/model` 可以切换模型。
+- 在Claude Code里用`/model`可以切换模型。
 - 做产品要调用模型时，会通过[API](/words/api)，按[Token](/words/token)计费。
 - 常见词：模型版本号、「推理模型」「开源模型」，分别指带思考过程的、可以下载自己运行的。
 

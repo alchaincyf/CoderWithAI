@@ -18,9 +18,9 @@ API是软件之间约定好的沟通方式：我按这个格式发请求，你�
 比方不到位的地方：真实的API还要「验明身份」（通常要[密钥](/words/api-key)），还会限制你点单的频率。
 
 ## 你会在哪儿碰到它
-- 你说「调用DeepSeek / OpenAI / 天气服务」，AI会说「调用它的API」，并让你去申请Key。
-- 代码里出现 `fetch("https://api.xxx.com/...")`、`/api/chat` 这样的路径、`GET`/`POST`。
-- 浏览器[开发者工具](/words/devtools)的 Network 标签，能看到网页发出的每一个请求。
+- 你说「调用DeepSeek / OpenAI /天气服务」，AI会说「调用它的API」，并让你去申请Key。
+- 代码里出现`fetch("https://api.xxx.com/...")`、`/api/chat`这样的路径、`GET`/`POST`。
+- 浏览器[开发者工具](/words/devtools)的Network标签，能看到网页发出的每一个请求。
 - 返回的内容大多是[JSON](/words/json)。
 
 ## AI提到它时，你该怎么接

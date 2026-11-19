@@ -20,9 +20,9 @@ updated: 2026-11-18
 ## 你会在哪儿碰到它
 - 登录、注册、付款、存用户数据，都要后端参与。
 - 纯展示型网站（个人主页、作品集）可以没有后端，见[静态网站](/words/static-site)。
-- AI 会说「这个功能需要后端」「把请求发到后端接口」，接口见 [API](/words/api)。
-- Next.js 这类框架把前后端写在一个项目里，文件夹里能看到 api 或 server 之类的目录。
-- 不想自己管服务器，可以用 [Serverless](/words/serverless) 或 [Supabase](/words/supabase) 这类现成的后端。
+- AI会说「这个功能需要后端」「把请求发到后端接口」，接口见[API](/words/api)。
+- Next.js这类框架把前后端写在一个项目里，文件夹里能看到api或server之类的目录。
+- 不想自己管服务器，可以用[Serverless](/words/serverless)或[Supabase](/words/supabase)这类现成的后端。
 
 ## AI提到它时，你该怎么接
 ```prompt

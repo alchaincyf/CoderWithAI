@@ -24,9 +24,9 @@ updated: 2026-11-18
 npm run build
 ```
 
-- 成功后会生成一个输出文件夹，名字依框架而定，常见的有 dist、build、.next、out。
-- 把项目发到 [Vercel](/words/vercel) 这类平台，它们会在云端替你执行构建。构建失败，网站就不会更新，旧版本继续在线。
-- 在 Vercel 的部署页面会看到 Build Logs，构建失败时红色错误就写在这里。
+- 成功后会生成一个输出文件夹，名字依框架而定，常见的有dist、build、.next、out。
+- 把项目发到[Vercel](/words/vercel)这类平台，它们会在云端替你执行构建。构建失败，网站就不会更新，旧版本继续在线。
+- 在Vercel的部署页面会看到Build Logs，构建失败时红色错误就写在这里。
 - 本地[开发服务器](/words/dev-server)里正常，构建却失败，很常见。
 
 ## AI提到它时，你该怎么接
@@ -40,7 +40,7 @@ Type error: ...
 Error: Command "npm run build" exited with 1
 ```
 
-遇到上面这样的失败，把完整日志（不是最后一行）发给 AI：
+遇到上面这样的失败，把完整日志（不是最后一行）发给AI：
 
 ```prompt
 部署时构建失败了，完整日志如下（粘贴）。请找出第一个真正的错误，告诉我是什么原因，怎么修。
@@ -48,6 +48,6 @@ Error: Command "npm run build" exited with 1
 
 ## 容易踩的坑
 - 只看最后一行。真正的原因往往在红字的最前面，见[日志](/words/log)。
-- 本地是 macOS，线上是 Linux，文件名大小写在线上区分，Logo.png 和 logo.png 本地没事，线上会找不到。
+- 本地是macOS，线上是Linux，文件名大小写在线上区分，Logo.png和logo.png本地没事，线上会找不到。
 - 线上构建缺少[环境变量](/words/env-var)，导致失败。
 - 为了通过构建而加忽略错误的开关，类型错误只是被藏起来，之后会以更难查的方式爆发。

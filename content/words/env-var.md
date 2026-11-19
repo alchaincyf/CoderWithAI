@@ -18,10 +18,10 @@ updated: 2026-11-18
 不贴切的地方：这张清单不是加密保险箱，只是不跟着代码走。清单本身泄露一样危险。
 
 ## 你会在哪儿碰到它
-- 项目根目录里出现 `.env`、`.env.local`、`.env.example` 文件。
+- 项目根目录里出现`.env`、`.env.local`、`.env.example`文件。
 - 里面是一行行这样的内容：`OPENAI_API_KEY=sk-xxxx`。
-- 部署到[Vercel](/words/vercel)等平台时，要在网页后台的 Environment Variables 里再填一遍。
-- 代码里写 `process.env.XXX`（Node），或 `os.getenv("XXX")`（Python）。
+- 部署到[Vercel](/words/vercel)等平台时，要在网页后台的Environment Variables里再填一遍。
+- 代码里写`process.env.XXX`（Node），或`os.getenv("XXX")`（Python）。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
@@ -33,7 +33,7 @@ updated: 2026-11-18
 ```
 
 ## 容易踩的坑
-- `.env` 被提交到GitHub：这是最常见的泄露方式。要先写进 `.gitignore`，再创建文件。
-- 前端变量并不保密：Next.js里 `NEXT_PUBLIC_` 开头、Vite里 `VITE_` 开头的变量，会被打包进网页，所有人可见。密钥不要用这种前缀。
-- 本地能跑，上线报错：线上平台不会读你电脑上的 `.env`，需要在平台后台单独配置，配好后通常还要重新部署才生效。
-- 改了 `.env` 没反应：本地开发服务器要重启一次才会重新读取。
+- `.env`被提交到GitHub：这是最常见的泄露方式。要先写进`.gitignore`，再创建文件。
+- 前端变量并不保密：Next.js里`NEXT_PUBLIC_`开头、Vite里`VITE_`开头的变量，会被打包进网页，所有人可见。密钥不要用这种前缀。
+- 本地能跑，上线报错：线上平台不会读你电脑上的`.env`，需要在平台后台单独配置，配好后通常还要重新部署才生效。
+- 改了`.env`没反应：本地开发服务器要重启一次才会重新读取。

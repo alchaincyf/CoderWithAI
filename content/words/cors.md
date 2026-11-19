@@ -36,6 +36,6 @@ Access to fetch at 'https://api.example.com/data' from origin 'http://localhost:
 
 ## 容易踩的坑
 - 在浏览器里装「跨域插件」解决：只对你自己有效，别的用户照样报错。
-- 服务端写成 `Access-Control-Allow-Origin: *` 一劳永逸：公开数据可以，涉及登录信息的接口不能这么放开。
+- 服务端写成`Access-Control-Allow-Origin: *`一劳永逸：公开数据可以，涉及登录信息的接口不能这么放开。
 - 把第三方密钥放在前端、靠跨域直连：见[API Key](/words/api-key)，应该走自己的服务端。
 - 看到的是CORS报错，真正原因却是接口本身500、地址写错或根本没启动，先看[Network](/words/devtools)里的真实状态码。

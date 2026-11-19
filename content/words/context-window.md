@@ -19,7 +19,7 @@ updated: 2026-11-18
 
 ## 你会在哪儿碰到它
 - 对话很长之后，AI开始忘记前面说过的约定、重复犯同一个错、变得「笨」。
-- Claude Code里有几个相关命令：`/context` 看当前占用，`/compact` 把前面的内容压缩成摘要，`/clear` 清空开始新话题。接近上限时它也会自动压缩较早的历史（官方文档称为auto-compaction）。
+- Claude Code里有几个相关命令：`/context`看当前占用，`/compact`把前面的内容压缩成摘要，`/clear`清空开始新话题。接近上限时它也会自动压缩较早的历史（官方文档称为auto-compaction）。
 - 看到「context low」「conversation compacted」之类的提示。
 
 ## AI提到它时，你该怎么接

@@ -27,7 +27,7 @@ TestFlight是苹果的官方测试分发工具。你把App上传，邀请别人�
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
 请带我把这个iOS App上传到TestFlight，我是第一次做。
-按顺序告诉我：1. 我在App Store Connect里要先手动建好哪些东西（App记录、Bundle ID）；2. Xcode里该怎么设版本号和签名；3. 怎么Archive并上传；4. 上传后怎么邀请朋友测试。
+按顺序告诉我：1.我在App Store Connect里要先手动建好哪些东西（App记录、Bundle ID）；2. Xcode里该怎么设版本号和签名；3.怎么Archive并上传；4.上传后怎么邀请朋友测试。
 每一步说明我会在屏幕上看到什么，出现常见报错时怎么处理。
 ```
 

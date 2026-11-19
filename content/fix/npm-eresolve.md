@@ -1,7 +1,7 @@
 ---
-title: "npm报 ERESOLVE unable to resolve dependency tree 怎么办"
+title: "npm报ERESOLVE unable to resolve dependency tree怎么办"
 slug: npm-eresolve
-summary: 两个包对同一个依赖的版本要求打架。用 --legacy-peer-deps 或让 AI 对齐版本。
+summary: 两个包对同一个依赖的版本要求打架。用 --legacy-peer-deps或让AI对齐版本。
 category: Node与npm
 match: ["ERESOLVE unable to resolve dependency tree", "npm error code ERESOLVE", "npm ERR! code ERESOLVE", "Could not resolve dependency", "--legacy-peer-deps", "peer dependency"]
 platform: [all]
@@ -27,22 +27,22 @@ npm error to accept an incorrect (and potentially broken) dependency resolution.
 
 ## 人话：这是怎么回事
 
-项目用到的各个包（[依赖](/words/dependencies)）会各自声明「我需要某某包的某个版本」。上面的例子：你的项目用了 React 19，而 some-library 说「我只认 React 18」，npm 判断这两个说法对不上，拒绝安装。
+项目用到的各个包（[依赖](/words/dependencies)）会各自声明「我需要某某包的某个版本」。上面的例子：你的项目用了React 19，而some-library说「我只认React 18」，npm判断这两个说法对不上，拒绝安装。
 
-这在 React、Next.js 升级后特别常见，不是你的操作出了问题。
+这在React、Next.js升级后特别常见，不是你的操作出了问题。
 
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行 npm install 报 ERESOLVE unable to resolve dependency tree。
+我运行npm install报ERESOLVE unable to resolve dependency tree。
 请先读完整报错，用人话告诉我是哪两个包的版本冲突了。
-然后按这个顺序尝试：先看冲突的库有没有支持新版本的更新版（npm view 包名 versions）；有就升级它；没有再考虑 npm install --legacy-peer-deps。
-不要直接加 --force。如果用了 --legacy-peer-deps，要告诉我风险，并跑 npm run build 验证项目能编译。
+然后按这个顺序尝试：先看冲突的库有没有支持新版本的更新版（npm view包名versions）；有就升级它；没有再考虑npm install --legacy-peer-deps。
+不要直接加 --force。如果用了 --legacy-peer-deps，要告诉我风险，并跑npm run build验证项目能编译。
 ```
 
 ## 想自己动手的话
 
-先看报错里 `Found` 和 `peer` 两行，就是打架的双方。
+先看报错里`Found`和`peer`两行，就是打架的双方。
 
 方案一，升级那个落后的库：
 
@@ -52,7 +52,7 @@ npm install 库名@latest
 
 库的新版本可能已经支持你用的版本了。
 
-方案二，让 npm 忽略「peer 依赖」的严格检查（`--legacy-peer-deps`，npm 6 以前就是这个行为）：
+方案二，让npm忽略「peer依赖」的严格检查（`--legacy-peer-deps`，npm 6以前就是这个行为）：
 
 ```bash
 npm install --legacy-peer-deps
@@ -60,9 +60,9 @@ npm install --legacy-peer-deps
 
 很多时候项目能正常跑，但如果之后真的出现奇怪的运行错误，这里就是线索。
 
-想让它以后每次都这样，在项目根目录的 `.npmrc` 文件里加一行 `legacy-peer-deps=true`。这样部署平台（如 [Vercel](/words/vercel)）安装时也生效。
+想让它以后每次都这样，在项目根目录的`.npmrc`文件里加一行`legacy-peer-deps=true`。这样部署平台（如[Vercel](/words/vercel)）安装时也生效。
 
-> [!warn] 报错提示里的 `--force` 是更强的覆盖，会强行装一套 npm 认为有问题的组合。先试别的，它是最后手段。
+> [!warn]报错提示里的`--force`是更强的覆盖，会强行装一套npm认为有问题的组合。先试别的，它是最后手段。
 
 ## 下次怎么避免
 
@@ -70,6 +70,6 @@ npm install --legacy-peer-deps
 
 ## 还不行？
 
-- 问题出在 Node 版本：看 [Node版本太旧](/fix/node-version)。
-- 装完运行报找不到模块：看 [找不到模块](/fix/module-not-found)。
-- 部署时安装失败：看 [Vercel 构建失败](/fix/vercel-build-failed)。
+- 问题出在Node版本：看[Node版本太旧](/fix/node-version)。
+- 装完运行报找不到模块：看[找不到模块](/fix/module-not-found)。
+- 部署时安装失败：看[Vercel构建失败](/fix/vercel-build-failed)。

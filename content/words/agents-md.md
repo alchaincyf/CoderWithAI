@@ -18,10 +18,10 @@ AGENTS.md和CLAUDE.md都是放在项目里的普通文本文件，写着「这�
 不贴切的地方：同事会记住，AI每个会话都是新人，所以必须写下来。而且它是「建议」而不是「铁律」，AI大多会遵守，但不保证。
 
 ## 你会在哪儿碰到它
-- 项目根目录出现 `CLAUDE.md` 或 `AGENTS.md`。Claude Code读CLAUDE.md；OpenAI Codex读AGENTS.md。
-- Claude Code现在也能直接读取AGENTS.md（v2.1.277起），但有条件：只在你的工作目录及其上层没有任何CLAUDE.md时才读；两种都有，只读CLAUDE.md。想兼顾，就在CLAUDE.md里用一行 `@AGENTS.md` 引入它。
+- 项目根目录出现`CLAUDE.md`或`AGENTS.md`。Claude Code读CLAUDE.md；OpenAI Codex读AGENTS.md。
+- Claude Code现在也能直接读取AGENTS.md（v2.1.277起），但有条件：只在你的工作目录及其上层没有任何CLAUDE.md时才读；两种都有，只读CLAUDE.md。想兼顾，就在CLAUDE.md里用一行`@AGENTS.md`引入它。
 - Codex会从项目根往下到当前目录逐层读取，越靠近当前目录的越后读、优先级越高；默认总大小上限32KiB。
-- 在Claude Code里运行 `/init` 可以让AI先帮你生成一份初稿。
+- 在Claude Code里运行`/init`可以让AI先帮你生成一份初稿。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
@@ -34,7 +34,7 @@ AGENTS.md和CLAUDE.md都是放在项目里的普通文本文件，写着「这�
 ```
 
 ## 容易踩的坑
-- 一个项目里同时放AGENTS.md和CLAUDE.md，又不做引入：Claude Code只会读CLAUDE.md，AGENTS.md被静默忽略。要么只用一种，要么用 `@AGENTS.md` 串起来。
+- 一个项目里同时放AGENTS.md和CLAUDE.md，又不做引入：Claude Code只会读CLAUDE.md，AGENTS.md被静默忽略。要么只用一种，要么用`@AGENTS.md`串起来。
 - 写太长：每个会话都占[上下文窗口](/words/context-window)，规则越多越不被遵守。官方建议保持精简，流程性的内容放进[Skill](/words/skill)。
 - 写了过期内容，如不存在的命令：定期让AI核对。
 - 把密钥写进去：它通常会随项目上传到GitHub。

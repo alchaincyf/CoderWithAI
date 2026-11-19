@@ -550,3 +550,7 @@ p, li { text-wrap: pretty; }
 .plan-l { overflow: clip; }
 .plan-l .dot { right: 0; }
 html { overflow-x: clip; }
+
+.cell .no small { font-size: .38em; margin-left: 4px; font-weight: 900; }
+.cell .go::after { content: ""; display: inline-block; width: 22px; height: 3px; background: currentColor; vertical-align: middle; margin-left: 8px; transition: width .15s; }
+.cell:hover .go::after { width: 40px; }

@@ -24,8 +24,8 @@ SQL是跟[数据库](/words/database)说话的语言。几乎都是英语句子�
 SELECT name, email FROM users WHERE created_at > '2026-01-01' ORDER BY created_at DESC;
 ```
 
-- [Supabase](/words/supabase)里的SQL Editor；项目里的 `.sql` 文件、`migrations/` 文件夹。
-- 报错里出现 `syntax error at or near`，一般是某句SQL写错了。
+- [Supabase](/words/supabase)里的SQL Editor；项目里的`.sql`文件、`migrations/`文件夹。
+- 报错里出现`syntax error at or near`，一般是某句SQL写错了。
 
 ## AI提到它时，你该怎么接
 大多数时候AI会替你在代码里写好并运行。需要你手动执行时，先让它解释。
@@ -37,7 +37,7 @@ SELECT name, email FROM users WHERE created_at > '2026-01-01' ORDER BY created_a
 ```
 
 ## 容易踩的坑
-- `DELETE` 或 `UPDATE` 忘了写 `WHERE`：会作用到整张表的所有行。执行前让AI先用 `SELECT` 预览。
-- `DROP TABLE` 是删表，通常无法撤销。没备份别执行。
+- `DELETE`或`UPDATE`忘了写`WHERE`：会作用到整张表的所有行。执行前让AI先用`SELECT`预览。
+- `DROP TABLE`是删表，通常无法撤销。没备份别执行。
 - 不同数据库方言略有差别（SQLite、MySQL、PostgreSQL）。AI给的语句要先确认是按你用的那一种写的。
 - 把用户输入直接拼进SQL字符串，会被注入攻击。让AI用参数化查询，而不是自己拼。

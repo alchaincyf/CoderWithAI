@@ -25,8 +25,8 @@ git push origin main
 git pull
 ```
 
-- 你在A电脑做了修改，换到B电脑接着做，要先 `git pull`。
-- 部署平台连着GitHub：你 `push` 到 `main`，平台就自动重新部署。所以push常等于「发布」。
+- 你在A电脑做了修改，换到B电脑接着做，要先`git pull`。
+- 部署平台连着GitHub：你`push`到`main`，平台就自动重新部署。所以push常等于「发布」。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
@@ -39,7 +39,7 @@ git pull
 ```
 
 ## 容易踩的坑
-- 报错 `rejected` / `failed to push some refs`：云端有你本地没有的新内容，先 `pull` 再 `push`。
+- 报错`rejected` / `failed to push some refs`：云端有你本地没有的新内容，先`pull`再`push`。
 - `git push --force`（强制推送）会覆盖云端历史，别让AI随手用，除非你明白后果。
 - 推到了不该推的分支：自动部署的分支一推就上线，试验性修改要用别的[分支](/words/branch)。
 - 推送失败卡住，多半是网络或登录授权问题，不是代码问题。

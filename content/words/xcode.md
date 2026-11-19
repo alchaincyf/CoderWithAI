@@ -18,10 +18,10 @@ Xcode是苹果官方的App开发工具，只能在Mac上使用，从Mac App Stor
 不贴切的地方：你可以不在Xcode里写代码，让AI在终端里改文件；但签名和上传这些环节，大多数新手仍绕不开它的界面。
 
 ## 你会在哪儿碰到它
-- 项目文件夹里有 `.xcodeproj` 或 `.xcworkspace`，双击会用Xcode打开。
+- 项目文件夹里有`.xcodeproj`或`.xcworkspace`，双击会用Xcode打开。
 - 顶部有一个运行按钮和设备选择，可以选iPhone模拟器或你自己的真机。
 - 官方页面介绍它自带模拟器、调试和性能分析工具，并集成了Anthropic、Google、OpenAI的模型作为编程助手。
-- 在 Signing & Capabilities 里选择开发团队，这是签名，也是新手最常卡的一步。
+- 在Signing & Capabilities里选择开发团队，这是签名，也是新手最常卡的一步。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
@@ -33,7 +33,7 @@ Xcode是苹果官方的App开发工具，只能在Mac上使用，从Mac App Stor
 
 ## 容易踩的坑
 - 没有Mac就做不了：Xcode不支持Windows。
-- 签名报错：`Signing for "xxx" requires a development team` 这类提示，通常是没选Team，或Bundle ID被别人占用了。
+- 签名报错：`Signing for "xxx" requires a development team`这类提示，通常是没选Team，或Bundle ID被别人占用了。
 - 占空间大：安装包和模拟器合起来会占掉大量硬盘，装之前确认空间。
 - 升级Xcode和系统后，旧项目可能突然编译失败，把报错原文交给AI。
-- 让AI直接手改 `.pbxproj` 工程文件：容易改坏，优先让它用工程自带的方式增减文件。
+- 让AI直接手改`.pbxproj`工程文件：容易改坏，优先让它用工程自带的方式增减文件。

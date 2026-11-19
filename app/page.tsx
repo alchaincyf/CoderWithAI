@@ -5,6 +5,7 @@ import LevelFlags from "@/components/LevelFlags";
 import { LEVELS } from "@/lib/levels";
 import { getDocs, hrefOf } from "@/lib/content";
 import { SITE } from "@/lib/site";
+import { TOOLS } from "@/lib/tools";
 
 export default function Home() {
   const recipes = getDocs("recipes");
@@ -86,12 +87,12 @@ export default function Home() {
             <p>第一次来，从闯关路线开始；想做某个具体东西，看项目配方；做到一半卡住，直接去报错急救。</p>
           </div>
           <div className="bento">
-            <Link className="cell c1" href="/start"><span className="no">01</span><h3>闯关路线</h3><p>八关，从搞懂AI编程到有人付费，一步接一步。</p><span className="go">进入 →</span></Link>
-            <Link className="cell c2" href="/recipes"><span className="no">02</span><h3>项目配方<span className="count">{recipes.length}个</span></h3><p>个人主页、记账工具、小游戏、小程序……每个配方都是一串能照着发给AI的提示词。</p><span className="go">进入 →</span></Link>
-            <Link className="cell c3" href="/fix"><span className="no">03</span><h3>报错急救<span className="count">{fixes.length}条</span></h3><p>粘贴红字，看人话解释，拿到修复提示词。</p><span className="go">进入 →</span></Link>
-            <Link className="cell c4" href="/words"><span className="no">04</span><h3>人话词典<span className="count">{words.length}个</span></h3><p>API、部署、环境变量……AI嘴里的行话，翻成人话。</p><span className="go">进入 →</span></Link>
-            <Link className="cell c5" href="/tools"><span className="no">05</span><h3>工具怎么选</h3><p>Claude Code、Codex、Cursor、Trae，回答三个问题告诉你用哪个。</p><span className="go">进入 →</span></Link>
-            <Link className="cell c6" href="/brief"><span className="no">06</span><h3>需求说明书生成器</h3><p>把脑子里的想法填进几个空，生成一页AI一读就懂的需求说明。</p><span className="go">进入 →</span></Link>
+            <Link className="cell c1" href="/start"><span className="no">8<small>关</small></span><h3>闯关路线</h3><p>八关，从搞懂AI编程到有人付费，一步接一步。</p><span className="go">进入</span></Link>
+            <Link className="cell c2" href="/recipes"><span className="no">{recipes.length}<small>个</small></span><h3>项目配方</h3><p>个人主页、记账工具、小游戏、小程序……每个配方都是一串能照着发给AI的提示词。</p><span className="go">进入</span></Link>
+            <Link className="cell c3" href="/fix"><span className="no">{fixes.length}<small>条</small></span><h3>报错急救</h3><p>粘贴红字，看人话解释，拿到修复提示词。</p><span className="go">进入</span></Link>
+            <Link className="cell c4" href="/words"><span className="no">{words.length}<small>个</small></span><h3>人话词典</h3><p>API、部署、环境变量……AI嘴里的行话，翻成人话。</p><span className="go">进入</span></Link>
+            <Link className="cell c5" href="/tools"><span className="no">{TOOLS.length}<small>款</small></span><h3>工具怎么选</h3><p>Claude Code、Codex、Cursor、Trae，回答三个问题告诉你用哪个。</p><span className="go">进入</span></Link>
+            <Link className="cell c6" href="/brief"><span className="no">1<small>页</small></span><h3>需求说明书生成器</h3><p>把脑子里的想法填进几个空，生成一页AI一读就懂的需求说明。</p><span className="go">进入</span></Link>
           </div>
         </div>
       </section>
@@ -119,7 +120,7 @@ export default function Home() {
           <h2 id="author-h">本站作者花叔，<br /><mark>从来不会写代码。</mark><br /><span className="nb-lg">他所有的产品，都是AI写的。</span></h2>
           <div>
             <p>2024年底，他用Cursor做出了「小猫补光灯」。这个站里写的每一步，都是不会写代码的人真的走过的路。</p>
-            <span className="by"><Link href="/about">关于本站和作者 →</Link></span>
+            <span className="by"><Link href="/about">关于本站和作者</Link></span>
           </div>
         </div>
       </section>

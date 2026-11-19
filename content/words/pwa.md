@@ -18,7 +18,7 @@ PWA是一个普通网站，加上一份说明文件，就能被「安装」到�
 不贴切的地方：它终究是网页，能用的手机能力比原生App少，在iPhone上限制更多，比如没有「安装」按钮，要自己用分享菜单添加。
 
 ## 你会在哪儿碰到它
-- AI说「先做成PWA，省去上架」，会生成一个 `manifest.json` 文件和各种尺寸图标。
+- AI说「先做成PWA，省去上架」，会生成一个`manifest.json`文件和各种尺寸图标。
 - 在Chrome地址栏旁出现「安装」图标。
 - MDN文档的要求：必须用[HTTPS](/words/https)（本地开发时用localhost除外）；Chromium浏览器要求manifest里有名称、192与512像素图标、start_url、display等；Service Worker对于「能安装」并非必需，主要用来支持离线。
 - iPhone上要通过Safari等浏览器的分享菜单添加；iOS 16.4起其他浏览器也支持，但没有自定义安装弹窗功能。

@@ -18,10 +18,10 @@ updated: 2026-11-18
 不贴切的地方：酱油里还有大豆、盐，这些二级食材你也要，但你不关心。依赖也是一层套一层，一个包会带来几十个包。
 
 ## 你会在哪儿碰到它
-- 打开 package.json，里面有 dependencies（运行时需要）和 devDependencies（只在开发时需要）两块，每项后面是版本号，例如 ^19.0.0。
-- 同时多一个 package-lock.json（或 pnpm-lock.yaml），它把每个包的精确版本锁住，保证你和别人装出来的一样。
-- AI 说「我需要装一个依赖」，就是用 npm 安装某个包，见 [npm](/words/npm)。
-- 报错里出现 peer dependency、ERESOLVE，是说两个包对第三个包的版本要求冲突。
+- 打开package.json，里面有dependencies（运行时需要）和devDependencies（只在开发时需要）两块，每项后面是版本号，例如 ^19.0.0。
+- 同时多一个package-lock.json（或pnpm-lock.yaml），它把每个包的精确版本锁住，保证你和别人装出来的一样。
+- AI说「我需要装一个依赖」，就是用npm安装某个包，见[npm](/words/npm)。
+- 报错里出现peer dependency、ERESOLVE，是说两个包对第三个包的版本要求冲突。
 
 ## AI提到它时，你该怎么接
 ```prompt
@@ -34,6 +34,6 @@ updated: 2026-11-18
 
 ## 容易踩的坑
 - 装得太多。每个依赖都是以后可能出问题的点，也让构建变慢。
-- 不要手动改 lock 文件，也不要删了它再重装，除非 AI 说明原因，否则版本可能意外升级。
-- 升级依赖导致项目崩。升级前让 AI 先看更新说明，并在新分支里试，见[分支](/words/branch)。
-- 把依赖和 node_modules 混为一谈：依赖是清单，[node_modules](/words/node-modules) 是按清单下载下来的实物。
+- 不要手动改lock文件，也不要删了它再重装，除非AI说明原因，否则版本可能意外升级。
+- 升级依赖导致项目崩。升级前让AI先看更新说明，并在新分支里试，见[分支](/words/branch)。
+- 把依赖和node_modules混为一谈：依赖是清单，[node_modules](/words/node-modules)是按清单下载下来的实物。

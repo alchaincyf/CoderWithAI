@@ -19,13 +19,13 @@ API Key是一长串字符，服务商用它认出「是你在调用」，并把�
 
 ## 你会在哪儿碰到它
 - 接AI模型（Claude、OpenAI、DeepSeek、Gemini等）、地图、短信、支付、[Supabase](/words/supabase)时，都要先到对应后台生成一个Key。
-- 样子通常是 `sk-` 开头的一串字符，或名为 `API_KEY`、`SECRET`、`TOKEN` 的配置项。
+- 样子通常是`sk-`开头的一串字符，或名为`API_KEY`、`SECRET`、`TOKEN`的配置项。
 - AI会说「请把你的Key填进.env文件」。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
 我刚拿到一个API Key，要接到项目里。
-请帮我：1. 创建.env文件，把Key放进去，变量名你起；2. 确认.env已在.gitignore里；3. 代码里用环境变量读取，不要出现Key原文；4. 检查整个项目和git历史，确认没有任何地方已经写进了Key；5. 告诉我在Vercel上线时该怎么配置这个变量。
+请帮我：1.创建.env文件，把Key放进去，变量名你起；2.确认.env已在.gitignore里；3.代码里用环境变量读取，不要出现Key原文；4.检查整个项目和git历史，确认没有任何地方已经写进了Key；5.告诉我在Vercel上线时该怎么配置这个变量。
 ```
 
 ## 容易踩的坑

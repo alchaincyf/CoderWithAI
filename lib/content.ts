@@ -76,6 +76,15 @@ function makeMarked(headings: { id: string; text: string }[]) {
   return m;
 }
 
+// 中文紧贴的 **加粗**（如「**结论。**后面的字」）不满足 CommonMark 的定界规则，会原样显示星号。
+// 在代码块和行内代码之外，先把 **…** 换成 <strong>。
+function cjkBold(md: string) {
+  return md.split(/(^```[\s\S]*?^```)/m).map((part, i) => {
+    if (i % 2 === 1) return part;
+    return part.split(/(`[^`\n]*`)/).map((seg, j) => (j % 2 === 1 ? seg : seg.replace(/\*\*([^*\n]+?)\*\*/g, "<strong>$1</strong>"))).join("");
+  }).join("");
+}
+
 const cache = new Map<Section, Doc[]>();
 
 export function getDocs(section: Section): Doc[] {
@@ -88,7 +97,7 @@ export function getDocs(section: Section): Doc[] {
       const raw = fs.readFileSync(path.join(dir, f), "utf8");
       const { data, content } = matter(raw);
       const headings: { id: string; text: string }[] = [];
-      const body = makeMarked(headings).parse(content) as string;
+      const body = makeMarked(headings).parse(cjkBold(content)) as string;
       const slug = (data.slug as string) || f.replace(/\.md$/, "").replace(/^\d+-/, "");
       return {
         section, slug,

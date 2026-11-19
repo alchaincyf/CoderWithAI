@@ -20,7 +20,7 @@ updated: 2026-11-18
 ## 你会在哪儿碰到它
 - Claude Code内置了几种：Explore（只读，快速搜代码）、Plan（计划模式下做调研）、general-purpose（通用，能读能改）。
 - AI说「我派一个子代理去看看」，或在终端里看到多个任务同时在跑。
-- 你也可以自定义：在 `.claude/agents/`（当前项目）或 `~/.claude/agents/`（所有项目）放一份带说明的Markdown文件；直接让Claude帮你建也行。
+- 你也可以自定义：在`.claude/agents/`（当前项目）或`~/.claude/agents/`（所有项目）放一份带说明的Markdown文件；直接让Claude帮你建也行。
 - 官方文档说明：默认子代理还可以再派子代理，最多嵌套三层；同时运行上限默认20个。
 
 ## AI提到它时，你该怎么接

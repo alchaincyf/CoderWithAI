@@ -24,7 +24,7 @@ API像一份「手写点单格式说明」，SDK像一个已经印好格子的�
 npm install @supabase/supabase-js
 ```
 
-- 项目里出现 `openai`、`stripe`、`@anthropic-ai/sdk` 这类依赖，就是各家的SDK。
+- 项目里出现`openai`、`stripe`、`@anthropic-ai/sdk`这类依赖，就是各家的SDK。
 - 同一服务常有不同语言的SDK：JavaScript、Python、Swift等。
 
 ## AI提到它时，你该怎么接
@@ -35,6 +35,6 @@ npm install @supabase/supabase-js
 
 ## 容易踩的坑
 - AI按旧版本写法：SDK升级后接口会变，网上搜到的示例可能已经过期。让AI对照官方文档与你实际装的版本。
-- 凭记忆编造不存在的函数：这是典型的[幻觉](/words/hallucination)，报错 `xxx is not a function` 时要想到它。
+- 凭记忆编造不存在的函数：这是典型的[幻觉](/words/hallucination)，报错`xxx is not a function`时要想到它。
 - 装了又不用，越装越多：依赖多了构建慢、也增加风险，见[依赖](/words/dependencies)。
 - 把需要保密的[密钥](/words/api-key)配置进了前端使用的SDK里。

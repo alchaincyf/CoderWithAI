@@ -19,7 +19,7 @@ updated: 2026-11-18
 
 ## 你会在哪儿碰到它
 - 编程场景里最典型的是：调用了根本不存在的函数、写了没有的配置项、安装一个不存在的包，或引用已经过期的写法。
-- 报错形如 `xxx is not a function`、`Module not found`、`No matching version found`。
+- 报错形如`xxx is not a function`、`Module not found`、`No matching version found`。
 - 非编程场景：编造价格、日期、引用、数据。
 
 ## AI提到它时，你该怎么接

@@ -18,10 +18,10 @@ GitHub是全世界最大的代码托管网站。你把本地的[仓库](/words/r
 不贴切的地方：它是微软旗下的公司服务，不是公共设施。账号、访问速度、政策都由它说了算，国内访问有时较慢或不稳定。
 
 ## 你会在哪儿碰到它
-- AI让你「先推到GitHub」，终端里出现 `git remote add origin https://github.com/...`。
+- AI让你「先推到GitHub」，终端里出现`git remote add origin https://github.com/...`。
 - Vercel、Cloudflare Pages的「导入项目」，默认让你选一个GitHub仓库。
-- 你看到别人的开源项目，上面有 Star（收藏）和 Fork（复制一份到自己名下）。
-- 官方命令行工具叫 `gh`，AI用它来建仓库、开Pull Request。
+- 你看到别人的开源项目，上面有Star（收藏）和Fork（复制一份到自己名下）。
+- 官方命令行工具叫`gh`，AI用它来建仓库、开Pull Request。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code

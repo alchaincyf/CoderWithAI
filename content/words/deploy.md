@@ -18,9 +18,9 @@ updated: 2026-11-18
 不贴切的地方：开店之后，搬进去的菜品不会自己变，网站上线之后，每一次改动都要再「搬一次」。
 
 ## 你会在哪儿碰到它
-- AI 说「我们把它部署上去」，通常指推到 [Vercel](/words/vercel) 这类平台。
-- 最常见的流程：代码放在 [GitHub](/words/github)，每次 [push](/words/push) 后平台自动拉代码、[构建](/words/build)、发布。这个过程你在平台的 Deployments 页面能看到，状态有 Building、Ready、Error。
-- 有些平台给你一个免费网址，比如 xxx.vercel.app。想用自己的网址，还要[域名](/words/domain)。
+- AI说「我们把它部署上去」，通常指推到[Vercel](/words/vercel)这类平台。
+- 最常见的流程：代码放在[GitHub](/words/github)，每次[push](/words/push)后平台自动拉代码、[构建](/words/build)、发布。这个过程你在平台的Deployments页面能看到，状态有Building、Ready、Error。
+- 有些平台给你一个免费网址，比如xxx.vercel.app。想用自己的网址，还要[域名](/words/domain)。
 - 国内读者要注意：网站放在国内服务器并用于对外服务，需要[ICP备案](/words/icp-filing)。
 
 ## AI提到它时，你该怎么接
@@ -35,5 +35,5 @@ updated: 2026-11-18
 ## 容易踩的坑
 - 只改了本地文件就以为上线了。没推送、没部署，线上就是旧的。改完后要访问线上网址确认。
 - 本地能跑、线上报错，最常见的原因是线上缺了[环境变量](/words/env-var)。
-- 上线后才发现密钥被写进了代码，已经暴露。部署前让 AI 检查。
-- 部署的是错误的分支，或者没等部署状态变成 Ready 就去看。
+- 上线后才发现密钥被写进了代码，已经暴露。部署前让AI检查。
+- 部署的是错误的分支，或者没等部署状态变成Ready就去看。

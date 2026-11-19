@@ -20,12 +20,12 @@ Webhook是一个你提前告诉对方的网址。对方那边一有事（比如�
 ## 你会在哪儿碰到它
 - 接[在线收款](/words/payment)时，AI会说「支付成功后要靠webhook来确认订单」。
 - GitHub、Stripe、飞书机器人、Notion等都能配置Webhook。
-- 代码里出现 `/api/webhook`，或在服务商后台有一栏「Webhook URL」。
+- 代码里出现`/api/webhook`，或在服务商后台有一栏「Webhook URL」。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
 请给项目加一个接收Stripe支付结果的webhook接口。
-要求：1. 必须校验签名，用环境变量里的signing secret；2. 同一个事件被重复推送时不能重复发货（做幂等处理）；3. 先告诉我本地怎么测试（比如用Stripe CLI把事件转发到localhost），我跑通后再上线；4. 记录每次收到的事件，方便排查。
+要求：1.必须校验签名，用环境变量里的signing secret；2.同一个事件被重复推送时不能重复发货（做幂等处理）；3.先告诉我本地怎么测试（比如用Stripe CLI把事件转发到localhost），我跑通后再上线；4.记录每次收到的事件，方便排查。
 ```
 
 ## 容易踩的坑

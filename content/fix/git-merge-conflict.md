@@ -28,19 +28,19 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 两个版本（比如你的分支和别人的分支，或者你本地和GitHub上的）同时改了同一个文件的同一块地方。Git分不出该留哪个，就把两边都放进文件里，用标记框出来，让你来选。
 
-`<<<<<<< HEAD` 到 `=======` 之间是**你当前这边**的内容，`=======` 到 `>>>>>>>` 之间是**对方那边**的内容。冲突是正常现象，没有任何东西丢失。
+`<<<<<<< HEAD`到`=======`之间是**你当前这边**的内容，`=======`到`>>>>>>>`之间是**对方那边**的内容。冲突是正常现象，没有任何东西丢失。
 
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code
-我在合并时遇到了冲突：Automatic merge failed，文件里有 <<<<<<< HEAD 标记。
+我在合并时遇到了冲突：Automatic merge failed，文件里有 <<<<<<< HEAD标记。
 
 请先不要急着改。按顺序做：
-1. 运行 git status，列出所有冲突文件。
+1. 运行git status，列出所有冲突文件。
 2. 对每个冲突文件，用大白话告诉我：两边各改了什么、各自的意图可能是什么、你建议留哪边或怎么合并，为什么。
 3. 等我确认后再修改文件，把所有 <<<<<<<、=======、>>>>>>> 标记清除干净。
-4. 修改后运行项目的构建或测试，确认没坏，再 git add 和 git commit。
-如果我说算了，就运行 git merge --abort 回到合并之前。
+4. 修改后运行项目的构建或测试，确认没坏，再git add和git commit。
+如果我说算了，就运行git merge --abort回到合并之前。
 ```
 
 ## 想自己动手的话
@@ -49,9 +49,9 @@ Automatic merge failed; fix conflicts and then commit the result.
 git status
 ```
 
-列出带 `both modified` 的文件，那就是冲突文件。
+列出带`both modified`的文件，那就是冲突文件。
 
-打开文件，找到 `<<<<<<<`。决定保留哪边（或两边都要、手工融合），然后把三行标记**连同不要的那一半**删掉。保存后：
+打开文件，找到`<<<<<<<`。决定保留哪边（或两边都要、手工融合），然后把三行标记**连同不要的那一半**删掉。保存后：
 
 ```bash
 git add index.html
@@ -63,7 +63,7 @@ git add index.html
 git commit
 ```
 
-完成合并。如果是 `git pull --rebase` 引起的，这里改用 `git rebase --continue`。
+完成合并。如果是`git pull --rebase`引起的，这里改用`git rebase --continue`。
 
 想反悔、回到合并之前：
 
@@ -71,14 +71,14 @@ git commit
 git merge --abort
 ```
 
-如果当时是在做rebase，则用 `git rebase --abort`。
+如果当时是在做rebase，则用`git rebase --abort`。
 
-> [!warn] 标记行必须删干净。只要文件里还留着 `<<<<<<<`，代码就会报语法错误，网站也会白屏。提交前全文搜一遍这三种标记。
+> [!warn]标记行必须删干净。只要文件里还留着`<<<<<<<`，代码就会报语法错误，网站也会白屏。提交前全文搜一遍这三种标记。
 
 ## 下次怎么避免
 
-开始新任务前先 `git pull`；让AI改东西前，先确认你们没有同时在改同一个文件；功能做完尽快合并，别让分支分叉太久。
+开始新任务前先`git pull`；让AI改东西前，先确认你们没有同时在改同一个文件；功能做完尽快合并，别让分支分叉太久。
 
 ## 还不行？
 
-冲突很大、看不懂两边的差别时，不要硬选。先 `git merge --abort` 退回安全状态，再把两边的差异发给AI分析。想整体回到某个好版本，看 [undo-ai-changes](/fix/undo-ai-changes)。
+冲突很大、看不懂两边的差别时，不要硬选。先`git merge --abort`退回安全状态，再把两边的差异发给AI分析。想整体回到某个好版本，看[undo-ai-changes](/fix/undo-ai-changes)。

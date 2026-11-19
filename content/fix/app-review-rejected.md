@@ -14,7 +14,7 @@ Guideline 2.1 - Performance - App Completeness
 We were unable to review your app because ...
 ```
 
-不同条款的标题格式类似：`Guideline 条款号 - 分类 - 标题`。具体措辞每封信不同，请以你的 App Store Connect 里 Resolution Center 的原文为准。
+不同条款的标题格式类似：`Guideline 条款号 - 分类 - 标题`。具体措辞每封信不同，请以你的App Store Connect里Resolution Center的原文为准。
 
 ## 人话：这是怎么回事
 
@@ -23,8 +23,8 @@ We were unable to review your app because ...
 下面是新手用AI做App最容易遇到的几条（条款号和内容已对照苹果官方审核指南页面核实，指南会更新，以官网为准）：
 
 - **2.1 App Completeness（完整性）**：提交的必须是最终版本，元数据和网址要完整可用，占位文字、空网站要清掉；App要在真机上测试过；如果有登录，必须提供**演示账号**并保证后端服务开着；内购项目要在App里能找到。闪退和功能不通也归在这里。
-- **4.3 Spam**：4.3(a) 不要为同一个App创建多个Bundle ID；4.3(b) 不要提交与市面上已有的App没有区别的东西，在热门App类别里换皮做变体会被拒。AI批量生成的模板App很容易撞这条。
-- **5.1.1 Data Collection and Storage（数据收集）**：(i) 必须在App Store Connect和App内提供隐私政策链接，说明收集什么数据、怎么用；(v) 如果App支持创建账号，必须在App内提供**删除账号**的功能。
+- **4.3 Spam**：4.3(a)不要为同一个App创建多个Bundle ID；4.3(b)不要提交与市面上已有的App没有区别的东西，在热门App类别里换皮做变体会被拒。AI批量生成的模板App很容易撞这条。
+- **5.1.1 Data Collection and Storage（数据收集）**：(i)必须在App Store Connect和App内提供隐私政策链接，说明收集什么数据、怎么用；(v)如果App支持创建账号，必须在App内提供**删除账号**的功能。
 - **4.2 Minimum Functionality**：只是套壳网页、没什么独特功能的App可能被拒。
 - **3.1.1 In-App Purchase**：解锁功能必须用苹果的内购，不能自己搞激活码。
 
@@ -44,12 +44,12 @@ We were unable to review your app because ...
 
 ## 想自己动手的话
 
-1. 在 App Store Connect 的 Resolution Center 读完整原文，记下条款号和附带的截图或说明。
-2. 打开苹果官方的 App Store 审核指南，找到对应条款读原文。
+1. 在App Store Connect的Resolution Center读完整原文，记下条款号和附带的截图或说明。
+2. 打开苹果官方的App Store审核指南，找到对应条款读原文。
 3. 修改后重新构建、提交新版本，或者在Resolution Center直接回复说明（有些情况只需补充信息，不用重新提交）。
 4. 觉得审核理解错了，可以礼貌地回复并附上证明；也可以通过App Store Connect里的申诉渠道提出。
 
-> [!warn] 不要原样重复提交，也不要用小号、换Bundle ID的方式规避，这反而可能触发4.3或让账号受到影响。
+> [!warn]不要原样重复提交，也不要用小号、换Bundle ID的方式规避，这反而可能触发4.3或让账号受到影响。
 
 ## 下次怎么避免
 
@@ -57,4 +57,4 @@ We were unable to review your app because ...
 
 ## 还不行？
 
-遇到的是签名和打包问题，看 [xcode-signing](/fix/xcode-signing)。TestFlight的概念见 [testflight](/words/testflight)，上架整体流程见 [app-store](/words/app-store)。
+遇到的是签名和打包问题，看[xcode-signing](/fix/xcode-signing)。TestFlight的概念见[testflight](/words/testflight)，上架整体流程见[app-store](/words/app-store)。
