@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { Doc } from "@/lib/content";
 import { SITE } from "@/lib/site";
+import { AUTHOR_LD, bookFor } from "@/lib/author";
+import { Byline, BookCard, AuthorBox } from "./AuthorCard";
+import AdSlot from "./AdSlot";
 
 export interface Crumb { href: string; label: string }
 
@@ -19,7 +22,7 @@ export default function DocPage({
 }) {
   const ld = jsonLd ?? {
     "@context": "https://schema.org", "@type": "Article", headline: doc.title, description: doc.summary,
-    inLanguage: "zh-CN", dateModified: doc.updated, author: { "@type": "Person", name: "花叔" },
+    inLanguage: "zh-CN", dateModified: doc.updated, author: AUTHOR_LD,
     publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
   };
   return (
@@ -33,6 +36,7 @@ export default function DocPage({
           <h1>{doc.title}</h1>
           {aka && aka.length > 0 && <p className="aka">也叫：{aka.join(" · ")}</p>}
           {doc.summary && <p className="dek">{doc.summary}</p>}
+          <Byline updated={doc.updated} />
           {facts && facts.length > 0 && (
             <dl className="facts">{facts.map((f) => <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>)}</dl>
           )}
@@ -50,9 +54,11 @@ export default function DocPage({
           <div>
             <div className="prose" dangerouslySetInnerHTML={{ __html: doc.body }} />
             {after}
-            <p className="updated">最后核对：{doc.updated}。发现过时或写错的地方，欢迎在 <a href="https://github.com/alchaincyf/CoderWithAI/issues" target="_blank" rel="noopener">GitHub</a> 告诉我们。</p>
+            <AuthorBox />
+            <AdSlot />
+            <p className="updated">发现过时或写错的地方，欢迎在 <a href="https://github.com/alchaincyf/CoderWithAI/issues" target="_blank" rel="noopener">GitHub</a> 告诉我们。</p>
           </div>
-          <aside className="side">{side}</aside>
+          <aside className="side">{side}<BookCard id={bookFor(doc.section, doc.slug)} /></aside>
         </div>
       </div>
     </article>

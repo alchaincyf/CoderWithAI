@@ -15,7 +15,7 @@ export default function Page() {
       <p>CoderWithAI教不会写代码的人，用Claude Code、Codex、TRAE、Cursor这类AI工具，把一个想法做成能上线、能分享、甚至能收钱的东西。</p>
       <p>我们不教编程语法。AI已经能把代码写得很好了，现在挡在普通人前面的不是代码，而是这些东西：听不懂AI在说什么、不知道下一步该让它做什么、终端里一串红字不知道怎么办、网站做好了不知道怎么让别人打开、不知道哪些钱该花哪些不该花。这个站就是为这些时刻写的。</p>
       <h2>为什么是我们</h2>
-      <p>本站作者花叔从来不会写代码，他的所有产品都是AI写的。2024年底，他用Cursor做出了「小猫补光灯」。后来他写了《Claude Code从入门到精通》等一系列「橙皮书」，可以在 <a href="https://www.huasheng.ai" target="_blank" rel="noopener">huasheng.ai</a> 免费读到。</p>
+      <p>本站作者<Link href="/author/huashu">花叔</Link>从来不会写代码，他的所有产品都是AI写的。2024年底，他用Cursor做出了「小猫补光灯」。后来他写了《Claude Code从入门到精通》等一系列「橙皮书」，可以在 <a href="https://www.huasheng.ai" target="_blank" rel="noopener">huasheng.ai</a> 免费读到。</p>
       <p>这个站里的路线、配方和急救，都按一个标准写：一个完全不会写代码的人照着做，能做出来。</p>
       <h2>这个站的规矩</h2>
       <ul>

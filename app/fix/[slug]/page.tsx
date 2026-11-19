@@ -4,6 +4,7 @@ import DocPage from "@/components/DocPage";
 import SideRescue from "@/components/SideRescue";
 import { getDoc, getDocs, hrefOf } from "@/lib/content";
 import { docMeta } from "@/lib/meta";
+import { AUTHOR_LD } from "@/lib/author";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getDocs("fix").map((d) => ({ slug: d.slug })); }
@@ -20,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const plats = (doc.data.platform ?? []).map((p: string) => PLAT[p] ?? p).join("、");
   const ld = {
     "@context": "https://schema.org", "@type": "TechArticle", headline: doc.title, description: doc.summary,
-    inLanguage: "zh-CN", dateModified: doc.updated, proficiencyLevel: "Beginner",
+    inLanguage: "zh-CN", dateModified: doc.updated, proficiencyLevel: "Beginner", author: AUTHOR_LD,
   };
   return (
     <DocPage

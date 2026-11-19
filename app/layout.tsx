@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import CopyEnhancer from "@/components/CopyEnhancer";
 import { SITE } from "@/lib/site";
+import { AUTHOR_LD } from "@/lib/author";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "GT-KDD8ZDP3";
 
@@ -25,11 +26,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="zh-CN">
       <head><link rel="preload" href="/fonts/cwa-title.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /></head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: SITE.name, url: SITE.url, logo: `${SITE.url}/og.png`, founder: AUTHOR_LD }) }} />
         <a className="sr" href="#main">跳到正文</a>
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
         <CopyEnhancer />
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522094408813551" crossOrigin="anonymous" strategy="afterInteractive" />
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}

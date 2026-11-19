@@ -8,11 +8,12 @@ export default function SiteFooter() {
         <div className="f-top">
           <div>
             <Link className="logo" href="/">Coder<b>With</b>AI</Link>
-            <p>你负责想清楚，AI负责写出来。一个免费的AI编程入门站。</p>
+            <p>你负责想清楚，AI负责写出来。一个免费的AI编程入门站，作者<Link href="/author/huashu" style={{ color: "#f6e84a" }}>花叔</Link>。</p>
           </div>
           <nav className="f-links" aria-label="页脚导航">
             {NAV.map((n) => <Link key={n.href} href={n.href}>{n.label}</Link>)}
             <Link href="/about">关于本站</Link>
+            <Link href="/author/huashu">关于花叔</Link>
             <a href="https://www.huasheng.ai" target="_blank" rel="noopener">花叔的橙皮书</a>
             <Link href="/privacy">隐私政策</Link>
           </nav>

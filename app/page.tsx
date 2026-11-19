@@ -6,6 +6,7 @@ import { LEVELS } from "@/lib/levels";
 import { getDocs, hrefOf } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { TOOLS } from "@/lib/tools";
+import { AUTHOR, BOOKS } from "@/lib/author";
 
 export default function Home() {
   const recipes = getDocs("recipes");
@@ -117,10 +118,19 @@ export default function Home() {
       <section className="author" aria-labelledby="author-h">
         <span className="disc" aria-hidden="true" />
         <div className="wrap">
-          <h2 id="author-h">本站作者花叔，<br /><mark>从来不会写代码。</mark><br /><span className="nb-lg">他所有的产品，都是AI写的。</span></h2>
           <div>
-            <p>2024年底，他用Cursor做出了「小猫补光灯」。这个站的标准只有一条：一个完全不会写代码的人照着做，能做出来。</p>
-            <span className="by"><Link href="/about">关于本站和作者</Link></span>
+            <span className="lab">本站作者</span>
+            <h2 id="author-h">花叔，<br /><mark>从来不会写代码。</mark><br /><span className="nb-lg">他所有的产品，都是AI写的。</span></h2>
+          </div>
+          <div>
+            <ul className="fact-list">
+              {AUTHOR.facts.slice(1, 4).map((f) => <li key={f}>{f}</li>)}
+            </ul>
+            <p className="author-links" style={{ marginTop: 16 }}>
+              <Link href="/author/huashu">关于花叔</Link>
+              <a href={BOOKS["claude-code"].href} target="_blank" rel="noopener">读橙皮书</a>
+              <a href="https://space.bilibili.com/14097567" target="_blank" rel="noopener me">B站</a>
+            </p>
           </div>
         </div>
       </section>

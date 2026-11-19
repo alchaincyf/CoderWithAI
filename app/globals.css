@@ -554,3 +554,30 @@ html { overflow-x: clip; }
 .cell .no small { font-size: .38em; margin-left: 4px; font-weight: 900; }
 .cell .go::after { content: ""; display: inline-block; width: 22px; height: 3px; background: currentColor; vertical-align: middle; margin-left: 8px; transition: width .15s; }
 .cell:hover .go::after { width: 40px; }
+
+/* 作者与广告 */
+.byline { margin-top: 18px; display: flex; gap: 12px; align-items: center; font-size: 14.5px; line-height: 1.5; font-weight: 600; }
+.byline a { color: inherit; }
+.by-av { flex: none; width: 40px; height: 40px; display: grid; place-items: center; background: var(--lemon); color: var(--ink); border: 3px solid var(--ink); font-family: var(--serif); font-weight: 900; font-size: 20px; text-decoration: none; }
+.by-av.big { width: 64px; height: 64px; font-size: 32px; box-shadow: 5px 5px 0 var(--ink); }
+.author-box { margin-top: 48px; border: 3px solid var(--ink); background: var(--white); padding: 20px 22px; display: flex; gap: 18px; align-items: flex-start; }
+.author-box b { display: block; font-family: var(--serif); font-weight: 900; font-size: 20px; margin-bottom: 6px; }
+.author-box p { font-size: 15.5px; line-height: 1.75; }
+.author-box a { color: var(--blue); font-weight: 700; }
+.author-links { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.author-links a { border: 2px solid currentColor; padding: 1px 10px; font-size: 14px; font-weight: 800; text-decoration: none; color: inherit; }
+.author-box .author-links { margin-top: 10px; color: var(--ink); }
+.author-links a:hover { background: var(--ink); color: var(--lemon); }
+.side-card.book { display: block; text-decoration: none; background: #ff8a3d; box-shadow: 6px 6px 0 var(--ink); }
+.side-card.book .lab { font-size: 12px; }
+.side-card.book h3 { margin-top: 6px; }
+.side-card.book:hover { background: var(--orange); }
+.ad-wrap { margin-top: 40px; border-top: 2px solid var(--line); padding-top: 10px; min-height: 40px; }
+.ad-label { font-size: 12px; color: var(--grey); letter-spacing: .08em; }
+.fact-list { list-style: none; margin-top: 14px; }
+.fact-list li { border-top: 3px solid var(--ink); padding: 12px 0 13px; font-size: 17px; font-weight: 600; line-height: 1.6; }
+.author .fact-list li { font-size: 16.5px; }
+.author .lab { display: inline-block; border: 2px solid var(--ink); padding: 1px 8px; margin-bottom: 14px; }
+.author-hero h1 mark { background: var(--blue); color: var(--white); padding: 0 .1em; }
+.author-hero .author-links a { color: var(--ink); }
+.author-hero h1 { line-height: 1.18; }
