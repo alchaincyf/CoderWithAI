@@ -30,7 +30,7 @@ Windows在找npm这个程序，没找到。要么Node.js没装，要么装了但
 我在Windows上运行npm（或node / claude）报「不是内部或外部命令」。
 请先解释原因，再诊断：运行where.exe node、where.exe npm，并看$env:PATH里有没有nodejs的安装目录。
 如果没装Node.js，告诉我去哪下载LTS版，不要自己用setx改环境变量（容易把原有PATH截断）。
-装好后让我关闭并重开终端，再运行node -v和npm -v，确认都能输出版本号。
+装好后让我关闭并重开终端，再运行`node -v`和`npm -v`，确认都能输出版本号。
 ```
 
 ## 想自己动手的话

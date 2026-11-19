@@ -22,7 +22,7 @@ Error: listen EADDRINUSE: address already in use :::3000
 
 ```prompt 复制给 Claude Code / Codex
 我启动开发服务器时报EADDRINUSE: address already in use :::3000。
-请先查出是哪个进程占用了3000端口（Mac用lsof -i :3000，Windows用netstat -ano | findstr :3000），把进程名和PID告诉我。
+请先查出是哪个进程占用了3000端口（Mac用`lsof -i :3000`，Windows用`netstat -ano | findstr :3000`），把进程名和PID告诉我。
 如果是我之前启动的开发服务（node / next / vite），先征求我同意，再结束该进程。
 如果是别的重要程序，不要结束它，改用别的端口启动（如PORT=3001）。
 最后确认服务正常启动，并告诉我访问地址。

@@ -32,9 +32,9 @@ SyntaxError: Unexpected token '?'
 
 ```prompt 复制给 Claude Code / Codex
 我的项目报Node版本不满足（Unsupported engine / EBADENGINE，或SyntaxError）。
-请先运行node -v、npm -v，读项目package.json里的engines字段，再告诉我项目需要哪个版本、我现在是哪个版本。
+请先运行`node -v`、`npm -v`，读项目package.json里的engines字段，再告诉我项目需要哪个版本、我现在是哪个版本。
 给我最稳的升级方案（推荐用nvm或fnm这类版本管理器，不要手动删系统文件）。
-如果项目有 .nvmrc就按它的版本装。升级后重新npm install，并运行npm run dev验证能启动。
+如果项目有`.nvmrc`就按它的版本装。升级后重新`npm install`，并运行`npm run dev`验证能启动。
 ```
 
 ## 想自己动手的话
@@ -70,7 +70,7 @@ npm install
 
 ## 下次怎么避免
 
-新项目开始时，让AI在README里写明Node版本，并生成 .nvmrc。
+新项目开始时，让AI在README里写明Node版本，并生成`.nvmrc`。
 
 ## 还不行？
 

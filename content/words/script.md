@@ -20,13 +20,13 @@ updated: 2026-11-18
 ## 你会在哪儿碰到它
 - 让AI帮你批量重命名文件、定期备份、整理数据、一键打包，它常会写一个脚本。
 - 文件后缀：.py（[Python](/words/python)）、.js、.sh（Mac或Linux的Shell脚本）、.ps1（Windows PowerShell）。
-- 运行方式依语言而定，例如python3 clean.py或bash backup.sh，让AI告诉你。
-- package.json里的scripts也叫脚本：npm run build就是运行里面写好的build那条。
+- 运行方式依语言而定，例如`python3 clean.py`或`bash backup.sh`，让AI告诉你。
+- package.json里的scripts也叫脚本：`npm run build`就是运行里面写好的build那条。
 - 有的脚本需要「可执行权限」才能直接运行，AI会让你用一条命令给它加权限。
 
 ## AI提到它时，你该怎么接
 ```prompt
-请写一个脚本帮我做：（描述）。要求：1.先只预览不执行，我确认后再真正执行；2.不要删除任何文件，需要清理的移到一个叫 _archive的文件夹；3.用最简单的语言实现，并告诉我怎么运行。
+请写一个脚本帮我做：（描述）。要求：1.先只预览不执行，我确认后再真正执行；2.不要删除任何文件，需要清理的移到一个叫 _archive的文件夹；3.用最直白的写法实现，并告诉我怎么运行。
 ```
 
 ```prompt

@@ -18,7 +18,7 @@ npm : 无法加载文件 C:\Users\你的用户名\AppData\Roaming\npm\npm.ps1，
 
 ## 人话：这是怎么回事
 
-Windows的PowerShell有一道「执行策略」安全锁，默认很严，连npm这类工具自带的脚本也会拦住。锁住的是 .ps1脚本，不是你的电脑坏了。
+Windows的PowerShell有一道「执行策略」安全锁，默认很严，连npm这类工具自带的脚本也会拦住。锁住的是`.ps1`脚本，不是你的电脑坏了。
 
 微软文档说明：如果所有范围都没设置，Windows客户端的有效策略是Restricted，也就是不允许运行任何脚本。
 
@@ -26,10 +26,10 @@ Windows的PowerShell有一道「执行策略」安全锁，默认很严，连npm
 
 ```prompt 复制给 Claude Code / Codex
 我在Windows PowerShell里运行npm报「因为在此系统上禁止运行脚本」。
-请先用Get-ExecutionPolicy -List看当前策略并向我解释。
-修复只允许：Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser。
+请先用`Get-ExecutionPolicy -List`看当前策略并向我解释。
+修复只允许：`Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`。
 不要改LocalMachine，不要设成Unrestricted或Bypass，不要关闭任何安全功能。
-改完让我重开PowerShell，运行npm -v验证能输出版本号。
+改完让我重开PowerShell，运行`npm -v`验证能输出版本号。
 ```
 
 ## 想自己动手的话
@@ -56,7 +56,7 @@ RemoteSigned的意思：自己电脑上写的脚本能跑，从网上下载的�
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
-不想改任何设置的话，改用CMD（黑底的命令提示符）运行同样的命令，CMD不受这个限制。
+这条命令只在当前窗口生效，关掉窗口就恢复，和上面提示词里「不要设成Bypass」针对的永久设置并不矛盾。不想改任何设置的话，改用CMD（黑底的命令提示符）运行同样的命令，CMD不受这个限制。
 
 > [!warn]网上常见的建议是以管理员身份把策略设成Unrestricted或对整台电脑Bypass。这会让所有用户都能跑任何脚本，范围比你需要的大得多。CurrentUser加RemoteSigned就够用。
 

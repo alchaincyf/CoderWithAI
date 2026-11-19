@@ -22,7 +22,7 @@ Usage limit reached · limit resets 3:45pm
 
 ## 人话：这是怎么回事
 
-用订阅（Pro、Max等）登录Claude Code，你有一份滚动的使用额度。按官方帮助中心的说法，包含**5小时的会话额度**和**每周额度**，Claude网页版和Claude Code共用。用完了就被暂停，直到提示里那个重置时间。这不是账号出问题，也不是封号。
+用订阅（Pro、Max等）登录Claude Code，你有一份滚动的使用额度。按官方帮助中心的说法，包含5小时的会话额度和每周额度，Claude网页版和Claude Code共用。用完了就被暂停，直到提示里那个重置时间。这不是账号出问题，也不是封号。
 
 时效提醒：具体额度大小和套餐规则会调整，截至2026年11月，以官方帮助中心和`/usage`显示为准。
 
@@ -58,7 +58,7 @@ Usage limit reached · limit resets 3:45pm
 
 ## 下次怎么避免
 
-不相关的任务之间用`/clear`开新对话；提示词写具体，别让AI漫无目的地翻整个项目；简单任务用小一点的模型。对话太长的问题见[context-full](/fix/context-full)。
+不相关的任务之间用`/clear`开新对话；提示词写具体，别让AI漫无目的地翻整个项目；轻量任务用小一点的模型。对话太长的问题见[context-full](/fix/context-full)。
 
 ## 还不行？
 

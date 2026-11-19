@@ -25,7 +25,7 @@ Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not 
 ```prompt 复制给 Claude Code / Codex
 我的页面报Unexpected token '<' ... is not valid JSON。
 请先找出是哪一行代码在fetch或请求哪个地址。
-然后用curl -i直接请求这个地址，看它实际返回的是什么状态码和内容（别猜）。
+然后用`curl -i`直接请求这个地址，看它实际返回的是什么状态码和内容（别猜）。
 告诉我返回的是404页、登录页、还是服务器错误页，并解释原因。
 修复后，在代码里加上判断：状态码不是200时显示明确的错误提示，而不是直接解析JSON。
 最后验证请求能拿到正确的JSON。

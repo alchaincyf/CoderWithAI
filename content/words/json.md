@@ -31,11 +31,11 @@ JSON是一种写数据的格式：用大括号、方括号、冒号、引号，�
 - package.json、tsconfig.json这类配置文件，都是JSON。
 - 调用[API](/words/api)时，返回的数据绝大多数是JSON。
 - 让AI帮你整理数据、导出结果，它常会输出JSON。
-- 文件后缀是 .json。
+- 文件后缀是`.json`。
 
 ## AI提到它时，你该怎么接
 ```prompt
-请把下面这些内容整理成JSON格式，每一项包含name、price、description三个字段。并检查JSON语法是否正确，确保我可以直接保存成 .json文件使用。（粘贴内容）
+请把下面这些内容整理成JSON格式，每一项包含name、price、description三个字段。并检查JSON语法是否正确，确保我可以直接保存成`.json`文件使用。（粘贴内容）
 ```
 
 ```prompt

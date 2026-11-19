@@ -25,12 +25,12 @@ npm error Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/s
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我在运行npm install -g时报EACCES permission denied。
-请先解释为什么，再诊断：运行npm config get prefix、which node、node -v。
-不要使用sudo，不要chmod 777，不要改系统目录权限。
-推荐方案：把npm的全局目录改到我自己的目录（npm config set prefix ~/.local，并把~/.local/bin加进~/.zshrc的PATH）。
+我在运行`npm install -g`时报EACCES permission denied。
+请先解释为什么，再诊断：运行`npm config get prefix`、`which node`、`node -v`。
+不要使用sudo，不要`chmod 777`，不要改系统目录权限。
+推荐方案：把npm的全局目录改到我自己的目录（`npm config set prefix ~/.local`，并把~/.local/bin加进~/.zshrc的PATH）。
 如果我要装的是Claude Code，优先用官方安装脚本而不是npm。
-改完用npm install -g npm-check-updates测试，不报错才算成功。
+改完用`npm install -g npm-check-updates`测试，不报错才算成功。
 ```
 
 ## 想自己动手的话
@@ -41,7 +41,7 @@ npm error Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/s
 npm config set prefix ~/.local
 ```
 
-把全局安装位置改成你自己的~/.local。
+把全局安装位置改成你自己的`~/.local`。如果你已经装了nvm，设置prefix会让nvm报冲突警告，这时不要设prefix，改用nvm管理Node，全局包就会装在你自己的目录里。
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
@@ -62,7 +62,7 @@ npm install -g npm-check-updates
 
 ## 下次怎么避免
 
-装Claude Code用官方原生安装脚本，不走npm全局。其他工具尽量放进项目里装（不加 -g）。
+装Claude Code用官方原生安装脚本，不走npm全局。其他工具尽量放进项目里装（不加`-g`）。
 
 ## 还不行？
 

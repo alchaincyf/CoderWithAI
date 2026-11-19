@@ -1,7 +1,7 @@
 ---
 title: "npm报ERESOLVE unable to resolve dependency tree怎么办"
 slug: npm-eresolve
-summary: 两个包对同一个依赖的版本要求打架。用 --legacy-peer-deps或让AI对齐版本。
+summary: 两个包对同一个依赖的版本要求打架。用`--legacy-peer-deps`或让AI对齐版本。
 category: Node与npm
 match: ["ERESOLVE unable to resolve dependency tree", "npm error code ERESOLVE", "npm ERR! code ERESOLVE", "Could not resolve dependency", "--legacy-peer-deps", "peer dependency"]
 platform: [all]
@@ -34,10 +34,10 @@ npm error to accept an incorrect (and potentially broken) dependency resolution.
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行npm install报ERESOLVE unable to resolve dependency tree。
+我运行`npm install`报ERESOLVE unable to resolve dependency tree。
 请先读完整报错，用人话告诉我是哪两个包的版本冲突了。
-然后按这个顺序尝试：先看冲突的库有没有支持新版本的更新版（npm view包名versions）；有就升级它；没有再考虑npm install --legacy-peer-deps。
-不要直接加 --force。如果用了 --legacy-peer-deps，要告诉我风险，并跑npm run build验证项目能编译。
+然后按这个顺序尝试：先看冲突的库有没有支持新版本的更新版（`npm view`包名versions）；有就升级它；没有再考虑`npm install --legacy-peer-deps`。
+不要直接加`--force`。如果用了`--legacy-peer-deps`，要告诉我风险，并跑`npm run build`验证项目能编译。
 ```
 
 ## 想自己动手的话

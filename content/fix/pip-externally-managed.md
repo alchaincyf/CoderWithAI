@@ -38,10 +38,10 @@ hint: See PEP 668 for the detailed specification.
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行pip install时报externally-managed-environment。
-请先解释原因，然后在当前项目目录里创建虚拟环境 .venv，激活它，并在里面安装项目需要的包（读requirements.txt）。
-不要使用 --break-system-packages，不要sudo pip。
-完成后告诉我以后每次开终端怎么激活，并用python -c "import包名"验证装好了。
+我运行`pip install`时报externally-managed-environment。
+请先解释原因，然后在当前项目目录里创建虚拟环境`.venv`，激活它，并在里面安装项目需要的包（读requirements.txt）。
+不要使用`--break-system-packages`，不要`sudo pip`。
+完成后告诉我以后每次开终端怎么激活，并用`python -c "import 包名"`验证装好了。
 ```
 
 ## 想自己动手的话
@@ -52,7 +52,7 @@ hint: See PEP 668 for the detailed specification.
 python3 -m venv .venv
 ```
 
-创建一个叫 .venv的独立环境。
+创建一个叫`.venv`的独立环境。
 
 ```bash
 source .venv/bin/activate
@@ -77,7 +77,7 @@ pipx install 工具名
 
 ## 下次怎么避免
 
-每个Python项目都先建 .venv。让AI生成项目时，在提示词里加一句「请使用虚拟环境」。
+每个Python项目都先建`.venv`。让AI生成项目时，在提示词里加一句「请使用虚拟环境」。
 
 ## 还不行？
 

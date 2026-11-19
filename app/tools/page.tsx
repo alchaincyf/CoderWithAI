@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ToolPicker from "@/components/ToolPicker";
-import { TOOLS, CAT_LABEL, VERIFIED, type Cat } from "@/lib/tools";
+import { TOOLS, CAT_LABEL, VERIFIED, CHANGES, type Cat } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "AI编程工具怎么选：Claude Code、Codex、Cursor、TRAE对比（2026年11月）",
@@ -43,9 +43,17 @@ export default function Page() {
           </div>
         </section>
       ))}
+      <section className="cat-block" id="changes">
+        <h2>最近的变化<small>老教程最容易在这里过期</small></h2>
+        <ul className="index-list" style={{ columns: 1 }}>
+          {CHANGES.map((c) => (
+            <li key={c.what}><a href={c.src} target="_blank" rel="noopener"><span className="t">{c.what}</span><span className="k">{c.date}</span></a></li>
+          ))}
+        </ul>
+      </section>
       <div className="callout callout-warn" style={{ margin: "40px 0 80px", maxWidth: 820 }}>
         <b>关于「国内能不能用」</b>
-        <p>Anthropic官方受支持地区名单不含中国大陆，所以Claude Code在大陆无法直接合规使用。本站不教任何绕过地区限制的办法。没有海外网络和外币卡的话，走国内线一样能把八关走完：TRAE、Qoder、CodeBuddy、Kimi Code这些工具都能用人民币付费。</p>
+        <p>Anthropic和OpenAI的官方受支持地区名单都不含中国大陆，所以Claude Code、Codex在大陆无法直接合规使用，名单外使用可能被封号。本站不教任何绕过地区限制的办法。没有海外网络和外币卡的话，走国内线一样能把八关走完：TRAE、Qoder、CodeBuddy、Kimi Code这些工具都能用人民币付费。</p>
       </div>
     </div>
   </>);

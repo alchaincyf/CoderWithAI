@@ -28,14 +28,14 @@ Git不允许你直接盖过去，怕把别人的内容弄丢。它是在保护�
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code
-我执行git push被拒绝了，报错里有"Updates were rejected"和"fetch first"（或non-fast-forward）。
+我执行`git push`被拒绝了，报错里有"Updates were rejected"和"fetch first"（或non-fast-forward）。
 
 请按这个顺序处理，并且每一步先告诉我在做什么：
-1. 运行git status、git log --oneline -5、git remote -v，确认现状。
-2. 运行git fetch，对比git log --oneline origin/main..HEAD和HEAD..origin/main，告诉我本地和远程各多了哪些提交。
-3. 用git pull --rebase合并远程的新内容。如果出现冲突，停下来解释冲突在哪，不要擅自选择保留哪一边。
-4. 再git push。
-严禁使用git push --force。完成后用git status和git log验证本地与远程一致。
+1. 运行`git status`、`git log --oneline -5`、`git remote -v`，确认现状。
+2. 运行`git fetch`，对比`git log --oneline origin/main..HEAD`和`HEAD..origin/main`，告诉我本地和远程各多了哪些提交。
+3. 用`git pull --rebase`合并远程的新内容。如果出现冲突，停下来解释冲突在哪，不要擅自选择保留哪一边。
+4. 再`git push`。
+严禁使用`git push --force`。完成后用`git status`和`git log`验证本地与远程一致。
 ```
 
 ## 想自己动手的话
@@ -60,7 +60,7 @@ git pull origin main --allow-unrelated-histories
 
 这条命令允许把两段互不相关的历史拼在一起。
 
-> [!warn]网上常见的`git push --force`会用你的版本强行覆盖远程。如果远程有别人（或另一台电脑上的你）的提交，它们会直接消失。多人协作的分支、`main`分支上不要用。只有在你确定这是自己独占的分支、而且知道自己在丢什么时才用，并优先用`--force-with-lease`。
+> [!warn]网上常见的`git push --force`会用你的版本强行覆盖远程。如果远程有别人（或另一台电脑上的你）的提交，它们会直接消失。多人协作的分支、`main`分支上不要用。只有在你确定这是自己独占的仓库、而且知道自己在丢什么时才用，并优先用`--force-with-lease`。典型的正当场景是你自己改写了历史，比如[清理已推送的密钥](/fix/secret-leaked)；那种情况要先作废密钥，并且只在只有你一个人用的仓库里做。本页提示词里的「严禁`--force`」针对的是日常的推送被拒，AI不该自作主张去覆盖。
 
 ## 下次怎么避免
 

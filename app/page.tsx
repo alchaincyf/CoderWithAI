@@ -119,7 +119,7 @@ export default function Home() {
         <div className="wrap">
           <h2 id="author-h">本站作者花叔，<br /><mark>从来不会写代码。</mark><br /><span className="nb-lg">他所有的产品，都是AI写的。</span></h2>
           <div>
-            <p>2024年底，他用Cursor做出了「小猫补光灯」。这个站里写的每一步，都是不会写代码的人真的走过的路。</p>
+            <p>2024年底，他用Cursor做出了「小猫补光灯」。这个站的标准只有一条：一个完全不会写代码的人照着做，能做出来。</p>
             <span className="by"><Link href="/about">关于本站和作者</Link></span>
           </div>
         </div>

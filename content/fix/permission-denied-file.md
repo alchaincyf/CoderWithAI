@@ -36,10 +36,10 @@ ls: Desktop: Operation not permitted
 
 （在这里粘贴完整报错，含命令和路径）
 
-请先运行ls -l看这个文件的权限，再判断是文件权限问题，还是macOS隐私权限（Operation not permitted通常是后者）。
+请先运行`ls -l`看这个文件的权限，再判断是文件权限问题，还是macOS隐私权限（Operation not permitted通常是后者）。
 文件权限问题：只对这个文件做最小修改，如chmod +x文件名。
 隐私权限问题：告诉我到系统设置的哪个位置、给哪个应用放行，由我自己手动点，你不要尝试绕过。
-禁止使用sudo chmod -R 777，禁止关闭SIP或任何系统保护。验证原命令能成功。
+禁止使用`sudo chmod -R 777`，禁止关闭SIP或任何系统保护。验证原命令能成功。
 ```
 
 ## 想自己动手的话

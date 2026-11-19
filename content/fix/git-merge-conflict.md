@@ -36,11 +36,11 @@ Automatic merge failed; fix conflicts and then commit the result.
 我在合并时遇到了冲突：Automatic merge failed，文件里有 <<<<<<< HEAD标记。
 
 请先不要急着改。按顺序做：
-1. 运行git status，列出所有冲突文件。
+1. 运行`git status`，列出所有冲突文件。
 2. 对每个冲突文件，用大白话告诉我：两边各改了什么、各自的意图可能是什么、你建议留哪边或怎么合并，为什么。
 3. 等我确认后再修改文件，把所有 <<<<<<<、=======、>>>>>>> 标记清除干净。
-4. 修改后运行项目的构建或测试，确认没坏，再git add和git commit。
-如果我说算了，就运行git merge --abort回到合并之前。
+4. 修改后运行项目的构建或测试，确认没坏，再`git add`和`git commit`。
+如果我说算了，就运行`git merge --abort`回到合并之前。
 ```
 
 ## 想自己动手的话

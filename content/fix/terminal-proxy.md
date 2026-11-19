@@ -29,7 +29,7 @@ curl: (7) Failed to connect to 127.0.0.1 port 7890 after 0 ms: Couldn't connect 
 ```prompt 复制给 Claude Code / Codex
 我的浏览器能正常访问外网，但终端里git/npm/curl连不上。我的代理软件本地端口是 【在此填写，在代理软件主界面里看】。
 请先解释原因，然后在当前终端会话里设置HTTPS_PROXY、HTTP_PROXY（只对当前窗口生效，不要写进系统配置）。
-设置后用curl -I https://github.com 验证，并告诉我如何取消设置。
+设置后用`curl -I https://github.com`验证，并告诉我如何取消设置。
 不要帮我下载或推荐任何代理软件，也不要关闭SSL校验。
 ```
 

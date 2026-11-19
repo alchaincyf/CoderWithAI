@@ -23,13 +23,13 @@ fatal: Authentication failed for 'https://github.com/yourname/my-app.git/'
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code
-我git push到GitHub时报错：Support for password authentication was removed，Authentication failed。
+我`git push`到GitHub时报错：Support for password authentication was removed，Authentication failed。
 
 请帮我改成用GitHub CLI登录授权：
-1. 先运行git remote -v和gh --version，告诉我现状（没装gh就告诉我怎么装，不要擅自装）。
-2. 指导我运行gh auth login（选GitHub.com、HTTPS、浏览器登录），这一步需要我在浏览器里点授权，你等我完成。
-3. 运行gh auth setup-git，让git使用这个登录状态。
-4. 再git push验证成功。
+1. 先运行`git remote -v`和`gh --version`，告诉我现状（没装gh就告诉我怎么装，不要擅自装）。
+2. 指导我运行`gh auth login`（选GitHub.com、HTTPS、浏览器登录），这一步需要我在浏览器里点授权，你等我完成。
+3. 运行`gh auth setup-git`，让git使用这个登录状态。
+4. 再`git push`验证成功。
 不要让我把令牌或密码贴到聊天里，也不要把任何令牌写进文件或远程地址。
 ```
 

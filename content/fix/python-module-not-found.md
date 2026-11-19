@@ -28,10 +28,10 @@ ModuleNotFoundError: No module named 'requests'
 
 （在这里粘贴报错）
 
-请先运行which python3和python3 -m pip --version，确认运行代码的Python和pip是不是同一个。
-在项目里创建并启用虚拟环境 .venv，用python3 -m pip install装好缺的包，并更新requirements.txt。
+请先运行`which python3`和`python3 -m pip --version`，确认运行代码的Python和pip是不是同一个。
+在项目里创建并启用虚拟环境`.venv`，用`python3 -m pip install`装好缺的包，并更新requirements.txt。
 注意区分包名和导入名（比如import cv2对应opencv-python）。
-不要使用 --break-system-packages或sudo pip。最后重新运行脚本，确认通过。
+不要使用`--break-system-packages`或`sudo pip`。最后重新运行脚本，确认通过。
 ```
 
 ## 想自己动手的话

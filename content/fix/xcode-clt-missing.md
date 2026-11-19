@@ -22,9 +22,9 @@ git、make、编译Python包这些基础工具，在Mac上由苹果的「命令�
 
 ```prompt 复制给 Claude Code / Codex
 我的Mac运行git时报xcrun: error: invalid active developer path。
-请先解释原因，然后运行xcode-select -p和xcode-select --install触发安装。
+请先解释原因，然后运行`xcode-select -p`和`xcode-select --install`触发安装。
 安装需要我在弹出的窗口里点「安装」，你提示我操作，并等我确认完成后再继续。
-装完运行git --version和xcrun --version验证，不要用sudo删除或移动任何系统目录。
+装完运行`git --version`和`xcrun --version`验证，不要用sudo删除或移动任何系统目录。
 ```
 
 ## 想自己动手的话

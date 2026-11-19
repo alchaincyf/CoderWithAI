@@ -32,7 +32,7 @@ claude mcp add --transport http <名称> <服务器网址>
 ```prompt 复制给 Claude Code
 我想让你能直接操作<某服务>，听说有官方MCP。
 请先去该服务的官方文档确认：有没有官方MCP、怎么安装、需要什么权限、会不会能删除数据。
-先告诉我结论和风险，我同意后你再用claude mcp add安装。
+先告诉我结论和风险，我同意后你再用`claude mcp add`安装。
 如果需要密钥，提醒我只给只读权限的那一个。
 ```
 

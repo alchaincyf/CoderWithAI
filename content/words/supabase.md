@@ -19,18 +19,19 @@ Supabase是一项在线服务：给你一个托管好的PostgreSQL[数据库](/w
 
 ## 你会在哪儿碰到它
 - 你想做「用户能注册、能保存自己的数据」的网站时，AI常推荐它。
-- 项目里出现`@supabase/supabase-js`、`SUPABASE_URL`、`anon key`、`service_role`。
+- 项目里出现`@supabase/supabase-js`、`SUPABASE_URL`，以及`anon key`、`service_role`（旧名字）或`publishable key`、`secret key`（新名字）。
 - 在supabase.com的网页后台里能看到Table Editor（像表格一样看数据）和SQL Editor。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
 请帮我把这个项目接上Supabase：用户可以邮箱注册登录，每个用户只能看到和修改自己的数据。
 要求：1.先告诉我需要我在supabase.com后台手动做哪几步，以及要把哪些值填进.env；2.建表并开启行级安全策略（RLS）；3.写完后教我怎么用两个不同账号验证「看不到对方的数据」。
-不要把service_role密钥放进前端代码。
+不要把secret key（旧名service_role）放进前端代码。
 ```
 
 ## 容易踩的坑
-- 密钥分两种：`anon`可以放在前端，但前提是你配好了行级安全（RLS）；`service_role`权限极大，只能放服务端，泄露等于数据库对外敞开。
+- 密钥分两种。现在官方的名字是`publishable key`（`sb_publishable_`开头）和`secret key`（`sb_secret_`开头）；老教程里的`anon`对应publishable，`service_role`对应secret，官方计划在2026年底前淘汰旧名字（supabase.com/docs/guides/api/api-keys）。publishable可以放在前端，但前提是你配好了行级安全（RLS）；secret权限极大，只能放服务端，泄露等于数据库对外敞开。详见[第4关](/start/save-data)。
 - 没开RLS：表默认对谁都可读写的风险很常见，上线前一定让AI检查每张表的策略。
 - 免费额度有限制：官方定价页写明免费版2个活跃项目、每项目500MB数据库，一周不活跃会被暂停，Pro起价每月25美元（截至2026年11月，以supabase.com/pricing为准）。
 - 国内访问可能不稳定，需要在上线前用国内网络实测一次。
+- 免费项目暂停后能恢复多久、数据保留多久，有期限规定，以Supabase官方文档为准，别假设暂停就等于永久保存。

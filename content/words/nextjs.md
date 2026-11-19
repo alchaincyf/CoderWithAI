@@ -2,7 +2,7 @@
 title: Next.js
 slug: nextjs
 aka: ["NextJS", "Next", "App Router", "Vercel Next"]
-summary: 基于React的全栈框架，同一个项目里能写页面，也能写简单的后端。
+summary: 基于React的全栈框架，同一个项目里能写页面，也能写小型的后端。
 category: 网页
 level: 2
 related: [react, vercel, framework, nodejs, deploy]
@@ -20,7 +20,7 @@ React是一堆好用的食材和刀具；Next.js是配好菜谱、灶台、上�
 ## 你会在哪儿碰到它
 - AI新建项目时常默认选它。项目里会看到app文件夹（较新的写法叫App Router），里面有page.tsx、layout.tsx。
 - 文件夹结构就是网址结构：app/about/page.tsx对应网站的/about页面。
-- 在本地启动：npm run dev，默认地址通常是 http://localhost:3000，见[开发服务器](/words/dev-server)。
+- 在本地启动：`npm run dev`，默认地址通常是`http://localhost:3000`，见[开发服务器](/words/dev-server)。
 - 发布到[Vercel](/words/vercel)最顺手，因为它们是同一家公司的产品。但它也能部署到别处。
 - 报错时常见一个叫「.next」的文件夹，这是它生成的中间产物，不用管。
 

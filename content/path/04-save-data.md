@@ -57,7 +57,7 @@ Supabase给你的钥匙，按官方文档（2026年11月）现在叫这两种名
 | Publishable key（可公开密钥） | `sb_publishable_`开头 | 可以 | 低，只能做行级安全策略允许的事 |
 | Secret key（秘密密钥） | `sb_secret_`开头 | 绝对不行，只能放服务端 | 高，会绕过行级安全策略 |
 
-老教程和旧项目里你会看到另一套名字：`anon`和`service_role`，是以`eyJ`开头的一长串。它们分别对应「可公开」和「秘密」两种角色。官方说明计划在2026年底前淘汰旧的这一套，旧Key在你手动停用之前仍然有效。所以：新项目用`sb_publishable_`和`sb_secret_`；看到教程让你复制`eyJ`开头的长串，说明它针对旧版。
+老教程和旧项目里你会看到另一套名字：`anon`和`service_role`，是以`eyJ`开头的一长串。它们分别对应「可公开」和「秘密」两种角色。官方说明计划在2026年底前淘汰旧的这一套（到2027年1月以后请回官方API Keys页确认现状），旧Key在你手动停用之前仍然有效。所以：新项目用`sb_publishable_`和`sb_secret_`；看到教程让你复制`eyJ`开头的长串，说明它针对旧版。
 
 记住一个对应关系：publishable对应anon，secret对应service_role。
 
@@ -78,12 +78,12 @@ Next.js有一条规则：变量名以`NEXT_PUBLIC_`开头的，会被打包进�
 
 ### 第0步：看一眼国内访问的现实
 
-Supabase是海外服务。官方没有声明在中国大陆的访问质量，我也没法替你保证。部分地区、部分网络下访问可能不稳定，请自测：用你自己的手机4G和家里宽带，各打开一次你项目的网址，各注册一次。
+Supabase是海外服务。Supabase官方没有声明在中国大陆的访问质量。部分地区、部分网络下访问可能不稳定，请自测：用你自己的手机4G和家里宽带，各打开一次你项目的网址，各注册一次。
 
 如果测下来不稳定，你有这几条思路：
 
 - 你的用户主要在海外，或者只是做作品集：继续用Supabase。
-- 你的用户主要在国内：换国内的后端服务。腾讯云的「云开发CloudBase」是一个选项，官方文档（docs.cloudbase.net）介绍它提供数据库、云函数、身份认证和静态托管，控制台在tcb.cloud.tencent.com。免费或体验额度我没有在文档首页查到，请去它的价格文档确认。
+- 你的用户主要在国内：换国内的后端服务。腾讯云的「云开发CloudBase」是一个选项，官方文档（docs.cloudbase.net）介绍它提供数据库、云函数、身份认证和静态托管，控制台在tcb.cloud.tencent.com。免费或体验额度以腾讯云官方价格文档为准。
 - 其他国内云厂商也有类似的「后端一体化」产品，名称和收费请自己去官网核实。
 
 本关后面的流程以Supabase为例。如果你换了CloudBase，把提示词里的「Supabase」换成它，并加上一句「请先读docs.cloudbase.net的官方文档再动手」，思路是一样的：建表、配权限、前端用公开的配置、秘密的东西放服务端。
@@ -94,7 +94,7 @@ Supabase是海外服务。官方没有声明在中国大陆的访问质量，我
 
 如果你要走localStorage这条路，复制这条提示词：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我的网页需要把用户输入的数据保存在浏览器里，刷新页面后还在。请用localStorage实现。
 要求：
 1. 先用三句话告诉我你打算存什么、用什么名字存、数据长什么样，等我说「继续」再动手。
@@ -107,13 +107,13 @@ Supabase是海外服务。官方没有声明在中国大陆的访问质量，我
 
 如果看到别的：刷新后数据没了，多半是代码没读取，或者你用了无痕模式。把现象原样告诉AI，并加一句「请先说明原因再改」。页面空白见[页面白屏](/fix/blank-page)。
 
-做完这一步，如果你的作品确实不需要云端，直接跳到第5关。需要云端，继续往下。
+做完这一步，如果你的作品确实不需要云端，可以跳到[第5关](/start/add-ai)。注意第5关的「每人每天几次」依赖这一关的登录和数据库，跳过的话，第5关里有不用登录的替代方案（访问口令加全站总次数上限）。需要云端，继续往下。
 
 ### 第2步：确认项目形态
 
 本关需要一个有「服务端」的项目，推荐Next.js（[Next.js词条](/words/nextjs)）。如果你第2关做的是单个HTML文件，让AI先帮你迁移。
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请先阅读当前项目，告诉我：
 1. 现在是什么类型的项目（单个HTML、Vite、Next.js还是别的），用了哪些文件。
 2. 我接下来要加「邮箱注册登录 +云端保存数据」，需要有一个能放服务端代码的结构。你建议保持现状还是迁移到Next.js？各自对我的影响是什么。
@@ -151,10 +151,10 @@ git commit -m "迁移前存档"
 
 这一步只拿两个：项目地址和以`sb_publishable_`开头的Key。secret key先不要碰。
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我要把Supabase接到这个项目里。先不要写业务代码，只做配置准备：
 1. 创建.env.local文件，里面放两个变量：NEXT_PUBLIC_SUPABASE_URL和NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY，值先留空，我自己填。
-2. 检查.gitignore，确认.env.local被忽略；如果没有，加上。然后运行git status，证明.env.local不会被提交。
+2. 检查.gitignore，确认.env.local被忽略；如果没有，加上。然后运行`git status`，证明.env.local不会被提交。
 3. 同时创建一个.env.example，只写变量名不写值，方便以后看。
 4. 安装官方包@supabase/supabase-js和@supabase/ssr。安装前先去Supabase官方文档（supabase.com/docs里Next.js的快速入门）确认当前推荐的写法。
 完成后停下来，告诉我下一步我该做什么。注意：不要让我把任何密钥贴到对话里。
@@ -172,7 +172,7 @@ git commit -m "迁移前存档"
 
 我们做一个最小的「笔记」表：每条笔记属于一个用户，用户只能看、改、删自己的。
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请为「笔记」功能设计Supabase数据库，先只写方案，不要执行。
 上下文：每个登录用户可以创建、查看、修改、删除自己的笔记，看不到别人的。
 请给出：
@@ -195,7 +195,7 @@ git commit -m "迁移前存档"
 
 这一步是写业务代码，让AI先说计划。
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请在这个Next.js项目里实现：邮箱+密码注册登录，登录后可以增加、查看、删除自己的笔记。
 先说计划，等我确认再动手。计划要包含：要新建或修改哪些文件、登录状态怎么保存、页面有哪几个。
 约束：
@@ -210,7 +210,7 @@ git commit -m "迁移前存档"
 
 本地运行后，你会看到注册页面。用你自己注册Supabase时的那个邮箱注册。
 
-重要的一个坑：Supabase内置的邮件服务只能发给你项目所属团队成员的邮箱，频率目前是每小时2封（官方文档，2026年11月，数值可能变）。所以测试时用你自己的邮箱，不要一上来拿朋友的邮箱试，也不要连着点很多次「发送」。要让任意用户都能收到确认邮件，需要配置自定义SMTP，这是上线前要做的事，现在先不管。
+重要的一个坑：Supabase内置的邮件服务只能发给你项目所属团队成员的邮箱，频率目前是每小时2封（官方文档，2026年11月，数值可能变）。所以测试时用你自己的邮箱，不要一上来拿朋友的邮箱试，也不要连着点很多次「发送」。要让任意用户都能收到确认邮件，需要配置自定义SMTP，这是上线前要做的事，现在先不管，第8步会回来做。
 
 如果看到别的：
 
@@ -233,16 +233,17 @@ git commit -m "迁移前存档"
 
 ### 第8步：上线前的配置
 
-本地能跑，上线还要两件事：
+本地能跑，上线还要三件事：
 
 1. 在Vercel项目的环境变量里，把`.env.local`里那两个值再填一遍。Vercel添加变量时有「Config」和「Secret」两种类型，Secret保存后只写不读（官方文档，2026年11月）。这两个值是公开用的，选Config即可，将来的secret key一律选Secret。改了环境变量只对新的部署生效，所以填完要重新部署。线上读不到变量见[环境变量线上缺失](/fix/env-missing-in-production)。
 2. 在Supabase后台的Auth设置里，把你的线上网址配进去（常见做法是配置站点地址和允许跳转的地址，具体名称以界面为准）。不配的话，邮件里的确认链接可能跳回localhost。
+3. 配置自定义SMTP。内置邮件服务只给项目团队成员发信，别的邮箱会报`Email address not authorized`，还限制每小时2封（官方文档supabase.com/docs/guides/auth/auth-smtp，2026年11月）。不配的话，真实用户注册收不到确认邮件。做法：选一个邮件服务（比如Resend，见[Resend官方价格页](https://resend.com/pricing)），在Supabase后台Authentication的SMTP设置里填它给你的服务器地址、端口、用户名和密码，具体界面以Supabase官方文档为准。让AI带你一步步做也可以，把SMTP密码当作密钥，不要贴进对话。
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我要把这个项目部署到Vercel。请做上线前检查并列出清单，不要自动推送：
 1. 全项目搜索：有没有硬编码的密钥、sb_secret_、service_role、数据库密码；检查git历史里是否出现过。
 2. 列出线上需要配置的全部环境变量名（只要名字，不要值）。
-3. 列出我需要去Supabase后台手动设置的项，尤其是线上网址和邮件相关设置，并写明为什么。
+3. 列出我需要去Supabase后台手动设置的项，尤其是线上网址和自定义SMTP（因为内置邮件只发给团队成员），并写明为什么。
 4. 告诉我部署后怎么验证：注册、登录、写笔记、刷新、登出、换手机再登录。
 ```
 
@@ -257,6 +258,7 @@ git commit -m "迁移前存档"
 - 用邮箱A在手机上注册登录，写一条笔记；换电脑登录同一个账号，笔记还在。
 - 邮箱B登录后看不到A的笔记，A也看不到B的。
 - 在浏览器里查看页面源代码和网络请求，搜不到`sb_secret_`、`service_role`这些字样。
+- 用一个不是团队成员的邮箱，在线上网址注册，能收到确认邮件（说明SMTP配好了）。
 - `.env.local`没有出现在GitHub仓库里。
 - Supabase后台Table Editor里每张表都显示启用了RLS。
 - 你能说出「publishable key为什么能公开，secret key为什么不能」。
@@ -273,7 +275,7 @@ git commit -m "迁移前存档"
 
 localStorage方案（只要本地存储时用）：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我的网页需要把用户输入的数据保存在浏览器里，刷新页面后还在。请用localStorage实现。
 要求：
 1. 先用三句话告诉我你打算存什么、用什么名字存、数据长什么样，等我说「继续」再动手。
@@ -284,7 +286,7 @@ localStorage方案（只要本地存储时用）：
 
 确认项目形态：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请先阅读当前项目，告诉我：
 1. 现在是什么类型的项目（单个HTML、Vite、Next.js还是别的），用了哪些文件。
 2. 我接下来要加「邮箱注册登录 +云端保存数据」，需要有一个能放服务端代码的结构。你建议保持现状还是迁移到Next.js？各自对我的影响是什么。
@@ -294,10 +296,10 @@ localStorage方案（只要本地存储时用）：
 
 配置准备：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我要把Supabase接到这个项目里。先不要写业务代码，只做配置准备：
 1. 创建.env.local文件，里面放两个变量：NEXT_PUBLIC_SUPABASE_URL和NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY，值先留空，我自己填。
-2. 检查.gitignore，确认.env.local被忽略；如果没有，加上。然后运行git status，证明.env.local不会被提交。
+2. 检查.gitignore，确认.env.local被忽略；如果没有，加上。然后运行`git status`，证明.env.local不会被提交。
 3. 同时创建一个.env.example，只写变量名不写值，方便以后看。
 4. 安装官方包@supabase/supabase-js和@supabase/ssr。安装前先去Supabase官方文档（supabase.com/docs里Next.js的快速入门）确认当前推荐的写法。
 完成后停下来，告诉我下一步我该做什么。注意：不要让我把任何密钥贴到对话里。
@@ -305,7 +307,7 @@ localStorage方案（只要本地存储时用）：
 
 建表和RLS：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请为「笔记」功能设计Supabase数据库，先只写方案，不要执行。
 上下文：每个登录用户可以创建、查看、修改、删除自己的笔记，看不到别人的。
 请给出：
@@ -318,7 +320,7 @@ localStorage方案（只要本地存储时用）：
 
 登录和读写：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 请在这个Next.js项目里实现：邮箱+密码注册登录，登录后可以增加、查看、删除自己的笔记。
 先说计划，等我确认再动手。计划要包含：要新建或修改哪些文件、登录状态怎么保存、页面有哪几个。
 约束：
@@ -331,11 +333,11 @@ localStorage方案（只要本地存储时用）：
 
 上线前检查：
 
-```prompt复制给Claude Code或TRAE
+```prompt 复制给Claude Code或TRAE
 我要把这个项目部署到Vercel。请做上线前检查并列出清单，不要自动推送：
 1. 全项目搜索：有没有硬编码的密钥、sb_secret_、service_role、数据库密码；检查git历史里是否出现过。
 2. 列出线上需要配置的全部环境变量名（只要名字，不要值）。
-3. 列出我需要去Supabase后台手动设置的项，尤其是线上网址和邮件相关设置，并写明为什么。
+3. 列出我需要去Supabase后台手动设置的项，尤其是线上网址和自定义SMTP（因为内置邮件只发给团队成员），并写明为什么。
 4. 告诉我部署后怎么验证：注册、登录、写笔记、刷新、登出、换手机再登录。
 ```
 

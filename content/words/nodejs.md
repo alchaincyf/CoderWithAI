@@ -18,9 +18,9 @@ JavaScript原本只能在浏览器里跑。Node.js让它也能在你的电脑或
 不贴切的地方：Node.js并不是一门新语言，它是「运行JavaScript的环境」，语言还是那个语言。
 
 ## 你会在哪儿碰到它
-- 装Claude Code、很多AI工具、做网页项目之前，AI常让你「先装Node.js」。
+- 做网页项目、装很多AI工具之前，AI常让你「先装Node.js」。Claude Code官方推荐的原生安装并不需要Node.js，见[第1关](/start/setup)；用npm方式安装才需要。
 - 到官网nodejs.org下载安装即可。官网会标出LTS（长期支持版）。截至2026年11月，官网推荐的LTS是26.x。新手选LTS就对了。
-- 装好后，终端里输入node -v能显示版本号，说明装好了。同时会带上[npm](/words/npm)。
+- 装好后，终端里输入`node -v`能显示版本号，说明装好了。同时会带上[npm](/words/npm)。
 - 报错里出现「node: command not found」或「'node'不是内部或外部命令」，就是没装或没装好。
 
 ## AI提到它时，你该怎么接

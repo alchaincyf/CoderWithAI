@@ -18,9 +18,9 @@ CLI是Command Line Interface的缩写，指只能在终端里用命令操作的�
 不贴切的地方：对讲机口令固定，而现在的CLI工具（如Claude Code）允许你直接用自然语言说话，它自己去翻译成命令。
 
 ## 你会在哪儿碰到它
-- 装Claude Code、Codex：通常用npm全局安装，装好后在终端输入工具的名字启动，见[npm](/words/npm)。
+- 装Claude Code、Codex：官方都提供安装脚本（Claude Code官方推荐的是原生安装，不依赖Node.js），npm全局安装是另一种方式，见[第1关](/start/setup)和[npm](/words/npm)。装好后在终端输入工具的名字启动。
 - 很多服务提供CLI：Vercel CLI用来部署，Git本身也是个命令行工具。
-- 几乎所有CLI都支持两个通用的求助方式：加 --help查看用法，加 --version查看版本号。
+- 几乎所有CLI都支持两个通用的求助方式：加`--help`查看用法，加`--version`查看版本号。
 - 安装完CLI后提示command not found，是系统找不到它，常因为安装位置不在PATH里，或需要重开终端。
 - 做一个自己的小工具，也可以做成CLI，见[脚本](/words/script)。
 

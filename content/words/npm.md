@@ -36,11 +36,11 @@ npm run build      # 构建
 ```
 
 ```prompt
-npm install卡住或报错了，输出如下（粘贴）。请判断是网络问题、版本问题还是别的，并给我最小的修复步骤。
+`npm install`卡住或报错了，输出如下（粘贴）。请判断是网络问题、版本问题还是别的，并给我最小的修复步骤。
 ```
 
 ## 容易踩的坑
-- 在没有package.json的文件夹里运行npm install，会报错找不到文件。先确认位置。
-- 看到「vulnerabilities」安全警告就让AI执行audit fix --force。这可能升级到不兼容的版本，把项目搞坏。先问AI影响。
+- 在没有package.json的文件夹里运行`npm install`，会报错找不到文件。先确认位置。
+- 看到「vulnerabilities」安全警告就让AI执行`npm audit fix --force`。这可能升级到不兼容的版本，把项目搞坏。先问AI影响。
 - 一个项目里混用npm和pnpm，导致依赖不一致。
 - 随便装不明来源的包。让AI说明包的作用和知名度。

@@ -24,9 +24,9 @@ updated: 2026-11-18
 - 读过[第4关](/start/save-data)，大致明白数据库、登录和密钥。
 - 一个[Supabase](/words/supabase)账号和一个新项目。截至2026年11月，官方定价页写明免费计划为2个活跃项目、500MB数据库、5万月活用户，免费项目一周不活跃会被暂停。以官方页面为准。
 - 国内读者：Supabase是海外服务，国内网络访问可能不稳，请上线后用国内网络实测。
-- 在Supabase后台找到：Project URL和可公开使用的API Key（界面可能叫publishable key或anon key）。**不要用service_role密钥**。
+- 在Supabase后台找到：Project URL和可公开使用的API Key（界面可能叫publishable key或anon key）。不要用service_role密钥（新名字叫secret key）。
 
-> [!warn] Supabase自带的邮件发送服务有很低的限额：官方文档写明内置服务每小时仅2封邮件，要提高需配置自己的邮件服务。这意味着开启「邮箱验证」后，你自己试几次注册就会被限流。开发测试阶段，可以在Supabase后台的Authentication → Sign In / Providers里找到邮箱登录的设置，关闭「Confirm email」。正式给别人用之前，再配置邮件服务并打开。菜单名称以实际界面为准。
+> [!warn] Supabase自带的邮件发送服务有很低的限额：官方文档写明内置服务每小时仅2封邮件，要提高需配置自己的邮件服务。这意味着开启「邮箱验证」后，你自己试几次注册就会被限流。另外官方文档还写明，内置服务只给项目所属团队成员的邮箱发信，别的地址会报`Email address not authorized`，所以验证时用你自己的邮箱，不要用别人的。开发测试阶段，可以在Supabase后台的Authentication → Sign In / Providers里找到邮箱登录的设置，关闭「Confirm email」。正式给别人用之前，再配置邮件服务并打开。菜单名称以实际界面为准。
 
 ## 第1步：设计数据，先不写代码
 

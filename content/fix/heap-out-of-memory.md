@@ -23,10 +23,10 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行npm run build（或dev）时报JavaScript heap out of memory。
-请先告诉我这台电脑的内存大小和node -v，然后用NODE_OPTIONS=--max-old-space-size=4096重试一次，确认是否只是上限不够。
+我运行`npm run build`（或dev）时报JavaScript heap out of memory。
+请先告诉我这台电脑的内存大小和`node -v`，然后用`NODE_OPTIONS=--max-old-space-size=4096`重试一次，确认是否只是上限不够。
 如果调高后仍然崩，或者内存涨得异常快，请帮我排查：是否有死循环、一次加载超大文件或大量图片、是否把node_modules或构建产物纳入了扫描。
-不要把上限设得超过电脑物理内存。
+不要把上限设得超过电脑实际内存的一半左右。
 最后给出结论：是项目确实需要更多内存，还是代码有问题，并验证构建成功。
 ```
 
@@ -35,7 +35,7 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 Mac / Linux，调高到约4GB（单位是MB）：
 
 ```bash
-NODE_OPTIONS=--max-old-space-size=4096 npm run build
+`NODE_OPTIONS=--max-old-space-size=4096` npm run build
 ```
 
 这条命令只对这一次运行有效。

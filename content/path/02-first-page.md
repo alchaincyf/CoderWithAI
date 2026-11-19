@@ -48,7 +48,7 @@ updated: 2026-11-18
 
 在桌面新建一个文件夹，叫`my-site`。一个项目就是一个文件夹，所有东西都放里面。
 
-国内线：在TRAE里用「打开文件夹」打开它，保持IDE模式。国际线：在终端里`cd`进去，运行`claude`或`codex`（具体步骤见[第1关](/path/setup)）。
+国内线：在TRAE里用「打开文件夹」打开它，保持IDE模式。国际线：在终端里`cd`进去，运行`claude`或`codex`（具体步骤见[第1关](/start/setup)）。
 
 你会看到：文件夹是空的，AI的输入框在等你。
 
@@ -130,17 +130,23 @@ updated: 2026-11-18
 
 ### 第5步：第一次存档
 
-用Git存档，等于给当前状态拍一张快照。以后AI改坏了，能退回来。你不用背Git命令，会说这句话就行：
+用Git存档，等于给当前状态拍一张快照。以后AI改坏了，能退回来。你不用背Git命令，会说这句话就行。
+
+先做一件小事：每次存档都会记下「作者邮箱」，等你在第3关把项目传到GitHub，这个邮箱会跟着每条记录一起被别人看到。所以不要用工作邮箱或常用邮箱，用GitHub提供的隐私邮箱：
+
+1. 登录github.com（还没有账号，先按[第3关](/start/go-live)第1步注册，注册完回来）。
+2. 打开Settings，进入Emails页面，勾选「Keep my email addresses private」。
+3. 页面上会显示一个以`@users.noreply.github.com`结尾的地址，格式是`数字ID+用户名@users.noreply.github.com`，复制它，等AI问邮箱时就给它。具体界面以[GitHub官方文档](https://docs.github.com/en/account-and-profile/how-tos/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address)为准。
 
 ```prompt
 请帮我把这个项目用Git存档：
 1. 如果还不是Git仓库，先初始化。
-2. 如果Git提示需要设置用户名和邮箱，先问我，不要自己编。
+2. 如果Git提示需要设置用户名和邮箱，先问我，不要自己编。邮箱我会给你GitHub的隐私邮箱（以`@users.noreply.github.com`结尾），不要用任何别的邮箱。
 3. 把当前所有文件提交一次，提交说明写成「第1版：个人小站基础版」。
-4. 最后运行git log，告诉我存档成功了没有，并解释你做了什么。
+4. 最后运行`git log`，告诉我存档成功了没有，并解释你做了什么。
 ```
 
-你会看到：AI会在终端里运行几条命令，其中可能会问你许可。最后给你看一条记录，大意是有一次[提交](/words/commit)，说明里有你要求的那句话。如果Git要用户名和邮箱，AI会问你，你给自己的名字和常用邮箱即可。
+你会看到：AI会在终端里运行几条命令，其中可能会问你许可。最后给你看一条记录，大意是有一次[提交](/words/commit)，说明里有你要求的那句话。如果Git要用户名和邮箱，AI会问你：名字随你起，邮箱给上面那个隐私邮箱。
 
 如果看到别的：提示不是Git仓库，见[git-not-a-repo](/fix/git-not-a-repo)。如果你用TRAE而AI不能直接运行命令，让它把命令列给你，在编辑器自带的终端里粘贴运行。
 
@@ -163,7 +169,7 @@ updated: 2026-11-18
 
 ### 第7步：写一份给AI的项目说明书
 
-AI每次开新对话都是「失忆」的，你要把规矩写下来。这份文件就是[AGENTS.md与CLAUDE.md](/words/agents-md)：Claude Code读`CLAUDE.md`，Codex读`AGENTS.md`。其他工具（包括TRAE）读哪个文件，请直接问它，我没有在官方页面核实。
+AI每次开新对话都是「失忆」的，你要把规矩写下来。这份文件就是[AGENTS.md与CLAUDE.md](/words/agents-md)：Codex读`AGENTS.md`；Claude Code官方推荐用`CLAUDE.md`，新版（v2.1.277起）在没有`CLAUDE.md`时也会直接读`AGENTS.md`。其他工具（包括TRAE）读哪个文件，请直接问它，或以工具官方文档为准。
 
 ```prompt
 请阅读当前项目，为它写一份项目说明书，文件名叫AGENTS.md，不超过40行，只写你从项目里确认过的事实：
@@ -224,7 +230,7 @@ AI每次开新对话都是「失忆」的，你要把规矩写下来。这份文
 存档：
 
 ```prompt
-请帮我把这个项目用Git存档：没有仓库就先初始化；需要用户名和邮箱时先问我，不要自己编；把当前所有文件提交一次，说明写成「第1版：个人小站基础版」；最后运行git log告诉我是否成功，并解释你做了什么。
+请帮我把这个项目用Git存档：没有仓库就先初始化；需要用户名和邮箱时先问我，不要自己编（邮箱我会给你GitHub隐私邮箱，以`@users.noreply.github.com`结尾）；把当前所有文件提交一次，说明写成「第1版：个人小站基础版」；最后运行`git log`告诉我是否成功，并解释你做了什么。
 ```
 
 第3轮，加内容并修问题：

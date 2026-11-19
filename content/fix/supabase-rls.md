@@ -32,7 +32,7 @@ updated: 2026-11-18
 1. 先检查这张表的结构和已有的RLS策略（可以看supabase/migrations里的SQL，或让我去控制台复制）。
 2. 判断原因：是没有INSERT策略？策略条件不满足？还是用户没登录导致auth.uid()为null？还是插入时没有带上user_id？
 3. 给出最小范围的修复：为authenticated角色写一条INSERT策略，用with check ((select auth.uid()) = user_id)，并让user_id默认等于auth.uid()。同样检查SELECT/UPDATE/DELETE策略是否合理。
-4. 严禁用"关闭RLS"或"改用service_role key"来绕过。service_role key绝不能出现在前端代码里。
+4. 严禁用"关闭RLS"或"改用secret key（旧名service_role）"来绕过。secret key绝不能出现在前端代码里。
 SQL先给我看，我确认后再执行。
 ```
 
@@ -60,7 +60,7 @@ using ( (select auth.uid()) = user_id );
 
 还有一个高发原因：**用户没登录**。未登录时`auth.uid()`是空的，任何依赖它的策略都不通过。先确认前端是登录后才调用的。
 
-> [!warn]网上最常见的「解法」是`alter table ... disable row level security`，或在前端改用service_role密钥。这两种都会让任何人能读写你的整张表。service_role会绕过所有RLS，官方明确要求它只能放在服务端，不能出现在浏览器里。
+> [!warn]网上最常见的「解法」是`alter table ... disable row level security`，或在前端改用secret key（旧名service_role）。这两种都会让任何人能读写你的整张表。secret key（service_role）会绕过所有RLS，官方明确要求它只能放在服务端，不能出现在浏览器里。
 
 ## 下次怎么避免
 

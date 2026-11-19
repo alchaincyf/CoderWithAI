@@ -18,8 +18,8 @@ updated: 2026-11-18
 不贴切的地方：试衣间里看到的和成品大体一致，但开发服务器里的页面为了方便调试做了很多额外处理，速度和成品不一样。
 
 ## 你会在哪儿碰到它
-- 在项目文件夹的[终端](/words/terminal)里运行npm run dev（具体命令以package.json里scripts为准）。
-- 终端会打印一个地址，例如 http://localhost:3000，打开它就能看到页面，见 [localhost](/words/localhost)。
+- 在项目文件夹的[终端](/words/terminal)里运行`npm run dev`（具体命令以package.json里scripts为准）。
+- 终端会打印一个地址，例如`http://localhost:3000`，打开它就能看到页面，见[localhost](/words/localhost)。
 - 终端窗口要一直开着。按Control+C停止它。
 - 改代码保存后，页面自动更新，这叫热更新。
 - 构建出错、代码写错时，浏览器页面上会弹出带红色的错误浮层，终端里也有详细信息。

@@ -31,7 +31,7 @@ Uncaught TypeError: Cannot read properties of undefined (reading 'map')
 （在这里粘贴报错）
 
 请先用人话告诉我：是哪个文件第几行出的错、原因是什么。
-然后修复它，修完运行npm run build确认没有编译错误。
+然后修复它，修完运行`npm run build`确认没有编译错误。
 最后请你描述页面现在应该看到什么，我来对照确认。
 ```
 

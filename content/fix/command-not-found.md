@@ -26,10 +26,10 @@ zsh: command not found: npm
 ```prompt 复制给 Claude Code / Codex
 我在Mac终端里运行claude（或npm / node）时报zsh: command not found。
 请先帮我判断：是没装，还是装了但不在PATH里。
-请依次执行：echo $0、which -a claude npm node、ls ~/.local/bin。
+请依次执行：`echo $0`、`which -a claude npm node`、`ls ~/.local/bin`。
 先告诉我诊断结论，再动手修。
 修复只改我自己的~/.zshrc，不要用sudo，不要改系统文件。
-改完让我开一个新的终端窗口，运行claude --version（或node -v）确认能输出版本号。
+改完让我开一个新的终端窗口，运行`claude --version`（或`node -v`）确认能输出版本号。
 ```
 
 ## 想自己动手的话
@@ -40,7 +40,7 @@ zsh: command not found: npm
 echo $0
 ```
 
-这条命令显示当前用的是哪种终端外壳。显示zsh就按下面做；显示bash，把下面的 .zshrc换成 .bashrc。
+这条命令显示当前用的是哪种终端外壳。显示zsh就按下面做；显示bash，把下面的`.zshrc`换成`.bashrc`。
 
 第二步，如果是claude找不到，先看程序在不在：
 

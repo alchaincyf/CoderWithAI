@@ -33,7 +33,7 @@ updated: 2026-11-18
 - Mac：按Command+空格，输入「终端」，回车。
 - Windows：点开始菜单，搜「PowerShell」，打开。你会看到蓝色或黑色窗口，提示符类似`PS C:\Users\你的名字>`。
 
-先把自己的线选好（没选，回[第0关](/path/what-is-ai-coding)）。下面按「国内线」「国际线」分开写。两条线都要装Node.js和Git，放在最后。
+先把自己的线选好（没选，回[第0关](/start/what-is-ai-coding)）。下面按「国内线」「国际线」分开写。两条线都要装Node.js和Git，放在最后。
 
 ## 动手
 
@@ -158,7 +158,7 @@ claude
 
 ### 国际线：Codex
 
-前提同上，用ChatGPT账号登录。Codex在大陆的可用性我没有在官方页面核实到，请自行确认。
+前提同上，用ChatGPT账号登录。OpenAI官方的[受支持国家和地区名单](https://developers.openai.com/api/docs/supported-countries)不包含中国大陆，名单之外使用可能被封号或停用，和Claude Code一样不适合大陆直接使用，本站不教绕过的办法。
 
 安装命令（来自OpenAI官方仓库的说明）：
 

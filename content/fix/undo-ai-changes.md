@@ -25,9 +25,9 @@ AI改代码是真的在改你磁盘上的文件，改错了不会自动恢复。
 ```prompt 复制给 Claude Code
 项目被改坏了，我想回到改动之前能用的状态。请先不要修改任何文件。
 
-1. 运行git status和git diff --stat，告诉我改了哪些文件、改了多少。
-2. 运行git log --oneline -10，列出最近的提交。
-3. 在回退之前，先帮我把当前状态保存起来：git stash push -u -m "ai-broken-backup"。
+1. 运行`git status`和`git diff --stat`，告诉我改了哪些文件、改了多少。
+2. 运行`git log --oneline -10`，列出最近的提交。
+3. 在回退之前，先帮我把当前状态保存起来：`git stash push -u -m "ai-broken-backup"`。
 4. 然后告诉我回到哪个提交最合适，以及具体命令，等我确认再执行。
 说明每个命令会丢失什么。
 ```
@@ -40,7 +40,7 @@ Claude Code：在输入框为空时按两次`Esc`，或者输入`/rewind`（别�
 - Restore conversation：只退回对话，代码保留
 - Restore code：只退回代码，对话保留
 
-局限：官方说明它不跟踪Bash命令对文件的改动，也不跟踪子代理（subagent）的编辑，只是会话级的快速恢复，不替代Git。
+局限：官方说明：只被Bash命令改过的文件不会被跟踪，子代理（subagent）的编辑在部分情形下也不会被恢复，它只是会话级的快速恢复，不替代Git。
 
 Cursor：在对话时间线上点击之前那条请求的Restore Checkpoint按钮，文件会回到那个状态。官方说明检查点只撤销Agent的修改，与Git独立，文档里没有列出快捷键。
 

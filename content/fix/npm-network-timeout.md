@@ -27,11 +27,11 @@ npm默认从海外的registry.npmjs.org下载依赖包。国内网络访问它�
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我在国内运行npm install卡住或报ETIMEDOUT / ECONNRESET。
-请先解释原因，再运行npm config get registry、npm config get proxy、npm config get https-proxy。
-然后把registry设成 https://registry.npmmirror.com，再重新 npm install。
+我在国内运行`npm install`卡住或报ETIMEDOUT / ECONNRESET。
+请先解释原因，再运行`npm config get registry`、`npm config get proxy`、`npm config get https-proxy`。
+然后把registry设成`https://registry.npmmirror.com`，再重新`npm install`。
 不要改动我项目里的代码和package-lock.json以外的文件。
-安装成功后告诉我怎么改回官方源，并验证npm run dev能启动。
+安装成功后告诉我怎么改回官方源，并验证`npm run dev`能启动。
 ```
 
 ## 想自己动手的话

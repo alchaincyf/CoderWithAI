@@ -18,7 +18,7 @@ App unavailable in region
 
 Claude只在Anthropic公布的「支持国家和地区」里提供服务。Claude Code官方文档的系统要求里也写了这一条。官方页面写明：未列出的国家或地区即为不支持。截至2026年11月，中国大陆和香港不在列表里，台湾在。以官方页面为准：anthropic.com/supported-countries。
 
-登录失败不一定是地区问题。下面几项先排除，再判断。
+登录失败不一定是地区问题。提示organization disabled时，最常见的原因是残留的`ANTHROPIC_API_KEY`，不是封号。下面几项先排除，再判断。
 
 ## 最快的解法：把这段发给AI
 
@@ -27,8 +27,8 @@ Claude只在Anthropic公布的「支持国家和地区」里提供服务。Claud
 ```prompt 复制给你正在用的AI
 我登录Claude Code时提示App unavailable in region（或403、organization disabled）。
 请帮我做一份排查清单，只用官方信息：
-1. 对照 https://www.anthropic.com/supported-countries 确认我所在地区是否在支持列表里。
-2. 如果在列表里，帮我排查：账号套餐是否包含Claude Code（免费版不含）、浏览器登录后是否回到终端、claude doctor的输出。
+1. 对照`https://www.anthropic.com/supported-countries`确认我所在地区是否在支持列表里。
+2. 如果在列表里，帮我排查：账号套餐是否包含Claude Code（免费版不含）、浏览器登录后是否回到终端、`claude doctor`的输出、环境变量里是否残留`ANTHROPIC_API_KEY`（提示organization disabled时先查它）。
 3. 如果不在列表里，帮我对比国内可用的AI编程工具，列出各自的价格、模型和合规情况，价格以官网为准。
 不要给我任何绕过地区限制的方法。
 ```
@@ -47,7 +47,15 @@ claude doctor
 
 它会列出安装和设置的健康状况。
 
-4. 如果提示organization disabled或账号被停用，在claude.ai的帮助入口联系官方支持并申诉，说明情况，等待官方处理。申诉流程以官方帮助中心为准。
+4. 如果提示organization disabled，而你的订阅其实有效，先查是不是环境里残留了`ANTHROPIC_API_KEY`。官方排错页（code.claude.com/docs/en/troubleshoot-install）写明，它会覆盖订阅登录，导致这个报错。在终端运行：
+
+```bash
+unset ANTHROPIC_API_KEY
+```
+
+然后重开终端再试。要永久去掉，把设置它的那一行从shell配置文件（比如`~/.zshrc`）里删掉。详细见[API 401](/fix/api-401)。
+
+5. 上面都排除了，账号确实被停用，再到claude.ai的帮助入口联系官方支持并申诉，申诉流程以官方帮助中心为准。
 
 如果你所在的地区不在支持范围，合规的选择有：
 

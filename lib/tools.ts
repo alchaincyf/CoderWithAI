@@ -42,14 +42,14 @@ export const TOOLS: Tool[] = [
     what: "OpenAI的AI程序员，有终端版、ChatGPT桌面和手机里的Codex、编辑器插件、云端任务。用ChatGPT账号登录。",
     free: "ChatGPT免费版可做轻量任务",
     paid: "Go 8美元/月（轻量）；Plus 20美元/月；Pro 100美元/月起",
-    cn: "unknown", cnNote: "OpenAI受支持国家页本次无法打开，请自行确认",
+    cn: "no", cnNote: "OpenAI官方受支持国家名单不含中国大陆，名单外使用可能被封号",
     bestFor: "已经订了ChatGPT的人；想要网页、手机、终端多个入口的人",
     weak: "用量按5小时窗口加周限额估算，不透明",
     site: "https://learn.chatgpt.com/docs", pricing: "https://learn.chatgpt.com/docs/pricing", confidence: "medium",
   },
   {
     id: "kimi-code", name: "Kimi Code", maker: "月之暗面", cat: "cli",
-    what: "Kimi出的AI程序员，有命令行、桌面端和VS Code插件，用Kimi会员登录。也能给Claude Code当国产模型接口。",
+    what: "Kimi出的AI程序员，有命令行、桌面端和VS Code插件，用Kimi会员登录。",
     free: "有免费档",
     paid: "Plus 19美元/月起（美元区页面标价，人民币价以官网为准）",
     cn: "yes", cnNote: "官方文档提供大陆专用接口地址",
@@ -81,7 +81,7 @@ export const TOOLS: Tool[] = [
     id: "trae-cn", name: "TRAE 国内版", maker: "字节跳动", cat: "ide",
     what: "字节的AI编程工具国内版：像写文档一样跟AI说需求，它在编辑器里把项目做出来。免费版也能用全部功能。",
     free: "免费版每月500积分，所有功能可用",
-    paid: "Lite 49元/月、Pro 99元/月（首月有优惠）",
+    paid: "Lite 低至39元/月、Pro 低至69元/月（页面标价49元、99元，「低至」的条件以官网为准）",
     cn: "yes", cnNote: "国内版，人民币计价",
     bestFor: "国内零基础用户，先用免费额度上手",
     weak: "积分消耗规则不直观，难预估一个项目要多少积分",
@@ -197,4 +197,13 @@ export const TOOLS: Tool[] = [
     weak: "高档位说明不全",
     site: "https://replit.com", pricing: "https://replit.com/pricing", confidence: "medium",
   },
+];
+
+// 最近一年的变化：老教程里最容易过期的地方。每条都有官方出处。
+export const CHANGES = [
+  { date: "2026-11-18", what: "Google Antigravity免费档里的Claude Sonnet 4.6、Opus 4.6、GPT-OSS-120b下线", src: "https://antigravity.google/pricing" },
+  { date: "2026年", what: "Firebase Studio已不再支持新建工作区和新用户注册，正在关停；官方建议迁到Google AI Studio或Antigravity", src: "https://firebase.google.com/docs/studio" },
+  { date: "2026-06-18", what: "Gemini CLI的个人免费用户迁到Antigravity CLI（命令agy），Gemini CLI主要留给企业许可证和API Key用户", src: "https://github.com/google-gemini/gemini-cli" },
+  { date: "2026-06-02", what: "Windsurf更名为Devin Desktop，旧定价页跳转到devin.ai", src: "https://devin.ai/pricing" },
+  { date: "2026年", what: "Lemon Squeezy官网写明不再接受新注册，将于2027-03-31关闭——海外收款的老教程如果还推荐它，已经过时", src: "https://www.lemonsqueezy.com" },
 ];

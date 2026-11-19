@@ -33,8 +33,8 @@ AI写代码时经常会用到新包，却没告诉你要装，这个错非常普
 我运行项目时报Cannot find module（或Module not found: Can't resolve）。
 请先读完整报错，告诉我是哪个包或文件找不到、哪个文件在引用它。
 然后判断：是package.json里没有这个依赖，还是路径/大小写写错了。
-没有依赖就用npm install装上，并确认它写进了package.json；路径错就修正代码。
-最后重新运行npm run dev，确认这个错消失了，并说明你改了哪几个文件。
+没有依赖就用`npm install`装上，并确认它写进了package.json；路径错就修正代码。
+最后重新运行`npm run dev`，确认这个错消失了，并说明你改了哪几个文件。
 ```
 
 ## 想自己动手的话
@@ -67,7 +67,7 @@ npm install
 
 ## 下次怎么避免
 
-让AI每次新增依赖后，都告诉你「已执行npm install xxx」。部署前在本地跑一次`npm run build`。
+让AI每次新增依赖后，都告诉你「已执行`npm install xxx`」。部署前在本地跑一次`npm run build`。
 
 ## 还不行？
 

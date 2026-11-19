@@ -18,14 +18,15 @@ AGENTS.md和CLAUDE.md都是放在项目里的普通文本文件，写着「这�
 不贴切的地方：同事会记住，AI每个会话都是新人，所以必须写下来。而且它是「建议」而不是「铁律」，AI大多会遵守，但不保证。
 
 ## 你会在哪儿碰到它
-- 项目根目录出现`CLAUDE.md`或`AGENTS.md`。Claude Code读CLAUDE.md；OpenAI Codex读AGENTS.md。
-- Claude Code现在也能直接读取AGENTS.md（v2.1.277起），但有条件：只在你的工作目录及其上层没有任何CLAUDE.md时才读；两种都有，只读CLAUDE.md。想兼顾，就在CLAUDE.md里用一行`@AGENTS.md`引入它。
+- 项目根目录出现`CLAUDE.md`或`AGENTS.md`。Claude Code读`CLAUDE.md`；OpenAI Codex读`AGENTS.md`。
+- Claude Code现在也能直接读取AGENTS.md（v2.1.277起），但有条件：只在你的工作目录及其上层没有`CLAUDE.md`或`CLAUDE.local.md`时才读（放在`~/.claude/`下的全局`CLAUDE.md`和`.claude/rules/`不算）；两种都有，只读`CLAUDE.md`。版本低于v2.1.277读不到AGENTS.md，也不会报错；在Bedrock或关闭遥测等会话里，v2.1.281以前也只读`CLAUDE.md`（官方文档code.claude.com/docs/en/memory）。想兼顾，就在CLAUDE.md里用一行`@AGENTS.md`引入它。
 - Codex会从项目根往下到当前目录逐层读取，越靠近当前目录的越后读、优先级越高；默认总大小上限32KiB。
 - 在Claude Code里运行`/init`可以让AI先帮你生成一份初稿。
 
 ## AI提到它时，你该怎么接
 ```prompt 复制给 Claude Code
-请阅读这个项目，为它写一份AGENTS.md，控制在60行以内，只写这些：
+请先运行`claude --version`，告诉我版本是否在2.1.277以上；低于的话，提醒我这个版本读不到AGENTS.md，需要另建CLAUDE.md只写一行`@AGENTS.md`。
+然后阅读这个项目，为它写一份AGENTS.md，控制在60行以内，只写这些：
 1. 项目是做什么的（两句话）；
 2. 怎么启动、怎么测试、怎么构建（给出确切命令）；
 3. 目录结构里最重要的几处；

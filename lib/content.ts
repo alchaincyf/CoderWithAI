@@ -39,8 +39,8 @@ function makeMarked(headings: { id: string; text: string }[]) {
       code(token: Tokens.Code) {
         const lang = (token.lang || "").trim();
         const text = token.text;
-        if (lang === "prompt" || lang.startsWith("prompt ")) {
-          const label = lang.slice(6).trim() || "复制给 AI";
+        if (lang.startsWith("prompt")) {
+          const label = lang.slice(6).trim() || "复制给AI";
           return `<figure class="prompt" data-copy><figcaption><span class="prompt-label">${escapeHtml(label)}</span><button type="button" class="copy-btn" aria-label="复制提示词">复制</button></figcaption><pre>${escapeHtml(text)}</pre></figure>`;
         }
         if (lang === "error") {

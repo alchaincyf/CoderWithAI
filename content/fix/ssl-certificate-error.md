@@ -25,10 +25,10 @@ npm error request to https://registry.npmjs.org/xxx failed, reason: unable to ge
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行npm install（或git、claude）时报UNABLE_TO_GET_ISSUER_CERT_LOCALLY / self signed certificate。
+我运行`npm install`（或git、claude）时报UNABLE_TO_GET_ISSUER_CERT_LOCALLY / self signed certificate。
 请先解释原因，再诊断：检查系统日期时间是否正确，我是否在公司网络或开着杀毒软件的HTTPS扫描。
 如果是公司网络，告诉我向IT要根证书PEM文件，并用NODE_EXTRA_CA_CERTS指向它。
-严禁建议我npm config set strict-ssl false、NODE_TLS_REJECT_UNAUTHORIZED=0或git config http.sslVerify false。
+严禁建议我`npm config set strict-ssl false`、NODE_TLS_REJECT_UNAUTHORIZED=0或`git config http.sslVerify false`。
 修好后重新执行原命令验证。
 ```
 

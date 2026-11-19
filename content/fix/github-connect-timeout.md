@@ -23,11 +23,11 @@ fatal: unable to access 'https://github.com/xxx/yyy.git/': Failed to connect to 
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我在国内用git clone / push时报Failed to connect to github.com port 443。
-请先解释原因，再诊断：运行git config --global --get http.proxy，curl -I https://github.com，并问我代理软件的本地端口。
-如果我有代理，就用git config --global http.proxy设置；设置前告诉我怎么撤销。
+我在国内用`git clone` / push时报Failed to connect to github.com port 443。
+请先解释原因，再诊断：运行`git config --global --get http.proxy`，`curl -I https://github.com`，并问我代理软件的本地端口。
+如果我有代理，就用`git config --global http.proxy`设置；设置前告诉我怎么撤销。
 没有代理的话，帮我把~/.ssh/config配成通过ssh.github.com的443端口连接。
-不要关闭SSL校验，不要改系统文件。最后用git ls-remote对目标仓库验证能连通。
+不要关闭SSL校验，不要改系统文件。最后用`git ls-remote`对目标仓库验证能连通。
 ```
 
 ## 想自己动手的话
@@ -36,14 +36,12 @@ fatal: unable to access 'https://github.com/xxx/yyy.git/': Failed to connect to 
 
 ```bash
 git config --global http.proxy http://127.0.0.1:7890
-git config --global https.proxy http://127.0.0.1:7890
 ```
 
 不再需要时撤销，否则代理软件关掉后git会全部失败：
 
 ```bash
 git config --global --unset http.proxy
-git config --global --unset https.proxy
 ```
 
 方法二，改用SSH走443端口。GitHub官方文档提供了这种做法，适合22端口被封的网络。在~/.ssh/config里加入：

@@ -21,13 +21,13 @@ fatal: not a git repository (or any of the parent directories): .git
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code
-我在终端运行git命令时报错：fatal: not a git repository (or any of the parent directories): .git
+我在终端运行git命令时报错：fatal: not a git repository (or any of the parent directories): `.git`
 
-请先不要运行git init。按顺序做：
-1. 运行pwd和ls -a，告诉我当前在哪个目录、里面有没有 .git。
-2. 如果当前目录不对，帮我找到真正的项目目录（上一层或下一层，找带 .git的）。
-3. 如果确认这个项目从来没用过Git，再告诉我为什么要初始化，我同意后再git init并做第一次提交。
-全程用大白话解释，改完用git status验证。
+请先不要运行`git init`。按顺序做：
+1. 运行pwd和`ls -a`，告诉我当前在哪个目录、里面有没有`.git`。
+2. 如果当前目录不对，帮我找到真正的项目目录（上一层或下一层，找带`.git`的）。
+3. 如果确认这个项目从来没用过Git，再告诉我为什么要初始化，我同意后再`git init`并做第一次提交。
+全程用大白话解释，改完用`git status`验证。
 ```
 
 ## 想自己动手的话
@@ -63,7 +63,7 @@ git init
 
 这条命令会在当前文件夹里创建`.git`，从此开始管理。
 
-> [!warn]别在家目录或桌面这种大文件夹里git init。Git会把里面所有东西都当成项目，后面提交时会混进一堆无关文件，甚至带上密码和私人资料。初始化前先确认`pwd`显示的就是项目文件夹。
+> [!warn]别在家目录或桌面这种大文件夹里`git init`。Git会把里面所有东西都当成项目，后面提交时会混进一堆无关文件，甚至带上密码和私人资料。初始化前先确认`pwd`显示的就是项目文件夹。
 
 ## 下次怎么避免
 

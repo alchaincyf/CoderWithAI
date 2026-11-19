@@ -26,7 +26,7 @@ npm error   npm run
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我运行npm run dev报Missing script: "dev"。
+我运行`npm run dev`报Missing script: "dev"。
 请先运行pwd和ls，确认我所在的目录，再读package.json的scripts字段。
 告诉我这个项目实际可用的启动命令是什么。
 如果我在错的文件夹（比如项目在子文件夹里），告诉我该cd到哪里。

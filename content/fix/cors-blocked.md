@@ -26,7 +26,7 @@ Access to fetch at 'https://api.example.com/data' from origin 'http://localhost:
 （把完整的红色报错粘贴到这里，包含Access to fetch at ... from origin ...）
 
 请先判断：这个接口是我自己的后端，还是第三方服务（如OpenAI、天气API等）？
-- 如果是我自己的后端：在服务端加上允许我前端来源的CORS设置，来源只写我的具体域名（开发时用 http://localhost:端口），不要用通配符 *，并说明OPTIONS预检请求怎么处理。
+- 如果是我自己的后端：在服务端加上允许我前端来源的CORS设置，来源只写我的具体域名（开发时用`http://localhost:端口`），不要用通配符 *，并说明OPTIONS预检请求怎么处理。
 - 如果是第三方：不要让浏览器直接请求它。改成由我项目的服务端接口（如Next.js的API route）代为请求，前端只调用我自己的接口。同时检查API密钥是否因此被放进了前端代码，是的话改到服务端。
 改完用浏览器控制台和网络面板验证请求成功。
 ```

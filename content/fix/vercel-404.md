@@ -29,7 +29,7 @@ ID: hnd1::abcde-1731900000000-0123456789ab
 1. 看package.json、框架配置（vite.config / next.config等）和vercel.json，告诉我这是什么框架、构建后的文件输出到哪个目录。
 2. 对比我在Vercel项目设置里的Framework Preset、Output Directory、Root Directory，我会告诉你当前的值：（把你在Settings里看到的填在这里）
 3. 判断是不是单页应用刷新子路径404，如果是，给出vercel.json重写规则的方案。
-4. 改完后在本地npm run build，确认输出目录里有index.html，再告诉我要提交什么、在Vercel上改什么。
+4. 改完后在本地`npm run build`，确认输出目录里有index.html，再告诉我要提交什么、在Vercel上改什么。
 ```
 
 ## 想自己动手的话

@@ -25,11 +25,11 @@ ERR_CONNECTION_REFUSED
 ## 最快的解法：把这段发给AI
 
 ```prompt 复制给 Claude Code / Codex
-我在浏览器打开 http://localhost:3000 提示ERR_CONNECTION_REFUSED。
-请先检查开发服务器是否在运行：看终端里有没有npm run dev的进程，或运行lsof -i :3000（Windows用netstat -ano | findstr :3000）。
+我在浏览器打开`http://localhost:3000`提示ERR_CONNECTION_REFUSED。
+请先检查开发服务器是否在运行：看终端里有没有`npm run dev`的进程，或运行`lsof -i :3000`（Windows用`netstat -ano | findstr :3000`）。
 没在运行就启动它，读终端输出，告诉我它实际监听的地址和端口。
 如果启动失败，把报错用人话解释给我并修复。
-最后用curl -I对该地址验证返回200，再让我刷新浏览器。
+最后用`curl -I`对该地址验证返回200，再让我刷新浏览器。
 ```
 
 ## 想自己动手的话

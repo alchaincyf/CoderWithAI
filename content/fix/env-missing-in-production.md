@@ -27,7 +27,7 @@ Error: Missing API key. Pass it via the `apiKey` parameter or set the OPENAI_API
 
 请：
 1. 搜索代码里所有用到process.env（或import.meta.env）的地方，列出变量名清单，并标出哪些是给浏览器用的（Next.js的NEXT_PUBLIC_开头，Vite的VITE_开头）。
-2. 对比本地 .env文件，告诉我线上需要配置哪些变量名。只列变量名，不要打印变量的值。
+2. 对比本地`.env`文件，告诉我线上需要配置哪些变量名。只列变量名，不要打印变量的值。
 3. 检查有没有把真正的密钥放在会暴露给浏览器的变量里（比如NEXT_PUBLIC_开头），有就指出来，并改成只在服务端使用。
 4. 告诉我在Vercel里怎么配、配完怎么重新部署。
 ```
@@ -40,7 +40,7 @@ Error: Missing API key. Pass it via the `apiKey` parameter or set the OPENAI_API
 
 有一种特殊情况：Next.js里名字以`NEXT_PUBLIC_`开头的变量，是在构建时直接写进网页代码里的。如果浏览器里是`undefined`，要确认变量名带了这个前缀、写得完整（不要用`process.env[name]`这种动态写法）、并且在配置后重新构建过。
 
-> [!warn] `NEXT_PUBLIC_`、`VITE_`开头的变量会暴露给所有访问网站的人。真正的密钥（OpenAI Key、数据库密码、Supabase的service_role）不要放进去，应该只在服务端代码里读取。
+> [!warn] `NEXT_PUBLIC_`、`VITE_`开头的变量会暴露给所有访问网站的人。真正的密钥（OpenAI Key、数据库密码、Supabase的secret key，旧名service_role）不要放进去，应该只在服务端代码里读取。
 
 ## 下次怎么避免
 

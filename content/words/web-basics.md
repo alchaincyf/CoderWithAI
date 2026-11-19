@@ -19,7 +19,7 @@ updated: 2026-11-18
 
 ## 你会在哪儿碰到它
 - 文件后缀：.html、.css、.js。你让AI做一个单页网站，最小的版本就是一个index.html，三样东西可以写在一个文件里。
-- 项目里还会看到 .ts、.tsx。TypeScript是JavaScript的加强版，多了「类型检查」，写错更早被发现，最终仍会变成JavaScript运行。
+- 项目里还会看到`.ts`、`.tsx`。TypeScript是JavaScript的加强版，多了「类型检查」，写错更早被发现，最终仍会变成JavaScript运行。
 - 用[React](/words/react)等框架时，看起来不像HTML，但最后到浏览器里还是这三样。
 - 想改文字或颜色，对AI说「改标题文字」「把按钮改成蓝色」就行，不用知道它在哪个文件里。
 
