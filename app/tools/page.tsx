@@ -67,7 +67,7 @@ export default function Page() {
       </section>
       <div className="callout callout-warn" style={{ margin: "40px 0 80px", maxWidth: 820 }}>
         <b>关于「国内能不能用」</b>
-        <p>Anthropic和OpenAI的官方账号都不支持中国大陆，名单外使用可能被封号，本站不教任何绕过地区限制的办法。但Claude Code、Codex这两个软件本身可以接别家模型：DeepSeek等国内模型官方提供了接入说明，用CC Switch把模型切到它们的官方API，人民币按量付费，不需要海外账号。也可以直接用国内最推荐的DeepSeek Harness。</p>
+        <p>Anthropic和OpenAI的官方账号都不支持中国大陆，名单外使用可能被封号，本站不教任何绕过地区限制的办法。Claude Code、Codex这两个软件可以接别家模型：DeepSeek等国内厂商官方提供了接入文档，用CC Switch把模型切到它们的官方API，人民币按量付费。但要如实说：Anthropic把Claude Code列为仅在支持地区提供的应用，这种用法官方没有表态，本站不替你判断是否合规；Codex命令行是开源软件，限制少一些。最稳妥的是直接用国内最推荐的DeepSeek Harness。</p>
         <p>只推荐接各模型的<b>官方</b>API。网上卖「Claude/GPT额度」的中转站、拼车共享账号，来路不明、可能违反厂商条款、Key还可能泄露，本站一律不推荐。</p>
       </div>
     </div>

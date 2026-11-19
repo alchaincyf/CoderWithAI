@@ -1,7 +1,7 @@
 ---
 title: "Claude Code登录失败、地区不支持或账号被封怎么办"
 slug: claude-code-region
-summary: Claude Code只对官方支持地区开放。先确认所在地，再选合规的路。
+summary: Claude Code只对官方支持地区开放。先确认所在地，再看有哪些路，风险自己评估。
 category: AI工具
 match: ["App unavailable in region", "not available in your region", "not available in your country", "organization has been disabled", "403 Forbidden", "OAuth error", "Login failed"]
 platform: [all]
@@ -22,14 +22,14 @@ Claude只在Anthropic公布的「支持国家和地区」里提供服务。Claud
 
 ## 最快的解法：把这段发给AI
 
-如果你手头有别的能用的AI（比如国内的AI编程工具），把这段发给它：
+如果你手头有别的能用的AI（比如DeepSeek Harness、TRAE这类国内工具），把这段发给它：
 
 ```prompt 复制给你正在用的AI
 我登录Claude Code时提示App unavailable in region（或403、organization disabled）。
 请帮我做一份排查清单，只用官方信息：
 1. 对照`https://www.anthropic.com/supported-countries`确认我所在地区是否在支持列表里。
 2. 如果在列表里，帮我排查：账号套餐是否包含Claude Code（免费版不含）、浏览器登录后是否回到终端、`claude doctor`的输出、环境变量里是否残留`ANTHROPIC_API_KEY`（提示organization disabled时先查它）。
-3. 如果不在列表里，帮我对比国内可用的AI编程工具，列出各自的价格、模型和合规情况，价格以官网为准。
+3. 如果不在列表里，帮我对比两条路：DeepSeek Harness，以及用CC Switch把Claude Code接到国内模型的官方API，列出各自的价格、注意事项和使用限制方面的风险，价格以官网为准。
 不要给我任何绕过地区限制的方法。
 ```
 
@@ -57,13 +57,16 @@ unset ANTHROPIC_API_KEY
 
 5. 上面都排除了，账号确实被停用，再到claude.ai的帮助入口联系官方支持并申诉，申诉流程以官方帮助中心为准。
 
-如果你所在的地区不在支持范围，合规的选择有：
+如果你所在的地区不在支持范围，可以考虑的路有：
 
-- 使用国内厂商提供的AI编程工具，在国内合规、能直接付款，适合先把项目做起来。
+- 用CC Switch，把Claude Code（或Codex）接到DeepSeek、Kimi、GLM、Qwen等国内模型的官方API上，模型调用走国内厂商的官方API。如实说：Anthropic官方把Claude Code列为仅在支持地区提供的应用，中国大陆不在名单内，这种用法Anthropic没有说明是否允许；DeepSeek等国内厂商官方提供了接入文档。本站不替你判断是否合规，风险请自行评估。Codex命令行是开源软件（Apache-2.0），换模型使用的限制少一些，在意这一点的话可以优先用Codex加CC Switch。步骤见[第1关](/start/setup)的路线B，遇到问题见[CC Switch切换后还是报错](/fix/cc-switch-not-working)。
+- 换成DeepSeek官方的编码Agent DeepSeek Harness，国内直接用，人民币充值，步骤见[第1关](/start/setup)的路线A。
 - 在官方支持的地区、用本人的账号和付款方式使用。
-- 所在单位如有合规的企业渠道，按单位规定走。
+- 所在单位如有企业渠道，按单位规定走。
 
-> [!warn]用技术手段伪装所在地、买卖共享账号，违反服务条款，常见后果就是账号被封，已充的钱也很难追回。本站不教这类方法。
+只接各模型厂商的官方API，不用[中转站](/words/api-relay)。
+
+> [!warn]用技术手段伪装所在地、代购账号、买卖或拼车共享账号、使用机场，违反服务条款，常见后果就是账号被封，已充的钱也很难追回。本站不教这类方法。
 
 ## 下次怎么避免
 

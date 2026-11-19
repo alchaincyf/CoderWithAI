@@ -40,11 +40,11 @@ export const TOOLS: Tool[] = [
     what: "装在电脑上的AI程序员：你用中文说需求，它自己读文件、写代码、跑命令、修错。也有桌面App、编辑器插件和网页版。",
     free: "没有免费档（Claude免费版不含Claude Code）",
     paid: "Pro 20美元/月；Max 100美元/月起",
-    cn: "no", cnNote: "Anthropic官方账号不支持中国大陆；国内可以用CC Switch把它接到DeepSeek、Kimi、GLM等国内模型的官方API上使用",
+    cn: "no", cnNote: "Anthropic官方把Claude Code列为仅在支持地区提供的应用，大陆不在名单内；用CC Switch接国内模型API的用法官方未表态，风险自行评估",
     bestFor: "想把一个真项目从零做完并长期维护的人；Skills、MCP、子代理生态最完整",
     weak: "Anthropic官方账号大陆不能合规使用；终端界面对新手有门槛",
     site: "https://code.claude.com/docs/en/overview", pricing: "https://claude.com/pricing", confidence: "high",
-    rank: "top", pick: "AI编程Agent的标杆，教程、插件和Skills生态最全，本站路线默认用它。在国内，用CC Switch接上国内模型的API就能用",
+    rank: "top", pick: "AI编程Agent的标杆，教程、插件和Skills生态最全，本站路线默认用它。国内用户可以用CC Switch接国内模型API，但官方未表态，风险见第1关",
   },
   {
     id: "codex", name: "OpenAI Codex", maker: "OpenAI", cat: "cli",

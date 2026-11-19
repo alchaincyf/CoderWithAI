@@ -5,7 +5,7 @@ order: 2
 level: 2
 summary: 做出一个「我的个人小站」，按你的意思改三轮，让AI解释它做了什么，并用Git存档。
 time: 一个晚上，约2小时
-cost: 0元（国内线用TRAE免费额度；国际线用你已有的订阅）
+cost: 0元（国内线用DeepSeek API的小额充值或TRAE免费额度；国际线用你已有的订阅）
 goal: 自己电脑上能打开一个按你意思改过三轮的网页，并且存过档
 words: [prompt, plan-mode, agents-md, git, commit, rollback, frontend, markdown, context-window, hallucination]
 fixes: [undo-ai-changes, context-full, ai-stuck-loop, git-not-a-repo, blank-page]
@@ -48,7 +48,7 @@ updated: 2026-11-18
 
 在桌面新建一个文件夹，叫`my-site`。一个项目就是一个文件夹，所有东西都放里面。
 
-国内线：在TRAE里用「打开文件夹」打开它，保持IDE模式。国际线：在终端里`cd`进去，运行`claude`或`codex`（具体步骤见[第1关](/start/setup)）。
+国内线路线A：在DeepSeek Harness里把它添加为工作区（官方说明添加的是启动`dsh`时所在的目录；如果添加不了，就关掉服务，进`my-site`文件夹重新运行`npx @deepseek-ai/dsh web`）。国内线路线B和国际线：在终端里`cd`进去，运行`claude`或`codex`。用TRAE的话，在TRAE里用「打开文件夹」打开它，保持IDE模式。具体步骤见[第1关](/start/setup)。
 
 你会看到：文件夹是空的，AI的输入框在等你。
 
