@@ -1,30 +1,14 @@
 import type { MetadataRoute } from "next";
-import { getAvailableLanguages, getTutorials, Tutorial } from "@/lib/tutorials";
+import { getDocs, hrefOf, type Section } from "@/lib/content";
+import { SITE } from "@/lib/site";
 
-const baseUrl = "https://www.coderwithai.top";
-
-// 教程是按目录嵌套的：目录本身不是页面，只收叶子上的 .md 页面
-function collectPaths(items: Tutorial[], out: string[]) {
-  for (const t of items) {
-    if (t.items) collectPaths(t.items, out);
-    else out.push(t.path);
-  }
-}
-
-const encodePath = (p: string) => p.split("/").map(encodeURIComponent).join("/");
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const languages = await getAvailableLanguages();
-  const entries: MetadataRoute.Sitemap = [{ url: baseUrl }];
-
-  for (const lang of languages) {
-    entries.push({ url: `${baseUrl}/${encodeURIComponent(lang)}` });
-    const paths: string[] = [];
-    collectPaths(await getTutorials(lang), paths);
-    for (const p of paths) {
-      entries.push({ url: `${baseUrl}/${encodeURIComponent(lang)}/${encodePath(p)}` });
-    }
-  }
-
-  return entries;
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = "2026-11-18";
+  const fixed = ["", "/start", "/recipes", "/fix", "/words", "/tools", "/brief", "/about"].map((p) => ({
+    url: SITE.url + p, lastModified: now, changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.8,
+  }));
+  const docs = (["path", "recipes", "fix", "words"] as Section[]).flatMap((s) =>
+    getDocs(s).map((d) => ({ url: SITE.url + hrefOf(d), lastModified: d.updated, changeFrequency: "monthly" as const, priority: s === "path" ? 0.9 : 0.6 })),
+  );
+  return [...fixed, ...docs];
 }
