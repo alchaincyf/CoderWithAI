@@ -1,0 +1,122 @@
+[
+ {
+  "target": "level-0",
+  "quote": "我之前在用Cursor过程中也是遇到了一大堆问题，每天做项目每天解bug，但是这个过程我是始终觉得太有趣太好玩了。怎么能有这么好玩的事情，每次尝试不同路径的解法去处理掉一个难题后，都和在游戏里打败了一个大boss，通关了一般有快感。",
+  "date": "2024-12-13",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/675bf3b2139a099980557991"
+ },
+ {
+  "target": "level-0",
+  "quote": "以我现在「编程能力」，压根都没法进大厂混个P6或2-1的初级工程师岗位，但是这不重要啊，我有AI帮我补齐短板。",
+  "date": "2025-01-16",
+  "source": "公众号",
+  "title": "给互联网大厂2000+程序员做了AI编程的分享后，这是我对大厂员工的一些建议",
+  "url": "https://mp.weixin.qq.com/s/70OgEn1LQC3lUxZzq_yOeA"
+ },
+ {
+  "target": "level-1",
+  "quote": "但，我刚刚想着，为什么不直接让cc帮我解决这个版本号的问题呢？然后，它确实一次性给我处理好了。",
+  "date": "2026-01-30",
+  "source": "知识星球"
+ },
+ {
+  "target": "level-1",
+  "quote": "真正的native应该是遇到各种问题都能第一直觉想到让AI先试试看。再尝试自己动手，或者查看人类写的资料。",
+  "date": "2026-01-30",
+  "source": "知识星球"
+ },
+ {
+  "target": "level-2",
+  "quote": "修bug而已，你用自然语言描述就好了，但是我确实发现了，大多数人是缺乏充分完整地描述自己遇到了什么问题，期望如何解决的。",
+  "date": "2024-11-28",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/67480fdd481b495490274ed7"
+ },
+ {
+  "target": "level-2",
+  "quote": "所以，那就做吧。于是在发布完当天的视频后我立刻又花了一个小时左右的时间去做了这款app。",
+  "date": "2024-11-11",
+  "source": "公众号",
+  "title": "我用Cursor1小时开发的App，上了AppStore排行榜Top20"
+ },
+ {
+  "target": "level-3",
+  "quote": "25分钟后，初版网站做完了（细节待调整），并且还有专属域名的那种...有AI编程是真就不一样",
+  "date": "2025-03-11",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/67cff2b570a62475fda6b1e7"
+ },
+ {
+  "target": "level-4",
+  "quote": "继登录和后端数据库问题解决后，把接Stripe支付的能力也在同一天搞定了。\n我宣布Cursor就是我的神",
+  "date": "2024-09-16",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/66e838736fbc73186ff48f12"
+ },
+ {
+  "target": "level-5",
+  "quote": "但是因为之前的会需要用户使用自己的API key，这个难度实在是太大了。所以做成GPTs应该容易用些",
+  "date": "2024-01-16",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/65a5f27e6a003e109c2da126"
+ },
+ {
+  "target": "level-6",
+  "quote": "一直听闻苹果审核很严格，时间周期很长，没想到三个小时就一次性过审了。\n好兴奋！比开发网站更有做出一个属于自己的作品的感觉。",
+  "date": "2024-10-09",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/67064cff2c40ae3010349eff"
+ },
+ {
+  "target": "level-7",
+  "quote": "做现在的「小猫补光灯」时，每当有人问我怎么变现时，我回的都是：孩子还没满月呢，就要他做三菜一汤了？\n很矛盾，但又确实都是我的想法。",
+  "date": "2024-11-17",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/6739604e7d634efb980a9e70"
+ },
+ {
+  "target": "level-7",
+  "quote": "我就想看看收1块钱能让转化率下降多少。……从免费调整到付费的第二天，下载量环比不降反升了",
+  "date": "2024-11-30",
+  "source": "公众号",
+  "title": "登顶AppStore付费排行榜Top1的「小猫补光灯」",
+  "url": "https://mp.weixin.qq.com/s/OjrbaIcMvJJNY-IA1G6cDQ"
+ },
+ {
+  "target": "fix-undo-ai-changes",
+  "quote": "随着项目复杂度提升，改bug经常改着改着就进入按下葫芦起了瓢。修复1个小bug生出10个搞不定的大毛病的状态。\n然后怎么办呢？\n只能git reset --hard，回到前一次你们还算甜蜜的状态，假装什么都没发生过，重新开始聊，试试看这次能不能获得好一些的结果。",
+  "date": "2024-10-13",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/670b42858d505a5acefcf411"
+ },
+ {
+  "target": "fix-ai-stuck-loop",
+  "quote": "我在一个bug多次无法解决时会尝试的prompt是：\n现在我们遇到了{描述遇到问题的功能}问题，我在界面上看到的情况是{描述你看到的界面信息}，终端遇到的问题是{复制代码报错}，和这个功能相关的代码是{@代码文件}。现在，请一步步思考和理解我描述的问题，并提出三个最solid的解决方案，不要急着改代码。",
+  "date": "2025-02-19",
+  "source": "公众号",
+  "title": "AI编程的新起点",
+  "url": "https://mp.weixin.qq.com/s/dmSY3QKZDn3EawFpsUPRjQ"
+ },
+ {
+  "target": "fix-claude-usage-limit",
+  "quote": "一个任务尽量更快的连续完成，因为主agent的缓存时间是1小时，如果你隔几个小时回来提要求，缓存失效的话，输入token的消耗量会明显增大；",
+  "date": "2026-10-13",
+  "source": "即刻",
+  "url": "https://web.okjike.com/originalPost/6ace2780c4f515abc4628108"
+ },
+ {
+  "target": "fix-context-full",
+  "quote": "你需要给cc规则，但...你又不能一次性给太多规则，否则影响任务表现、影响指令遵从情况，上下文也很容易爆掉。",
+  "date": "2025-10-18",
+  "source": "知识星球"
+ },
+ {
+  "target": "fix-secret-leaked",
+  "quote": "我也不是很放心直接把API key发给AI的，这时候还是自己在编辑器中操作替换比较合理。",
+  "date": "2025-07-15",
+  "source": "公众号",
+  "title": "Claude Code + Kimi K2全栈开发教程",
+  "url": "https://mp.weixin.qq.com/s/J5unFm4bbOzaKZFGPE1oag"
+ }
+]

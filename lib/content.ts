@@ -103,7 +103,7 @@ export function getDocs(section: Section): Doc[] {
         section, slug,
         title: String(data.title ?? slug),
         summary: String(data.summary ?? ""),
-        updated: String(data.updated ?? "2026-11-18"),
+        updated: data.updated instanceof Date ? data.updated.toISOString().slice(0, 10) : String(data.updated ?? "2026-11-18"),
         body, data, headings,
       } satisfies Doc;
     })
